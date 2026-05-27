@@ -2576,6 +2576,128 @@
   border-radius:999px;
 }
 
+
+/* =========================================================
+   v25.1 — Maker QA Panel + Auto Next
+   Alleen zichtbaar met ?debug=1&dev=1
+   ========================================================= */
+.devPanel{
+  position:absolute;
+  z-index:170;
+  left:10px;
+  right:10px;
+  top:calc(96px + env(safe-area-inset-top,0px));
+  display:none;
+  padding:8px;
+  border-radius:10px;
+  background:rgba(255,255,255,.78);
+  color:#1b2b50;
+  border:1px solid rgba(255,255,255,.68);
+  box-shadow:0 12px 30px rgba(7,20,56,.18);
+  backdrop-filter:blur(6px) saturate(1.02);
+  -webkit-backdrop-filter:blur(6px) saturate(1.02);
+  font-size:11px;
+  font-weight:850;
+}
+.devMode .devPanel{display:block;}
+.devPanelRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-bottom:6px;
+}
+.devPanel select,
+.devPanel button{
+  min-height:32px;
+  border:0;
+  border-radius:10px;
+  padding:0 8px;
+  font-size:11px;
+  font-weight:900;
+  color:#1b2b50;
+  background:rgba(255,255,255,.66);
+  box-shadow:inset 0 0 0 1px rgba(110,145,190,.18);
+}
+.devPanel button{
+  color:#fff;
+  background:linear-gradient(180deg,#69b2ff,#3d89ee);
+  box-shadow:0 7px 14px rgba(61,137,238,.14), inset 0 1px 0 rgba(255,255,255,.28);
+}
+.devPanel button.secondary{
+  color:#244064;
+  background:rgba(255,255,255,.62);
+  box-shadow:inset 0 0 0 1px rgba(110,145,190,.18);
+}
+.devPanelResult{
+  min-height:18px;
+  padding:6px 7px;
+  border-radius:10px;
+  background:rgba(7,18,42,.08);
+  color:#244064;
+  line-height:1.25;
+}
+.devMode .targetCard{margin-top:84px;}
+@media(max-height:740px){
+  .devMode .devPanel{top:calc(72px + env(safe-area-inset-top,0px));}
+  .devMode .targetCard{margin-top:70px;}
+}
+
+
+
+/* =========================================================
+   v25.3 — Full QA Report
+   Eén totaalrapport voor alle werelden en tiers.
+   ========================================================= */
+.devPanel{
+  max-height:min(54vh, 430px);
+  overflow:auto;
+}
+.devPanelResult{
+  white-space:pre-wrap;
+  max-height:190px;
+  overflow:auto;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size:10.5px;
+  line-height:1.32;
+}
+.devPanelResult.ok{background:rgba(45,194,111,.13);color:#17462a;}
+.devPanelResult.warn{background:rgba(255,194,66,.16);color:#5b3a05;}
+.devPanelResult.running{background:rgba(61,137,238,.12);color:#1f3962;}
+@media(max-width:390px){
+  .devPanel{max-height:min(58vh, 430px);}
+  .devPanelResult{max-height:160px;}
+}
+
+
+/* =========================================================
+   v25.4 — Duidelijk QA-rapport
+   Rapport gebruikt gewone taal en toont concrete problemen.
+   ========================================================= */
+.devPanelResult{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif !important;
+  font-size:11px !important;
+  line-height:1.36 !important;
+}
+.devPanelResult .qaTitle{
+  font-size:12px;
+  font-weight:950;
+  margin-bottom:4px;
+}
+
+
+/* v26 — Procentenhaven */
+.playPanel[data-topic="percentages"]{
+  --gameBg:url('assets/menu-background-world.png');
+  --panelBorder:rgba(255,203,82,.72);
+}
+#phone[data-topic="percentages"]{
+  --phoneBg:url('assets/menu-background-world.png');
+}
+.mapPin[data-world="procentenhaven"]{
+  --badge-bg:linear-gradient(180deg,#fff1bd,#f5b740);
+  --badge-color:#5d3700;
+}
+
 </style>
 </head>
 <body>
@@ -2617,6 +2739,37 @@
 
     <div class="toast" id="toast">Goed</div>
     <div class="debugPanel" id="debugPanel" aria-hidden="true"></div>
+    <div class="devPanel" id="devPanel" aria-hidden="true">
+      <div class="devPanelRow">
+        <select id="devTopicSelect" aria-label="Testwereld">
+          <option value="fractions">Breukenzee</option>
+          <option value="inequalities">Ongelijkhedenstorm</option>
+          <option value="coordinates">Coördinatenbaai</option>
+          <option value="numbertheory">Getallenbaai</option>
+          <option value="shapes">Vormeneiland</option>
+          <option value="equations">Vergelijkingenvallei</option>
+          <option value="percentages">Procentenhaven</option>
+        </select>
+        <select id="devTierSelect" aria-label="Testniveau">
+          <option value="1">Brons</option>
+          <option value="2">Zilver</option>
+          <option value="3">Goud</option>
+        </select>
+      </div>
+      <div class="devPanelRow">
+        <button id="devStartBtn" type="button">Start test</button>
+        <button id="devNextBtn" type="button">Nieuwe vraag</button>
+      </div>
+      <div class="devPanelRow">
+        <button class="secondary" id="devMassTestBtn" type="button">Test 100</button>
+        <button class="secondary" id="devFullTestBtn" type="button">Test alles</button>
+      </div>
+      <div class="devPanelRow">
+        <button class="secondary" id="devCopyReportBtn" type="button">Kopieer rapport</button>
+        <button class="secondary" id="devResetProgressBtn" type="button">Reset progressie</button>
+      </div>
+      <div class="devPanelResult" id="devPanelResult">Maker QA actief · auto-next 1,1s.</div>
+    </div>
     <button class="nextRoundBtn hidden" id="nextRoundBtn" type="button" aria-label="Volgende ronde">➜</button>
 
     <div class="sessionBriefPanel hidden" id="sessionBriefPanel" role="dialog" aria-modal="true" aria-labelledby="sessionBriefTitle">
@@ -2712,8 +2865,9 @@
             <span class="dashboardText srOnly"><strong id="topicEqTitle">Vergelijkingenvallei</strong><small id="topicEqDesc">Waarden die vergelijkingen waar maken.</small></span>
           </button>
 
-          <button class="mapPin locked" type="button" data-world="procentenhaven" aria-label="Procenten- en Verhoudingenhaven, komt later" disabled>
+          <button class="topicBtn mapPin" type="button" data-topic="percentages" data-world="procentenhaven" aria-label="Procentenhaven">
             <img src="assets/icons/icon-procentenhaven.png" alt="" draggable="false" />
+            <span class="dashboardText srOnly"><strong id="topicPercentTitle">Procentenhaven</strong><small id="topicPercentDesc">Percentages, breuken, kommagetallen en korting.</small></span>
           </button>
 
           <button class="mapPin locked" type="button" data-world="grafiekgebergte" aria-label="Grafiekgebergte, komt later" disabled>
@@ -2833,8 +2987,23 @@
   const accountNameText = document.getElementById("accountNameText");
   const leaderboardUserLine = document.getElementById("leaderboardUserLine");
   const debugPanel = document.getElementById("debugPanel");
-  const DEBUG_MODE = new URLSearchParams(window.location.search).get("debug") === "1";
+  const devPanel = document.getElementById("devPanel");
+  const devTopicSelect = document.getElementById("devTopicSelect");
+  const devTierSelect = document.getElementById("devTierSelect");
+  const devStartBtn = document.getElementById("devStartBtn");
+  const devNextBtn = document.getElementById("devNextBtn");
+  const devMassTestBtn = document.getElementById("devMassTestBtn");
+  const devFullTestBtn = document.getElementById("devFullTestBtn");
+  const devCopyReportBtn = document.getElementById("devCopyReportBtn");
+  const devResetProgressBtn = document.getElementById("devResetProgressBtn");
+  const devPanelResult = document.getElementById("devPanelResult");
+  let lastDevReportText = "";
+  const URL_FLAGS = new URLSearchParams(window.location.search);
+  const DEBUG_MODE = URL_FLAGS.get("debug") === "1";
+  const DEV_MODE = DEBUG_MODE && URL_FLAGS.get("dev") === "1";
+  const AUTO_NEXT_DELAY_MS = 1100;
   if(DEBUG_MODE) document.documentElement.classList.add("debugMode");
+  if(DEV_MODE) document.documentElement.classList.add("devMode");
 
   const langSel = document.getElementById("langSel");
   const langSelMini = document.getElementById("langSelMini");
@@ -2862,7 +3031,9 @@
     topicShapesTitle: document.getElementById("topicShapesTitle"),
     topicShapesDesc: document.getElementById("topicShapesDesc"),
     topicEqTitle: document.getElementById("topicEqTitle"),
-    topicEqDesc: document.getElementById("topicEqDesc")
+    topicEqDesc: document.getElementById("topicEqDesc"),
+    topicPercentTitle: document.getElementById("topicPercentTitle"),
+    topicPercentDesc: document.getElementById("topicPercentDesc")
   };
 
   const I18N = {
@@ -3132,9 +3303,352 @@
     }
   };
 
+
+  /* v25.5 — extra UI-teksten voor volledige taalpass */
+  Object.assign(I18N.nl, {
+    tierBronze:"Brons", tierSilver:"Zilver", tierGold:"Goud", tierCompleted:"Voltooid", tierGoldReplay:"Goud opnieuw",
+    questionsWord:"vragen", levelWord:"Niveau", timeWord:"Tijd", rewardWord:"Beloning",
+    nextChallenge:"Volgende:", goldAchieved:"Goud gehaald",
+    playerLabel:"Speler", guestName:"Gast", giveNamePlaceholder:"Geef naam",
+    startRound:"Start ronde", back:"Terug", close:"Sluiten", reset:"Reset",
+    sessionPerfectBetter:"10 vragen. Speel perfect voor een betere beloning.",
+    sessionGoldReplayText:"Goud gehaald. Speel opnieuw om je score of tijd te verbeteren.",
+    sessionBronzeText:"Speel 10 vragen perfect om Brons te verdienen.",
+    sessionSilverText:"Brons gehaald. Speel 20 vragen perfect voor Zilver.",
+    sessionGoldText:"Zilver gehaald. Speel 30 vragen perfect voor Goud.",
+    leaderboardTitle:"Ranglijst",
+    leaderboardHelp:"Perfecte sessies komen hier. Je tijden worden lokaal in deze browser bewaard.",
+    leaderboardEmpty:"Nog geen perfecte sessies.",
+    loginTitle:"Math World",
+    loginText:"Log in om je voortgang en ranglijst lokaal te bewaren.",
+    loginAccountPlaceholder:"Account",
+    loginPasswordPlaceholder:"Wachtwoord",
+    loginButton:"Inloggen",
+    loginGuestButton:"Gast",
+    loginHint:"Testlogin: gast / gast",
+    loginInvalid:"Gebruik voorlopig: gast / gast",
+    profileTitle:"Speler",
+    profileText:"Kies een naam. Voorlopig wordt dit alleen in deze browser bewaard.",
+    startTest:"Start test", newQuestion:"Nieuwe vraag", test100:"Test 100", testAll:"Test alles",
+    copyReport:"Kopieer rapport", resetProgress:"Reset progressie",
+    devReady:"Maker QA actief · auto-next 1,1s.",
+    devTestStarted:"Test gestart", devNewQuestion:"Nieuwe vraag geladen.",
+    devProgressReset:"Progressie en ranglijst gereset.",
+    devTestRunning:"Test loopt…",
+    devFullTestRunning:"Volledige test loopt… 6 werelden × 3 tiers × 100 rondes",
+    devCopied:"Gekopieerd naar klembord.",
+    devCopyFailed:"Kopiëren lukte niet automatisch. Rapport staat in de console.",
+    qaTitle:"QA-rapport", qaGeneratedRounds:"gegenereerde rondes",
+    qaStatusOk:"Status: alles OK. Elke geteste ronde had minstens één juist antwoord en het juiste aantal bubbels.",
+    qaStatusWarn:"Status: {n} aandachtspunt(en). Het spel gebruikt nu wel een veiligheidsherstel waar mogelijk.",
+    qaGuardRepaired:"Hersteld door guard: {n} ronde(s) waarbij de ruwe generator iets verdachts maakte.",
+    qaWhatTested:"Wat wordt getest?",
+    qaCheckBubbles:"• Maakt de generator genoeg antwoordbubbels?",
+    qaCheckCorrect:"• Zit er minstens één juist antwoord tussen?",
+    qaCheckDuplicates:"• Zijn antwoordlabels niet dubbel?",
+    qaCheckShapes:"• Bij Vormeneiland: bestaat er minstens één passende vorm bij elk vraagtype?",
+    qaTested:"Getest", qaBubbles:"bubbels", qaCorrectAfterGuard:"juist na guard",
+    qaGuardFixed:"Guard herstelde", qaRounds:"ronde(s)", qaRawCorrectRange:"Ruwe juist-range was",
+    qaProblem:"Probleem", qaExamples:"Concrete voorbeelden:",
+    qaConclusionOk:"Conclusie: de generatorcontrole vond geen technische problemen.",
+    qaOk:"✓ OK", qaReview:"⚠ nakijken",
+    rawNoCorrect:"oorspronkelijke generator zonder juist antwoord",
+    rawBubbleCount:"te weinig/te veel bubbels vóór herstel",
+    safeNoCorrect:"nog steeds geen juist antwoord",
+    safeBubbleCount:"fout aantal bubbels na herstel",
+    duplicateLabels:"dubbele antwoordtekst",
+    shapeHealthProblem:"vormvraag zonder passende vorm",
+    generatedZeroCorrect:"generator maakte 0 juiste antwoorden",
+    generatedWrongBubbleCount:"generator maakte {got}/{expected} bubbels",
+    afterGuardWrongBubbleCount:"na herstel {got}/{expected} bubbels",
+    afterGuardNoCorrect:"na herstel nog steeds geen juist antwoord",
+    tooManyCorrect:"meer juiste antwoorden dan bubbels",
+    shapeControl:"vormcontrole",
+    shapeTaskNoMatch:"Shape task zonder match",
+    copiedExtra:"extra in console",
+    perfectImproved:"Perfect! {tier} verbeterd. Tijd toegevoegd aan de ranglijst.",
+    perfectEarned:"Perfect! {tier} verdiend. Tijd toegevoegd aan de ranglijst.",
+    notPerfectText:"Niet perfect: dezelfde uitdaging blijft actief tot je ze foutloos haalt.",
+    nextSessionText:"Volgende sessie: {tier} · {questions} vragen · niveau 1–{level}.",
+    worldGoldText:"Deze wereld is nu Goud. Verbeter nu je score of ga naar een andere wereld.",
+    playedRewardLine:"{played} <b>{topic}</b>."
+  });
+  Object.assign(I18N.en, {
+    tierBronze:"Bronze", tierSilver:"Silver", tierGold:"Gold", tierCompleted:"Completed", tierGoldReplay:"Gold replay",
+    questionsWord:"questions", levelWord:"Level", timeWord:"Time", rewardWord:"Reward",
+    nextChallenge:"Next:", goldAchieved:"Gold earned",
+    playerLabel:"Player", guestName:"Guest", giveNamePlaceholder:"Enter name",
+    startRound:"Start round", back:"Back", close:"Close", reset:"Reset",
+    sessionPerfectBetter:"10 questions. Play perfectly for a better reward.",
+    sessionGoldReplayText:"Gold earned. Play again to improve your score or time.",
+    sessionBronzeText:"Play 10 questions perfectly to earn Bronze.",
+    sessionSilverText:"Bronze earned. Play 20 questions perfectly for Silver.",
+    sessionGoldText:"Silver earned. Play 30 questions perfectly for Gold.",
+    leaderboardTitle:"Leaderboard",
+    leaderboardHelp:"Perfect sessions appear here. Your times are saved only in this browser.",
+    leaderboardEmpty:"No perfect sessions yet.",
+    loginTitle:"Math World",
+    loginText:"Log in to save your progress and leaderboard locally.",
+    loginAccountPlaceholder:"Account",
+    loginPasswordPlaceholder:"Password",
+    loginButton:"Log in",
+    loginGuestButton:"Guest",
+    loginHint:"Test login: guest / guest",
+    loginInvalid:"For now, use: guest / guest",
+    profileTitle:"Player",
+    profileText:"Choose a name. For now, it is saved only in this browser.",
+    startTest:"Start test", newQuestion:"New question", test100:"Test 100", testAll:"Test all",
+    copyReport:"Copy report", resetProgress:"Reset progress",
+    devReady:"Maker QA active · auto-next 1.1s.",
+    devTestStarted:"Test started", devNewQuestion:"New question loaded.",
+    devProgressReset:"Progress and leaderboard reset.",
+    devTestRunning:"Test running…",
+    devFullTestRunning:"Full test running… 6 worlds × 3 tiers × 100 rounds",
+    devCopied:"Copied to clipboard.",
+    devCopyFailed:"Automatic copy failed. The report is in the console.",
+    qaTitle:"QA report", qaGeneratedRounds:"generated rounds",
+    qaStatusOk:"Status: all OK. Every tested round had at least one correct answer and the right number of bubbles.",
+    qaStatusWarn:"Status: {n} attention point(s). The game now uses a safety guard where possible.",
+    qaGuardRepaired:"Repaired by guard: {n} round(s) where the raw generator made something suspicious.",
+    qaWhatTested:"What is tested?",
+    qaCheckBubbles:"• Does the generator make enough answer bubbles?",
+    qaCheckCorrect:"• Is there at least one correct answer?",
+    qaCheckDuplicates:"• Are answer labels not duplicated?",
+    qaCheckShapes:"• For Shape Island: does every question type have at least one matching shape?",
+    qaTested:"Tested", qaBubbles:"bubbles", qaCorrectAfterGuard:"correct after guard",
+    qaGuardFixed:"Guard repaired", qaRounds:"round(s)", qaRawCorrectRange:"Raw correct range was",
+    qaProblem:"Problem", qaExamples:"Concrete examples:",
+    qaConclusionOk:"Conclusion: the generator check found no technical problems.",
+    qaOk:"✓ OK", qaReview:"⚠ review",
+    rawNoCorrect:"raw generator without a correct answer",
+    rawBubbleCount:"too few/too many bubbles before repair",
+    safeNoCorrect:"still no correct answer after repair",
+    safeBubbleCount:"wrong bubble count after repair",
+    duplicateLabels:"duplicate answer text",
+    shapeHealthProblem:"shape question without a matching shape",
+    generatedZeroCorrect:"generator made 0 correct answers",
+    generatedWrongBubbleCount:"generator made {got}/{expected} bubbles",
+    afterGuardWrongBubbleCount:"after guard {got}/{expected} bubbles",
+    afterGuardNoCorrect:"still no correct answer after guard",
+    tooManyCorrect:"more correct answers than bubbles",
+    shapeControl:"shape check",
+    shapeTaskNoMatch:"Shape task without match",
+    copiedExtra:"extra in console",
+    perfectImproved:"Perfect! {tier} improved. Time added to the leaderboard.",
+    perfectEarned:"Perfect! {tier} earned. Time added to the leaderboard.",
+    notPerfectText:"Not perfect: the same challenge stays active until you clear it flawlessly.",
+    nextSessionText:"Next session: {tier} · {questions} questions · level 1–{level}.",
+    worldGoldText:"This world is now Gold. Improve your score or go to another world.",
+    playedRewardLine:"{played} <b>{topic}</b>."
+  });
+  Object.assign(I18N.fr, {
+    tierBronze:"Bronze", tierSilver:"Argent", tierGold:"Or", tierCompleted:"Terminé", tierGoldReplay:"Or à rejouer",
+    questionsWord:"questions", levelWord:"Niveau", timeWord:"Temps", rewardWord:"Récompense",
+    nextChallenge:"Suivant :", goldAchieved:"Or obtenu",
+    playerLabel:"Joueur", guestName:"Invité", giveNamePlaceholder:"Entre ton nom",
+    startRound:"Commencer", back:"Retour", close:"Fermer", reset:"Réinitialiser",
+    sessionPerfectBetter:"10 questions. Réussis sans faute pour une meilleure récompense.",
+    sessionGoldReplayText:"Or obtenu. Rejoue pour améliorer ton score ou ton temps.",
+    sessionBronzeText:"Réussis 10 questions sans faute pour obtenir le Bronze.",
+    sessionSilverText:"Bronze obtenu. Réussis 20 questions sans faute pour l’Argent.",
+    sessionGoldText:"Argent obtenu. Réussis 30 questions sans faute pour l’Or.",
+    leaderboardTitle:"Classement",
+    leaderboardHelp:"Les sessions parfaites apparaissent ici. Tes temps sont enregistrés seulement dans ce navigateur.",
+    leaderboardEmpty:"Aucune session parfaite pour l’instant.",
+    loginTitle:"Math World",
+    loginText:"Connecte-toi pour enregistrer localement ta progression et le classement.",
+    loginAccountPlaceholder:"Compte",
+    loginPasswordPlaceholder:"Mot de passe",
+    loginButton:"Connexion",
+    loginGuestButton:"Invité",
+    loginHint:"Connexion test : gast / gast",
+    loginInvalid:"Pour l’instant, utilise : gast / gast",
+    profileTitle:"Joueur",
+    profileText:"Choisis un nom. Pour l’instant, il est enregistré seulement dans ce navigateur.",
+    startTest:"Démarrer test", newQuestion:"Nouvelle question", test100:"Tester 100", testAll:"Tout tester",
+    copyReport:"Copier rapport", resetProgress:"Réinitialiser progrès",
+    devReady:"QA créateur actif · auto-next 1,1 s.",
+    devTestStarted:"Test démarré", devNewQuestion:"Nouvelle question chargée.",
+    devProgressReset:"Progression et classement réinitialisés.",
+    devTestRunning:"Test en cours…",
+    devFullTestRunning:"Test complet en cours… 6 mondes × 3 niveaux × 100 manches",
+    devCopied:"Copié dans le presse-papiers.",
+    devCopyFailed:"La copie automatique a échoué. Le rapport est dans la console.",
+    qaTitle:"Rapport QA", qaGeneratedRounds:"manches générées",
+    qaStatusOk:"Statut : tout est OK. Chaque manche testée avait au moins une bonne réponse et le bon nombre de bulles.",
+    qaStatusWarn:"Statut : {n} point(s) à vérifier. Le jeu utilise maintenant une sécurité quand c’est possible.",
+    qaGuardRepaired:"Réparé par la sécurité : {n} manche(s) où le générateur brut a produit quelque chose de suspect.",
+    qaWhatTested:"Qu’est-ce qui est testé ?",
+    qaCheckBubbles:"• Le générateur crée-t-il assez de bulles-réponses ?",
+    qaCheckCorrect:"• Y a-t-il au moins une bonne réponse ?",
+    qaCheckDuplicates:"• Les textes de réponse ne sont-ils pas en double ?",
+    qaCheckShapes:"• Pour Shape Island : chaque type de question a-t-il au moins une forme correcte ?",
+    qaTested:"Testé", qaBubbles:"bulles", qaCorrectAfterGuard:"correct après sécurité",
+    qaGuardFixed:"Sécurité a réparé", qaRounds:"manche(s)", qaRawCorrectRange:"Plage brute de bonnes réponses",
+    qaProblem:"Problème", qaExamples:"Exemples concrets :",
+    qaConclusionOk:"Conclusion : le contrôle du générateur n’a trouvé aucun problème technique.",
+    qaOk:"✓ OK", qaReview:"⚠ vérifier",
+    rawNoCorrect:"générateur brut sans bonne réponse",
+    rawBubbleCount:"trop peu/trop de bulles avant réparation",
+    safeNoCorrect:"toujours aucune bonne réponse après réparation",
+    safeBubbleCount:"nombre de bulles incorrect après réparation",
+    duplicateLabels:"texte de réponse en double",
+    shapeHealthProblem:"question de formes sans forme correspondante",
+    generatedZeroCorrect:"le générateur a créé 0 bonne réponse",
+    generatedWrongBubbleCount:"le générateur a créé {got}/{expected} bulles",
+    afterGuardWrongBubbleCount:"après sécurité {got}/{expected} bulles",
+    afterGuardNoCorrect:"toujours aucune bonne réponse après sécurité",
+    tooManyCorrect:"plus de bonnes réponses que de bulles",
+    shapeControl:"contrôle des formes",
+    shapeTaskNoMatch:"Question de forme sans correspondance",
+    copiedExtra:"en plus dans la console",
+    perfectImproved:"Parfait ! {tier} amélioré. Temps ajouté au classement.",
+    perfectEarned:"Parfait ! {tier} obtenu. Temps ajouté au classement.",
+    notPerfectText:"Pas parfait : le même défi reste actif jusqu’à ce que tu le réussisses sans faute.",
+    nextSessionText:"Session suivante : {tier} · {questions} questions · niveau 1–{level}.",
+    worldGoldText:"Ce monde est maintenant Or. Améliore ton score ou choisis un autre monde.",
+    playedRewardLine:"{played} <b>{topic}</b>."
+  });
+  Object.assign(I18N.tl, {
+    tierBronze:"Bronze", tierSilver:"Silver", tierGold:"Gold", tierCompleted:"Tapos", tierGoldReplay:"Gold replay",
+    questionsWord:"tanong", levelWord:"Level", timeWord:"Oras", rewardWord:"Gantimpala",
+    nextChallenge:"Susunod:", goldAchieved:"Nakuha ang Gold",
+    playerLabel:"Player", guestName:"Guest", giveNamePlaceholder:"Ilagay ang pangalan",
+    startRound:"Simulan ang round", back:"Bumalik", close:"Isara", reset:"Reset",
+    sessionPerfectBetter:"10 tanong. Sagutan nang perfect para sa mas magandang gantimpala.",
+    sessionGoldReplayText:"Nakuha ang Gold. Maglaro ulit para pagandahin ang score o oras.",
+    sessionBronzeText:"Sagutan nang perfect ang 10 tanong para makuha ang Bronze.",
+    sessionSilverText:"Nakuha ang Bronze. Sagutan nang perfect ang 20 tanong para sa Silver.",
+    sessionGoldText:"Nakuha ang Silver. Sagutan nang perfect ang 30 tanong para sa Gold.",
+    leaderboardTitle:"Leaderboard",
+    leaderboardHelp:"Perfect sessions ang lalabas dito. Naka-save lang ang oras sa browser na ito.",
+    leaderboardEmpty:"Wala pang perfect session.",
+    loginTitle:"Math World",
+    loginText:"Mag-log in para ma-save ang progress at leaderboard sa browser na ito.",
+    loginAccountPlaceholder:"Account",
+    loginPasswordPlaceholder:"Password",
+    loginButton:"Log in",
+    loginGuestButton:"Guest",
+    loginHint:"Test login: gast / gast",
+    loginInvalid:"Sa ngayon, gamitin: gast / gast",
+    profileTitle:"Player",
+    profileText:"Pumili ng pangalan. Sa ngayon, dito lang ito mase-save sa browser.",
+    startTest:"Start test", newQuestion:"Bagong tanong", test100:"Test 100", testAll:"Test lahat",
+    copyReport:"Kopyahin report", resetProgress:"Reset progress",
+    devReady:"Maker QA active · auto-next 1.1s.",
+    devTestStarted:"Nagsimula ang test", devNewQuestion:"Na-load ang bagong tanong.",
+    devProgressReset:"Na-reset ang progress at leaderboard.",
+    devTestRunning:"Tumatakbo ang test…",
+    devFullTestRunning:"Full test running… 6 worlds × 3 tiers × 100 rounds",
+    devCopied:"Nakopya sa clipboard.",
+    devCopyFailed:"Hindi nakopya automatic. Nasa console ang report.",
+    qaTitle:"QA report", qaGeneratedRounds:"generated rounds",
+    qaStatusOk:"Status: OK lahat. Bawat test round ay may kahit isang tamang sagot at tamang bilang ng bubbles.",
+    qaStatusWarn:"Status: {n} dapat tingnan. Gumagamit na ngayon ang game ng safety guard kung posible.",
+    qaGuardRepaired:"Inayos ng guard: {n} round(s) na may kahina-hinalang raw generator output.",
+    qaWhatTested:"Ano ang tine-test?",
+    qaCheckBubbles:"• Gumagawa ba ang generator ng sapat na answer bubbles?",
+    qaCheckCorrect:"• May kahit isang tamang sagot ba?",
+    qaCheckDuplicates:"• Walang duplicate na answer labels?",
+    qaCheckShapes:"• Sa Shape Island: may tumutugmang shape ba sa bawat question type?",
+    qaTested:"Tested", qaBubbles:"bubbles", qaCorrectAfterGuard:"tama pagkatapos ng guard",
+    qaGuardFixed:"Inayos ng guard", qaRounds:"round(s)", qaRawCorrectRange:"Raw correct range was",
+    qaProblem:"Problema", qaExamples:"Concrete examples:",
+    qaConclusionOk:"Conclusion: walang technical problem na nakita sa generator check.",
+    qaOk:"✓ OK", qaReview:"⚠ tingnan",
+    rawNoCorrect:"raw generator na walang tamang sagot",
+    rawBubbleCount:"kulang/sobra ang bubbles bago ayusin",
+    safeNoCorrect:"wala pa ring tamang sagot pagkatapos ayusin",
+    safeBubbleCount:"maling bilang ng bubbles pagkatapos ayusin",
+    duplicateLabels:"duplicate answer text",
+    shapeHealthProblem:"shape question na walang matching shape",
+    generatedZeroCorrect:"gumawa ang generator ng 0 tamang sagot",
+    generatedWrongBubbleCount:"gumawa ang generator ng {got}/{expected} bubbles",
+    afterGuardWrongBubbleCount:"pagkatapos ng guard {got}/{expected} bubbles",
+    afterGuardNoCorrect:"wala pa ring tamang sagot pagkatapos ng guard",
+    tooManyCorrect:"mas maraming tamang sagot kaysa bubbles",
+    shapeControl:"shape check",
+    shapeTaskNoMatch:"Shape task without match",
+    copiedExtra:"extra in console",
+    perfectImproved:"Perfect! Na-improve ang {tier}. Naidagdag ang oras sa leaderboard.",
+    perfectEarned:"Perfect! Nakuha ang {tier}. Naidagdag ang oras sa leaderboard.",
+    notPerfectText:"Hindi perfect: mananatili ang parehong challenge hanggang flawless mo itong matapos.",
+    nextSessionText:"Next session: {tier} · {questions} tanong · level 1–{level}.",
+    worldGoldText:"Gold na ang world na ito. Pagandahin ang score o pumunta sa ibang world.",
+    playedRewardLine:"{played} <b>{topic}</b>."
+  });
+
+
+  /* v26 — Procentenhaven translations */
+  Object.assign(I18N.nl, {
+    percentTitle:"🏷️ Procentenhaven",
+    percentDesc:"Percentages, breuken, kommagetallen, deel van een getal en korting.",
+    topicPercent:"Procentenhaven",
+    levelPercent:"Procenten",
+    targetPercentEquivalent:"vind alle vormen die gelijk zijn aan",
+    targetPercentOf:"bereken",
+    targetDiscount:"prijs na korting",
+    targetPercentChange:"nieuwe waarde na procentuele verandering",
+    percentHint:"Gebruik 50% = 1/2, 25% = 1/4, 10% = delen door 10. Bij korting trek je het kortingbedrag af."
+  });
+  Object.assign(I18N.en, {
+    percentTitle:"🏷️ Percentage Harbor",
+    percentDesc:"Percentages, fractions, decimals, parts of a number and discounts.",
+    topicPercent:"Percentage Harbor",
+    levelPercent:"Percentages",
+    targetPercentEquivalent:"find all forms equal to",
+    targetPercentOf:"calculate",
+    targetDiscount:"price after discount",
+    targetPercentChange:"new value after percentage change",
+    percentHint:"Use 50% = 1/2, 25% = 1/4, 10% = divide by 10. For a discount, subtract the discount amount."
+  });
+  Object.assign(I18N.fr, {
+    percentTitle:"🏷️ Port des pourcentages",
+    percentDesc:"Pourcentages, fractions, nombres décimaux, partie d’un nombre et réductions.",
+    topicPercent:"Port des pourcentages",
+    levelPercent:"Pourcentages",
+    targetPercentEquivalent:"trouve toutes les formes égales à",
+    targetPercentOf:"calcule",
+    targetDiscount:"prix après réduction",
+    targetPercentChange:"nouvelle valeur après variation en pourcentage",
+    percentHint:"Utilise 50 % = 1/2, 25 % = 1/4, 10 % = diviser par 10. Pour une réduction, soustrais le montant réduit."
+  });
+  Object.assign(I18N.tl, {
+    percentTitle:"🏷️ Percentage Harbor",
+    percentDesc:"Percentages, fractions, decimals, bahagi ng number, at discounts.",
+    topicPercent:"Percentage Harbor",
+    levelPercent:"Percentages",
+    targetPercentEquivalent:"hanapin ang lahat ng anyo na katumbas ng",
+    targetPercentOf:"kalkulahin",
+    targetDiscount:"presyo pagkatapos ng discount",
+    targetPercentChange:"bagong value pagkatapos ng percent change",
+    percentHint:"Gamitin ang 50% = 1/2, 25% = 1/4, 10% = hatiin sa 10. Sa discount, ibawas ang discount amount."
+  });
+
   let currentLang = localStorage.getItem("bubblePopLang") || "nl";
   if(!I18N[currentLang]) currentLang = "nl";
   function tr(key){ return (I18N[currentLang] && I18N[currentLang][key]) || I18N.nl[key] || key; }
+  function fmt(key, values={}){
+    return tr(key).replace(/\{(\w+)\}/g, (_, name) => values[name] !== undefined ? values[name] : `{${name}}`);
+  }
+  function tierLabel(tierOrName){
+    const n = typeof tierOrName === "number"
+      ? tierOrName
+      : (tierOrName === "Goud" ? 3 : tierOrName === "Zilver" ? 2 : tierOrName === "Brons" ? 1 : 0);
+    if(n >= 3) return tr("tierGold");
+    if(n === 2) return tr("tierSilver");
+    if(n === 1) return tr("tierBronze");
+    return tr("tierCompleted");
+  }
+  function questionCountText(n){
+    return `${Number(n || 0)} ${tr("questionsWord")}`;
+  }
+  function levelRangeText(max){
+    return `${tr("levelWord")} 1–${Number(max || 1)}`;
+  }
+  function playerDisplayName(){
+    return playerName || tr("guestName");
+  }
 
   function setLanguage(lang){
     if(!I18N[lang]) return;
@@ -3176,6 +3690,59 @@
     if(ui.topicShapesDesc) ui.topicShapesDesc.textContent = tr("shapesDesc");
     if(ui.topicEqTitle) ui.topicEqTitle.textContent = tr("eqTitle");
     if(ui.topicEqDesc) ui.topicEqDesc.textContent = tr("eqDesc");
+    if(ui.topicPercentTitle) ui.topicPercentTitle.textContent = tr("percentTitle");
+    if(ui.topicPercentDesc) ui.topicPercentDesc.textContent = tr("percentDesc");
+    if(rankBtn) rankBtn.setAttribute("aria-label", tr("leaderboardTitle"));
+    if(mapRankBtn) mapRankBtn.setAttribute("aria-label", tr("leaderboardTitle"));
+    if(sessionBriefStartBtn) sessionBriefStartBtn.textContent = tr("startRound");
+    if(sessionBriefMenuBtn) sessionBriefMenuBtn.textContent = tr("back");
+    if(sessionPlayerNameInput) sessionPlayerNameInput.placeholder = tr("giveNamePlaceholder");
+    if(leaderboardPanel){
+      const h = leaderboardPanel.querySelector("h2");
+      const p = leaderboardPanel.querySelector("p");
+      if(h) h.textContent = tr("leaderboardTitle");
+      if(p) p.textContent = tr("leaderboardHelp");
+    }
+    if(closeRankBtn) closeRankBtn.textContent = tr("close");
+    if(resetRankBtn) resetRankBtn.textContent = tr("reset");
+    if(leaderboardNameInput) leaderboardNameInput.placeholder = tr("giveNamePlaceholder");
+    if(profilePanel){
+      const h = profilePanel.querySelector("h2");
+      const p = profilePanel.querySelector("p");
+      if(h) h.textContent = tr("profileTitle");
+      if(p) p.textContent = tr("profileText");
+    }
+    if(playerNameInput) playerNameInput.placeholder = tr("giveNamePlaceholder");
+    if(savePlayerBtn) savePlayerBtn.textContent = tr("start");
+    if(guestPlayerBtn) guestPlayerBtn.textContent = tr("guestName");
+    if(loginPanel){
+      const h = loginPanel.querySelector("h2");
+      const p = loginPanel.querySelector("p");
+      const hint = loginPanel.querySelector(".loginHint");
+      if(h) h.textContent = tr("loginTitle");
+      if(p) p.textContent = tr("loginText");
+      if(hint) hint.textContent = tr("loginHint");
+    }
+    if(loginUserInput) loginUserInput.placeholder = tr("loginAccountPlaceholder");
+    if(loginPassInput) loginPassInput.placeholder = tr("loginPasswordPlaceholder");
+    if(loginSubmitBtn) loginSubmitBtn.textContent = tr("loginButton");
+    if(loginGuestFillBtn) loginGuestFillBtn.textContent = tr("loginGuestButton");
+    if(devStartBtn) devStartBtn.textContent = tr("startTest");
+    if(devNextBtn) devNextBtn.textContent = tr("newQuestion");
+    if(devMassTestBtn) devMassTestBtn.textContent = tr("test100");
+    if(devFullTestBtn) devFullTestBtn.textContent = tr("testAll");
+    if(devCopyReportBtn) devCopyReportBtn.textContent = tr("copyReport");
+    if(devResetProgressBtn) devResetProgressBtn.textContent = tr("resetProgress");
+    if(devTierSelect){
+      const tierOptions = {1:tr("tierBronze"), 2:tr("tierSilver"), 3:tr("tierGold")};
+      Array.from(devTierSelect.options).forEach(opt => { opt.textContent = tierOptions[opt.value] || opt.textContent; });
+    }
+    if(devTopicSelect){
+      Array.from(devTopicSelect.options).forEach(opt => { opt.textContent = topicName(opt.value); });
+    }
+    if(devPanelResult && !lastDevReportText) devPanelResult.textContent = tr("devReady");
+    syncAccountUI();
+    renderLeaderboard();
     if(task) renderTarget(task);
     if(task) updateHint(task);
     updateHUD();
@@ -3217,7 +3784,7 @@
   let maxRounds = 10;
   let sessionPlan = { questions:10, maxLevel:5, tierAttempt:1, tierName:"Brons" };
   const mixedTopics = ["fractions","inequalities","coordinates","numbertheory","shapes","equations"];
-  const playableTopics = ["fractions","inequalities","coordinates","numbertheory","shapes","equations"];
+  const playableTopics = ["fractions","inequalities","coordinates","numbertheory","shapes","equations","percentages"];
   let mixedTopicDeck = [];
   let recentTaskKeys = [];
   const recentTaskLimit = 6;
@@ -3378,6 +3945,7 @@
     if(topic === "numbertheory") return "🧮";
     if(topic === "shapes") return "🔷";
     if(topic === "equations") return "⚖️";
+    if(topic === "percentages") return "🏷️";
     return "★";
   }
 
@@ -3407,6 +3975,283 @@
       return { questions:20, maxLevel:8, tierAttempt:2, tierName:"Zilver", mastered:false };
     }
     return { questions:10, maxLevel:5, tierAttempt:1, tierName:"Brons", mastered:false };
+  }
+
+
+  function sessionPlanForTier(tier){
+    const n = Number(tier || 1) || 1;
+    if(n >= 3) return { questions:30, maxLevel:9, tierAttempt:3, tierName:"Goud", mastered:false };
+    if(n === 2) return { questions:20, maxLevel:8, tierAttempt:2, tierName:"Zilver", mastered:false };
+    return { questions:10, maxLevel:5, tierAttempt:1, tierName:"Brons", mastered:false };
+  }
+
+  function setDevResult(message, state=""){
+    lastDevReportText = String(message || "");
+    if(!devPanelResult) return;
+    devPanelResult.textContent = lastDevReportText;
+    devPanelResult.classList.remove("ok","warn","running");
+    if(state) devPanelResult.classList.add(state);
+  }
+
+  function startDevSession(){
+    if(!DEV_MODE) return;
+    const topic = devTopicSelect ? devTopicSelect.value : "fractions";
+    const tier = devTierSelect ? Number(devTierSelect.value || 1) : 1;
+    selectedTopic = topic;
+    sessionPlan = sessionPlanForTier(tier);
+    maxRounds = Number(sessionPlan.questions || 10);
+    if(authUser && authUser.displayName){
+      playerName = authUser.displayName;
+    }else{
+      playerName = tr("guestName");
+      saveAuthUser(tr("guestName"), "gast");
+    }
+    dismissIntro();
+    startOverlay.classList.add("hidden");
+    if(sessionBriefPanel) sessionBriefPanel.classList.add("hidden");
+    if(phone) {
+      phone.dataset.topic = selectedTopic;
+      phone.classList.remove("briefingOpen","leaderboardOpen");
+    }
+    if(stage) stage.dataset.topic = selectedTopic;
+    score = 0;
+    round = 0;
+    level = 1;
+    correctRemaining = 0;
+    correctTotal = 0;
+    perfectRun = true;
+    locked = false;
+    clearTimers();
+    clearBubbles();
+    hideNextRoundButton();
+    startTimer();
+    setDevResult(`${tr("devTestStarted")}: ${topicName(topic)} · ${tierLabel(sessionPlan.tierAttempt)}`);
+    nextRound();
+  }
+
+  function devNextQuestion(){
+    if(!DEV_MODE) return;
+    if(startOverlay && !startOverlay.classList.contains("hidden")) startOverlay.classList.add("hidden");
+    if(sessionBriefPanel) sessionBriefPanel.classList.add("hidden");
+    if(phone) phone.classList.remove("briefingOpen","leaderboardOpen");
+    locked = false;
+    if(round >= maxRounds) round = 0;
+    setDevResult(tr("devNewQuestion"));
+    nextRound();
+  }
+
+  function resetDevProgress(){
+    if(!DEV_MODE) return;
+    localStorage.removeItem(WORLD_PROGRESS_KEY);
+    localStorage.removeItem("bubblePopLeaderboard");
+    applyWorldProgress();
+    updateMapWorldLabels();
+    renderLeaderboard();
+    setDevResult(tr("devProgressReset"));
+  }
+
+
+  function shapeLibraryHealthReport(){
+    const tasks = [];
+    for(let lvl=1; lvl<=9; lvl++){
+      for(let i=0; i<35; i++) tasks.push(createShapeTaskForLevel(lvl));
+    }
+    const problems = [];
+    tasks.forEach(taskCandidate => {
+      const matches = SHAPE_LIBRARY.filter(shape => shape.key !== "circle" && shapeMatchesTask(shape, taskCandidate));
+      if(matches.length < 1){
+        problems.push(`${tr("shapeTaskNoMatch")}: ${debugTaskType(taskCandidate)} ${taskCandidate.labelKey || taskCandidate.label || ""}`);
+      }
+    });
+    return problems;
+  }
+
+  function topicLabelForDev(topic){
+    return topicName(topic).replace(/^[^A-Za-zÀ-ÿ0-9]+\s*/, "");
+  }
+
+  function runGeneratorQA(topics, tiers, roundsPerCombo=100){
+    const oldTopic = selectedTopic;
+    const oldPlan = sessionPlan;
+    const oldRound = round;
+    const oldLevel = level;
+    const allErrors = [];
+    const matrix = [];
+    let tested = 0;
+    let repaired = 0;
+
+    for(const tier of tiers){
+      const plan = sessionPlanForTier(tier);
+      sessionPlan = plan;
+      for(const topic of topics){
+        selectedTopic = topic;
+        const stats = {
+          topic, tier, tierName:plan.tierName, tested:0, errors:[],
+          minCorrect:999, maxCorrect:0, minBubbles:999, maxBubbles:0,
+          rawMinCorrect:999, rawMaxCorrect:0, repaired:0, problemCounts:{}, typeCounts:{}
+        };
+
+        for(let i = 0; i < roundsPerCombo; i++){
+          const lvl = 1 + (i % plan.maxLevel);
+          level = lvl;
+          const taskCandidate = createTaskForTopic(topic, lvl);
+          const type = debugTaskType(taskCandidate) || "unknown";
+          stats.typeCounts[type] = (stats.typeCounts[type] || 0) + 1;
+          const count = bubbleCountForLevel(lvl);
+          const wanted = correctWantedForTask(taskCandidate, lvl, count);
+          const rawData = buildBubbleData(taskCandidate, count, wanted);
+          const rawCorrect = rawData.filter(item => item.correct).length;
+          const data = ensurePlayableRoundData(rawData, taskCandidate, count);
+          const correct = data.filter(item => item.correct).length;
+          tested++;
+          stats.tested++;
+
+          stats.rawMinCorrect = Math.min(stats.rawMinCorrect, rawCorrect);
+          stats.rawMaxCorrect = Math.max(stats.rawMaxCorrect, rawCorrect);
+          stats.minCorrect = Math.min(stats.minCorrect, correct);
+          stats.maxCorrect = Math.max(stats.maxCorrect, correct);
+          stats.minBubbles = Math.min(stats.minBubbles, data.length);
+          stats.maxBubbles = Math.max(stats.maxBubbles, data.length);
+
+          const localErrors = [];
+          const addProblem = (key, label) => {
+            stats.problemCounts[key] = (stats.problemCounts[key] || 0) + 1;
+            localErrors.push(label);
+          };
+
+          if(rawCorrect < 1) addProblem("rawNoCorrect", tr("generatedZeroCorrect"));
+          if(rawData.length !== count) addProblem("rawBubbleCount", fmt("generatedWrongBubbleCount", {got:rawData.length, expected:count}));
+          if(data.length !== count) addProblem("safeBubbleCount", fmt("afterGuardWrongBubbleCount", {got:data.length, expected:count}));
+          if(correct < 1) addProblem("safeNoCorrect", tr("afterGuardNoCorrect"));
+          if(correct > count) addProblem("tooManyCorrect", tr("tooManyCorrect"));
+
+          const labels = data.map(answerLabelForDebug).filter(Boolean);
+          if(new Set(labels).size !== labels.length) addProblem("duplicateLabels", tr("duplicateLabels"));
+
+          if(rawCorrect < 1 || rawData.length !== count){
+            stats.repaired++;
+            repaired++;
+          }
+
+          if(localErrors.length){
+            const errorLine = `${topicLabelForDev(topic)} · ${tierLabel(plan.tierAttempt)} · ${tr("levelWord").toLowerCase()} ${lvl} · ${type}: ${localErrors.join(", ")}`;
+            stats.errors.push(errorLine);
+            allErrors.push(errorLine);
+          }
+        }
+
+        if(topic === "shapes"){
+          const shapeProblems = shapeLibraryHealthReport();
+          shapeProblems.forEach(problem => {
+            const line = `${topicLabelForDev(topic)} · ${tierLabel(plan.tierAttempt)} · ${tr("shapeControl")}: ${problem}`;
+            stats.errors.push(line);
+            allErrors.push(line);
+            stats.problemCounts.shapeHealth = (stats.problemCounts.shapeHealth || 0) + 1;
+          });
+        }
+        matrix.push(stats);
+      }
+    }
+
+    selectedTopic = oldTopic;
+    sessionPlan = oldPlan;
+    round = oldRound;
+    level = oldLevel;
+    return {tested, repaired, matrix, errors:allErrors, roundsPerCombo, generatedAt:new Date()};
+  }
+
+  function humanProblemSummary(row){
+    const parts = [];
+    if(row.problemCounts.rawNoCorrect) parts.push(`${row.problemCounts.rawNoCorrect}× ${tr("rawNoCorrect")}`);
+    if(row.problemCounts.rawBubbleCount) parts.push(`${row.problemCounts.rawBubbleCount}× ${tr("rawBubbleCount")}`);
+    if(row.problemCounts.safeNoCorrect) parts.push(`${row.problemCounts.safeNoCorrect}× ${tr("safeNoCorrect")}`);
+    if(row.problemCounts.safeBubbleCount) parts.push(`${row.problemCounts.safeBubbleCount}× ${tr("safeBubbleCount")}`);
+    if(row.problemCounts.duplicateLabels) parts.push(`${row.problemCounts.duplicateLabels}× ${tr("duplicateLabels")}`);
+    if(row.problemCounts.shapeHealth) parts.push(`${row.problemCounts.shapeHealth}× ${tr("shapeHealthProblem")}`);
+    return parts;
+  }
+
+  function formatQAReport(result, compact=false){
+    const lines = [];
+    lines.push(`${tr("qaTitle")} — ${result.tested} ${tr("qaGeneratedRounds")}`);
+    lines.push(result.errors.length
+      ? fmt("qaStatusWarn", {n:result.errors.length})
+      : tr("qaStatusOk"));
+    if(result.repaired){
+      lines.push(fmt("qaGuardRepaired", {n:result.repaired}));
+    }
+    lines.push("");
+    lines.push(tr("qaWhatTested"));
+    lines.push(tr("qaCheckBubbles"));
+    lines.push(tr("qaCheckCorrect"));
+    lines.push(tr("qaCheckDuplicates"));
+    lines.push(tr("qaCheckShapes"));
+    lines.push("");
+
+    const byTopic = {};
+    result.matrix.forEach(row => {
+      if(!byTopic[row.topic]) byTopic[row.topic] = [];
+      byTopic[row.topic].push(row);
+    });
+
+    Object.keys(byTopic).forEach(topic => {
+      lines.push(topicLabelForDev(topic));
+      byTopic[topic].forEach(row => {
+        const correctRange = row.minCorrect === 999 ? "?" : `${row.minCorrect}-${row.maxCorrect}`;
+        const rawCorrectRange = row.rawMinCorrect === 999 ? "?" : `${row.rawMinCorrect}-${row.rawMaxCorrect}`;
+        const bubbleRange = row.minBubbles === 999 ? "?" : `${row.minBubbles}-${row.maxBubbles}`;
+        const problems = humanProblemSummary(row);
+        const status = problems.length ? tr("qaReview") : tr("qaOk");
+        lines.push(`  ${row.tierName}: ${status}`);
+        lines.push(`    ${tr("qaTested")}: ${row.tested} ${tr("qaRounds")} · ${tr("qaBubbles")}: ${bubbleRange} · ${tr("qaCorrectAfterGuard")}: ${correctRange}`);
+        if(row.repaired) lines.push(`    ${tr("qaGuardFixed")}: ${row.repaired} ${tr("qaRounds")}. ${tr("qaRawCorrectRange")} ${rawCorrectRange}.`);
+        if(problems.length) lines.push(`    ${tr("qaProblem")}: ${problems.join("; ")}.`);
+      });
+      lines.push("");
+    });
+
+    if(result.errors.length){
+      lines.push(tr("qaExamples"));
+      result.errors.slice(0, compact ? 8 : 40).forEach((err, i) => lines.push(`  ${i+1}. ${err}`));
+      if(result.errors.length > (compact ? 8 : 40)) lines.push(`  … ${result.errors.length - (compact ? 8 : 40)} ${tr("copiedExtra")}`);
+    }else{
+      lines.push(tr("qaConclusionOk"));
+    }
+    return lines.join("\n");
+  }
+
+  function runDevMassTest(){
+    if(!DEV_MODE) return;
+    setDevResult(tr("devTestRunning"), "running");
+    const topics = ["fractions","inequalities","coordinates","numbertheory","shapes","equations","percentages"];
+    const tier = devTierSelect ? Number(devTierSelect.value || 1) : 1;
+    const result = runGeneratorQA(topics, [tier], 100);
+    if(result.errors.length) console.warn("BubblePop Maker QA errors", result.errors);
+    setDevResult(formatQAReport(result, true), result.errors.length ? "warn" : "ok");
+  }
+
+  function runDevFullTest(){
+    if(!DEV_MODE) return;
+    setDevResult(tr("devFullTestRunning"), "running");
+    window.setTimeout(() => {
+      const topics = ["fractions","inequalities","coordinates","numbertheory","shapes","equations","percentages"];
+      const result = runGeneratorQA(topics, [1,2,3], 100);
+      if(result.errors.length) console.warn("BubblePop Full QA errors", result.errors);
+      setDevResult(formatQAReport(result, false), result.errors.length ? "warn" : "ok");
+    }, 40);
+  }
+
+  async function copyDevReport(){
+    if(!DEV_MODE) return;
+    const report = lastDevReportText || (devPanelResult ? devPanelResult.textContent : "");
+    if(!report) return;
+    try{
+      await navigator.clipboard.writeText(report);
+      setDevResult(report + "\n\n" + tr("devCopied"), devPanelResult && devPanelResult.classList.contains("warn") ? "warn" : "ok");
+    }catch(e){
+      console.log(report);
+      setDevResult(report + "\n\n" + tr("devCopyFailed"), "warn");
+    }
   }
 
   function markWorldProgress(){
@@ -3496,7 +4341,7 @@
 
   function maybeAddLeaderboardEntry(){
     if(!perfectRun || correctTotal <= 0) return;
-    const name = (playerName || "Gast").trim() || "Gast";
+    const name = (playerName || tr("guestName")).trim() || tr("guestName");
     const rows = getLeaderboard();
     rows.push({
       name,
@@ -3521,10 +4366,10 @@
 
   function renderLeaderboard(){
     if(!leaderboardList) return;
-    if(leaderboardUserLine) leaderboardUserLine.textContent = `Speler: ${playerName || "Gast"}`;
+    if(leaderboardUserLine) leaderboardUserLine.textContent = `${tr("playerLabel")}: ${playerDisplayName()}`;
     const rows = getLeaderboard();
     if(!rows.length){
-      leaderboardList.innerHTML = `<div class="leaderboardEmpty">Nog geen perfecte sessies.</div>`;
+      leaderboardList.innerHTML = `<div class="leaderboardEmpty">${escapeHTML(tr("leaderboardEmpty"))}</div>`;
       return;
     }
     leaderboardList.innerHTML = rows.slice(0, 12).map((r,i) => {
@@ -3533,7 +4378,7 @@
       return `
       <div class="leaderboardRow" data-tier="${tier}">
         <span>${i + 1}</span>
-        <span>${escapeHTML(r.name || "Gast")}<small>${icon} ${escapeHTML(r.topicName || r.topic || "")}</small><span class="rankMeta">${escapeHTML(r.tierName || tierName(tier))} · ${Number(r.questions || 0)} vragen · score ${Number(r.score || 0)}</span></span>
+        <span>${escapeHTML(r.name || tr("guestName"))}<small>${icon} ${escapeHTML(r.topic ? topicName(r.topic) : (r.topicName || ""))}</small><span class="rankMeta">${escapeHTML(tierLabel(tier))} · ${questionCountText(r.questions || 0)} · ${tr("score").toLowerCase()} ${Number(r.score || 0)}</span></span>
         <span>${formatTime(r.timeMs || 0)}</span>
       </div>`;
     }).join("");
@@ -3577,14 +4422,14 @@
 
   function syncAccountUI(){
     const loggedIn = Boolean(authUser && authUser.displayName);
-    if(accountNameText) accountNameText.textContent = loggedIn ? authUser.displayName : "Gast";
+    if(accountNameText) accountNameText.textContent = loggedIn ? authUser.displayName : tr("guestName");
     if(accountChip) accountChip.classList.toggle("hidden", !loggedIn);
-    if(sessionUserLine) sessionUserLine.textContent = `Speler: ${playerName || "Gast"}`;
-    if(leaderboardUserLine) leaderboardUserLine.textContent = `Speler: ${playerName || "Gast"}`;
+    if(sessionUserLine) sessionUserLine.textContent = `${tr("playerLabel")}: ${playerDisplayName()}`;
+    if(leaderboardUserLine) leaderboardUserLine.textContent = `${tr("playerLabel")}: ${playerDisplayName()}`;
   }
 
   function saveAuthUser(displayName, username="gast"){
-    const safeName = (displayName || "Gast").trim() || "Gast";
+    const safeName = (displayName || tr("guestName")).trim() || tr("guestName");
     authUser = { username, displayName:safeName, method:"local-test", updatedAt:new Date().toISOString() };
     localStorage.setItem(AUTH_KEY, JSON.stringify(authUser));
     playerName = safeName;
@@ -3625,7 +4470,7 @@
       dismissIntro();
       return true;
     }
-    if(loginError) loginError.textContent = "Gebruik voorlopig: gast / gast";
+    if(loginError) loginError.textContent = tr("loginInvalid");
     return false;
   }
 
@@ -3699,19 +4544,163 @@
     if(task.topic === "shapes"){
       return Math.min(level < 4 ? 2 : level < 7 ? 3 : 4, tierCap, count);
     }
+    if(task.topic === "percentages"){
+      return Math.min(task.mode === "percent-equivalent" ? (level < 5 ? 2 : 3) : 1, tierCap, count);
+    }
     const wanted = task.mode && task.mode.startsWith("equal")
       ? (level < 3 ? 2 : level < 6 ? 3 : 4)
       : (level < 6 ? 2 : 3);
     return Math.min(wanted, tierCap, count);
   }
 
-  function validateRoundData(data, task){
-    if(!Array.isArray(data)) return [];
-    const correct = data.filter(item => item.correct);
-    if(DEBUG_MODE && correct.length === 0){
-      console.warn("BubblePop debug: ronde zonder correct antwoord", task, data);
+  function itemDebugKey(item){
+    return answerLabelForDebug(item) || JSON.stringify(item || {});
+  }
+
+  function appendUniqueItem(target, item, maxCount){
+    if(!item || target.length >= maxCount) return;
+    const key = itemDebugKey(item);
+    if(target.some(existing => itemDebugKey(existing) === key)) return;
+    target.push(item);
+  }
+
+  function fallbackCorrectItemsForTask(task, idxStart=0){
+    if(!task) return [];
+    if(task.topic === "fractions"){
+      if(task.mode === "equal-number" || task.mode === "equal-visual"){
+        const f = task.targetFraction || (task.family && task.family.base) || [1,2];
+        return [makeItem(f[0], f[1], true, idxStart)];
+      }
+      const isGreater = task.mode === "greater";
+      return collectCandidatesForCompare(level)
+        .filter(f => isGreater ? value(f) > value(task.targetFraction) : value(f) < value(task.targetFraction))
+        .slice(0, 4)
+        .map((f,i) => makeItem(f[0], f[1], true, idxStart + i));
     }
-    return data;
+    if(task.topic === "inequalities"){
+      return collectValuesForInequality(task, level)
+        .filter(v => satisfiesInequality(v, task.operator, task.boundary))
+        .slice(0, 4)
+        .map((v,i) => makeNumberItem(v, true, idxStart + i));
+    }
+    if(task.topic === "coordinates"){
+      if(task.mode === "coord-point"){
+        return [makeCoordinateItem(task.x, task.y, true, idxStart, task.min, task.max)];
+      }
+      const vals = [];
+      for(let x=task.min; x<=task.max; x++){
+        for(let y=task.min; y<=task.max; y++){
+          if(task.axis === "x" ? x === task.targetValue : y === task.targetValue){
+            vals.push(makeCoordinateItem(x, y, true, idxStart + vals.length, task.min, task.max));
+          }
+        }
+      }
+      return vals.slice(0, 4);
+    }
+    if(task.topic === "numbertheory"){
+      return collectValuesForNumberTheory(task, level)
+        .filter(v => satisfiesNumberTheory(v, task))
+        .slice(0, 4)
+        .map((v,i) => makeNumberItem(v, true, idxStart + i));
+    }
+    if(task.topic === "equations"){
+      return uniqueNumbers(task.solutions || [])
+        .slice(0, 4)
+        .map((v,i) => makeNumberItem(v, true, idxStart + i));
+    }
+    if(task.topic === "percentages"){
+      return (task.correctLabels || [])
+        .slice(0, 4)
+        .map((label,i) => makeTextItem(label, true, idxStart + i));
+    }
+    if(task.topic === "shapes"){
+      return SHAPE_LIBRARY
+        .filter(shape => shape.key !== "circle" && shapeMatchesTask(shape, task))
+        .slice(0, 4)
+        .map((shape,i) => makeShapeItem(shape, true, idxStart + i));
+    }
+    return [];
+  }
+
+  function fallbackWrongItemsForTask(task, idxStart=0){
+    if(!task) return [];
+    if(task.topic === "fractions"){
+      const target = task.targetFraction || (task.family && task.family.base) || [1,2];
+      return collectDistractorsForEqual(target, level)
+        .slice(0, 12)
+        .map((f,i) => makeItem(f[0], f[1], false, idxStart + i));
+    }
+    if(task.topic === "inequalities"){
+      return collectValuesForInequality(task, level)
+        .filter(v => !satisfiesInequality(v, task.operator, task.boundary))
+        .slice(0, 12)
+        .map((v,i) => makeNumberItem(v, false, idxStart + i));
+    }
+    if(task.topic === "coordinates"){
+      const vals = [];
+      for(let x=task.min; x<=task.max; x++){
+        for(let y=task.min; y<=task.max; y++){
+          const ok = task.mode === "coord-point"
+            ? (x === task.x && y === task.y)
+            : (task.axis === "x" ? x === task.targetValue : y === task.targetValue);
+          if(!ok) vals.push(makeCoordinateItem(x, y, false, idxStart + vals.length, task.min, task.max));
+        }
+      }
+      return shuffle(vals).slice(0, 12);
+    }
+    if(task.topic === "numbertheory"){
+      return collectValuesForNumberTheory(task, level)
+        .filter(v => !satisfiesNumberTheory(v, task))
+        .slice(0, 12)
+        .map((v,i) => makeNumberItem(v, false, idxStart + i));
+    }
+    if(task.topic === "equations"){
+      const solutions = uniqueNumbers(task.solutions || []);
+      return collectValuesForEquation(task)
+        .filter(v => !solutions.includes(v))
+        .slice(0, 12)
+        .map((v,i) => makeNumberItem(v, false, idxStart + i));
+    }
+    if(task.topic === "percentages"){
+      return (task.distractorLabels || [])
+        .slice(0, 12)
+        .map((label,i) => makeTextItem(label, false, idxStart + i));
+    }
+    if(task.topic === "shapes"){
+      return shuffle(SHAPE_LIBRARY.filter(shape => shape.key !== "circle" && !shapeMatchesTask(shape, task)))
+        .slice(0, 12)
+        .map((shape,i) => makeShapeItem(shape, false, idxStart + i));
+    }
+    return [];
+  }
+
+  function ensurePlayableRoundData(data, task, count){
+    const maxCount = Math.max(1, Number(count || 1));
+    const cleaned = [];
+    (Array.isArray(data) ? data : []).forEach(item => appendUniqueItem(cleaned, item, maxCount));
+
+    if(cleaned.filter(item => item.correct).length < 1){
+      fallbackCorrectItemsForTask(task, cleaned.length).forEach(item => appendUniqueItem(cleaned, item, maxCount));
+    }
+
+    fallbackWrongItemsForTask(task, cleaned.length).forEach(item => appendUniqueItem(cleaned, item, maxCount));
+    fallbackCorrectItemsForTask(task, cleaned.length).forEach(item => appendUniqueItem(cleaned, item, maxCount));
+
+    const correct = cleaned.filter(item => item.correct);
+    const wrong = cleaned.filter(item => !item.correct);
+    const keptCorrect = correct.slice(0, Math.min(correct.length, maxCount));
+    const finalData = keptCorrect.concat(wrong.slice(0, Math.max(0, maxCount - keptCorrect.length)));
+
+    return shuffle(finalData);
+  }
+
+  function validateRoundData(data, task, count){
+    const safe = ensurePlayableRoundData(data, task, count || (Array.isArray(data) ? data.length : 1));
+    const correct = safe.filter(item => item.correct);
+    if(DEBUG_MODE && correct.length === 0){
+      console.warn("BubblePop debug: ronde zonder correct antwoord na herstel", task, safe);
+    }
+    return safe;
   }
 
   function nextRound(){
@@ -3729,14 +4718,19 @@
     locked = false;
     clearBubbles();
 
-    task = createTaskForLevel(level);
+    let count = bubbleCountForLevel(level);
+    let correctWanted = 1;
+    let data = [];
+    for(let attempt = 0; attempt < 12; attempt++){
+      task = createTaskForLevel(level);
+      count = bubbleCountForLevel(level);
+      correctWanted = correctWantedForTask(task, level, count);
+      data = validateRoundData(buildBubbleData(task, count, correctWanted), task, count);
+      if(data.length === count && data.some(item => item.correct)) break;
+    }
+
     renderTarget(task);
-
-    const count = bubbleCountForLevel(level);
-    const correctWanted = correctWantedForTask(task, level, count);
-
-    const data = validateRoundData(buildBubbleData(task, count, correctWanted), task);
-    const positions = layoutPositions(count);
+    const positions = layoutPositions(data.length || count);
 
     data.forEach((item, i) => {
       const el = createBubble(item, positions[i], i);
@@ -3783,6 +4777,9 @@
     }
     if(topic === "equations"){
       return createEquationTaskForLevel(level);
+    }
+    if(topic === "percentages"){
+      return createPercentageTaskForLevel(level);
     }
     return createFractionTaskForLevel(level);
   }
@@ -3863,8 +4860,17 @@
       return { topic:"fractions", mode, family, targetFraction: family.base };
     }
 
-    const comparePool = allBaseFractions.filter(f => f[0] !== f[1]);
-    const targetFraction = comparePool[Math.floor(Math.random()*comparePool.length)];
+    const candidates = collectCandidatesForCompare(level);
+    const comparePool = allBaseFractions
+      .filter(f => f[0] !== f[1])
+      .filter(f => {
+        const smaller = candidates.filter(c => value(c) < value(f)).length;
+        const greater = candidates.filter(c => value(c) > value(f)).length;
+        // Enough options for Bronze/Silver/Gold question density.
+        return mode === "greater" ? greater >= 4 : smaller >= 4;
+      });
+    const safePool = comparePool.length ? comparePool : allBaseFractions.filter(f => f[0] !== f[1]);
+    const targetFraction = safePool[Math.floor(Math.random()*safePool.length)];
     return { topic:"fractions", mode, targetFraction };
   }
 
@@ -3912,15 +4918,15 @@
     {key:"tri-isosceles", labelKey:"shapeName_isoscelesTriangle", label:"gelijkbenige driehoek", kind:"triangle", sides:3, triSides:"isosceles", triAngles:"acute", sym:1, right:false, acute:true, obtuse:false, regular:false, allSidesEqual:false, parallelPairs:0, points:"60,12 24,100 96,100"},
     {key:"tri-right", labelKey:"shapeName_rightTriangle", label:"rechthoekige driehoek", kind:"triangle", sides:3, triSides:"scalene", triAngles:"right", sym:0, right:true, acute:false, obtuse:false, regular:false, allSidesEqual:false, parallelPairs:0, points:"20,98 20,30 108,98", rightMark:true},
     {key:"tri-isosceles-right", labelKey:"shapeName_isoscelesRightTriangle", label:"gelijkbenige rechthoekige driehoek", kind:"triangle", sides:3, triSides:"isosceles", triAngles:"right", sym:1, right:true, acute:false, obtuse:false, regular:false, allSidesEqual:false, parallelPairs:0, points:"24,96 24,24 96,96", rightMark:true},
-    {key:"tri-obtuse", labelKey:"shapeName_obtuseTriangle", label:"stomphoekige driehoek", kind:"triangle", sides:3, triSides:"scalene", triAngles:"obtuse", sym:0, right:false, acute:false, obtuse:true, regular:false, allSidesEqual:false, parallelPairs:0, points:"16,98 110,98 38,72"},
-    {key:"tri-scalene-acute", labelKey:"shapeName_scaleneAcuteTriangle", label:"ongelijkbenige scherphoekige driehoek", kind:"triangle", sides:3, triSides:"scalene", triAngles:"acute", sym:0, right:false, acute:true, obtuse:false, regular:false, allSidesEqual:false, parallelPairs:0, points:"14,102 104,88 72,18"},
+    {key:"tri-obtuse", labelKey:"shapeName_obtuseTriangle", label:"stomphoekige driehoek", kind:"triangle", sides:3, triSides:"scalene", triAngles:"obtuse", sym:0, right:false, acute:false, obtuse:true, regular:false, allSidesEqual:false, parallelPairs:0, points:"12,98 112,98 32,62"},
+    {key:"tri-scalene-acute", labelKey:"shapeName_scaleneAcuteTriangle", label:"ongelijkbenige scherphoekige driehoek", kind:"triangle", sides:3, triSides:"scalene", triAngles:"acute", sym:0, right:false, acute:true, obtuse:false, regular:false, allSidesEqual:false, parallelPairs:0, points:"12,102 108,92 64,16"},
     {key:"square", labelKey:"shapeName_square", label:"vierkant", kind:"quadrilateral", sides:4, quad:"square", sym:4, right:true, parallelPairs:2, allSidesEqual:true, diagonalsEqual:true, diagonalsPerp:true, diagonalsBisect:true, regular:true, points:"26,26 94,26 94,94 26,94"},
     {key:"rectangle", labelKey:"shapeName_rectangle", label:"rechthoek", kind:"quadrilateral", sides:4, quad:"rectangle", sym:2, right:true, parallelPairs:2, allSidesEqual:false, diagonalsEqual:true, diagonalsPerp:false, diagonalsBisect:true, regular:false, points:"16,36 104,36 104,84 16,84"},
     {key:"rhombus", labelKey:"shapeName_rhombus", label:"ruit", kind:"quadrilateral", sides:4, quad:"rhombus", sym:2, right:false, parallelPairs:2, allSidesEqual:true, diagonalsEqual:false, diagonalsPerp:true, diagonalsBisect:true, regular:false, points:"60,24 110,60 60,96 10,60"},
-    {key:"parallelogram", labelKey:"shapeName_parallelogram", label:"parallellogram", kind:"quadrilateral", sides:4, quad:"parallelogram", sym:0, right:false, parallelPairs:2, allSidesEqual:false, diagonalsEqual:false, diagonalsPerp:false, diagonalsBisect:true, regular:false, points:"28,26 108,18 88,92 8,100"},
+    {key:"parallelogram", labelKey:"shapeName_parallelogram", label:"parallellogram", kind:"quadrilateral", sides:4, quad:"parallelogram", sym:0, right:false, parallelPairs:2, allSidesEqual:false, diagonalsEqual:false, diagonalsPerp:false, diagonalsBisect:true, regular:false, points:"32,24 110,24 86,96 8,96"},
     {key:"trapezoid", labelKey:"shapeName_trapezoid", label:"trapezium", kind:"quadrilateral", sides:4, quad:"trapezoid", sym:1, right:false, parallelPairs:1, allSidesEqual:false, diagonalsEqual:true, diagonalsPerp:false, diagonalsBisect:false, regular:false, points:"34,28 86,28 108,96 12,96"},
     {key:"kite", labelKey:"shapeName_kite", label:"vlieger", kind:"quadrilateral", sides:4, quad:"kite", sym:1, right:false, parallelPairs:0, allSidesEqual:false, diagonalsEqual:false, diagonalsPerp:true, diagonalsBisect:false, regular:false, points:"60,10 108,32 60,114 12,32"},
-    {key:"quad-irregular", labelKey:"shapeName_irregularQuadrilateral", label:"onregelmatige vierhoek", kind:"quadrilateral", sides:4, quad:"irregular", sym:0, right:false, parallelPairs:0, allSidesEqual:false, diagonalsEqual:false, diagonalsPerp:false, diagonalsBisect:false, regular:false, points:"12,46 102,20 88,104 28,78"},
+    {key:"quad-irregular", labelKey:"shapeName_irregularQuadrilateral", label:"onregelmatige vierhoek", kind:"quadrilateral", sides:4, quad:"irregular", sym:0, right:false, parallelPairs:0, allSidesEqual:false, diagonalsEqual:false, diagonalsPerp:false, diagonalsBisect:false, regular:false, points:"14,42 98,24 90,106 30,82"},
     {key:"pentagon", labelKey:"shapeName_pentagon", label:"vijfhoek", kind:"polygon", sides:5, sym:5, regular:true, allSidesEqual:true, parallelPairs:0, points:"60,14 104,47 87,100 33,100 16,47"},
     {key:"hexagon", labelKey:"shapeName_hexagon", label:"zeshoek", kind:"polygon", sides:6, sym:6, regular:true, allSidesEqual:true, parallelPairs:3, points:"60,12 100,36 100,84 60,108 20,84 20,36"},
     {key:"circle", labelKey:"shapeName_circle", label:"cirkel", kind:"circle", sides:0, sym:999, regular:true, circle:true}
@@ -3975,13 +4981,133 @@
     ];
     let pool = easy;
     if(level >= 2) pool = pool.concat(triangles);
-    if(level >= 4) pool = pool.concat(quads);
+    if(level >= 4) pool = pool.concat(quads.filter(q => ["shape_squares","shape_rectangles","shape_kites"].includes(q.labelKey)));
+    if(level >= 5) pool = pool.concat(quads.filter(q => !["shape_squares","shape_rectangles","shape_kites"].includes(q.labelKey)));
     if(level >= 6) pool = pool.concat(symmetry, properties);
     if(level >= 8) pool = pool.concat(combos);
     const task = pool[Math.floor(Math.random()*pool.length)];
     return {topic:"shapes", ...task};
   }
 
+
+
+  const PERCENT_EQUIV_LIBRARY = [
+    {percent:10, frac:"1/10", decimal:"0,1"},
+    {percent:20, frac:"1/5", decimal:"0,2"},
+    {percent:25, frac:"1/4", decimal:"0,25"},
+    {percent:30, frac:"3/10", decimal:"0,3"},
+    {percent:40, frac:"2/5", decimal:"0,4"},
+    {percent:50, frac:"1/2", decimal:"0,5"},
+    {percent:60, frac:"3/5", decimal:"0,6"},
+    {percent:75, frac:"3/4", decimal:"0,75"},
+    {percent:80, frac:"4/5", decimal:"0,8"},
+    {percent:100, frac:"1", decimal:"1"},
+    {percent:12.5, frac:"1/8", decimal:"0,125"},
+    {percent:33.333, frac:"1/3", decimal:"0,333..."},
+    {percent:66.667, frac:"2/3", decimal:"0,666..."}
+  ];
+
+  function fmtPercent(p){
+    if(Number.isInteger(p)) return `${p}%`;
+    return `${String(p).replace(".", ",")}%`;
+  }
+
+  function euroLabel(v){
+    return `€${String(v).replace(".", ",")}`;
+  }
+
+  function createPercentageTaskForLevel(level){
+    let pool;
+    if(level <= 2){
+      pool = ["percent-equivalent"];
+    }else if(level <= 4){
+      pool = ["percent-equivalent", "percent-of"];
+    }else if(level <= 6){
+      pool = ["percent-equivalent", "percent-of", "percent-discount"];
+    }else{
+      pool = ["percent-equivalent", "percent-of", "percent-discount", "percent-change"];
+    }
+    const mode = pool[Math.floor(Math.random() * pool.length)];
+
+    if(mode === "percent-equivalent"){
+      const eqPool = level <= 4 ? PERCENT_EQUIV_LIBRARY.filter(x => [10,20,25,50,75,100].includes(x.percent)) : PERCENT_EQUIV_LIBRARY;
+      const item = eqPool[Math.floor(Math.random() * eqPool.length)];
+      const forms = [fmtPercent(item.percent), item.frac, item.decimal];
+      const targetIndex = Math.floor(Math.random() * forms.length);
+      const prompt = forms[targetIndex];
+      const correctLabels = forms.filter((_, i) => i !== targetIndex);
+      if(level >= 5) correctLabels.push(forms[targetIndex]);
+      const distractorLabels = buildPercentEquivalentDistractors(item, forms);
+      return {topic:"percentages", mode:"percent-equivalent", prompt, correctLabels:uniqueLabels(correctLabels), distractorLabels};
+    }
+
+    if(mode === "percent-of"){
+      const percents = level <= 4 ? [10,20,25,50] : [5,10,12.5,15,20,25,30,40,50,75];
+      const amounts = level <= 4 ? [40,50,60,80,100,120,150,200] : [24,36,48,60,72,80,90,120,150,180,200,240,300,400];
+      const percent = percents[Math.floor(Math.random() * percents.length)];
+      const amount = amounts[Math.floor(Math.random() * amounts.length)];
+      const answer = roundNice(amount * percent / 100);
+      const prompt = `${fmtPercent(percent)} × ${amount}`;
+      return buildPercentNumericTask("percent-of", prompt, answer, false, level);
+    }
+
+    if(mode === "percent-discount"){
+      const percents = level <= 6 ? [10,20,25,50] : [5,10,15,20,25,30,40,50];
+      const prices = level <= 6 ? [20,40,60,80,100,120,160,200] : [35,50,75,80,90,120,150,180,240,300,400];
+      const percent = percents[Math.floor(Math.random() * percents.length)];
+      const price = prices[Math.floor(Math.random() * prices.length)];
+      const answer = roundNice(price * (1 - percent / 100));
+      const prompt = `${euroLabel(price)} − ${fmtPercent(percent)}`;
+      return buildPercentNumericTask("percent-discount", prompt, answer, true, level);
+    }
+
+    const percents = [5,10,20,25,50];
+    const bases = [40,60,80,100,120,160,200,240,300,400];
+    const percent = percents[Math.floor(Math.random() * percents.length)];
+    const base = bases[Math.floor(Math.random() * bases.length)];
+    const up = Math.random() < .5;
+    const answer = roundNice(base * (1 + (up ? percent : -percent) / 100));
+    const prompt = `${up ? "+" : "−"}${fmtPercent(percent)} · ${base}`;
+    return buildPercentNumericTask("percent-change", prompt, answer, false, level);
+  }
+
+  function buildPercentEquivalentDistractors(item, correctForms){
+    const labels = [];
+    PERCENT_EQUIV_LIBRARY.forEach(other => {
+      if(other.percent === item.percent) return;
+      labels.push(fmtPercent(other.percent), other.frac, other.decimal);
+    });
+    return uniqueLabels(shuffle(labels).filter(label => !correctForms.includes(label))).slice(0, 18);
+  }
+
+  function buildPercentNumericTask(mode, prompt, answer, euro, level){
+    const answerLabel = euro ? euroLabel(answer) : String(answer).replace(".", ",");
+    const raw = [
+      answer + 1, answer - 1, answer + 2, answer - 2,
+      answer * 2, Math.max(0, answer / 2),
+      answer + 5, Math.max(0, answer - 5),
+      answer + 10, Math.max(0, answer - 10)
+    ].map(roundNice);
+    const distractorLabels = uniqueLabels(raw
+      .filter(v => Number.isFinite(v) && v !== answer)
+      .map(v => euro ? euroLabel(v) : String(v).replace(".", ",")));
+    return {topic:"percentages", mode, prompt, correctLabels:[answerLabel], distractorLabels};
+  }
+
+  function roundNice(v){
+    const r = Math.round(v * 100) / 100;
+    return Number.isInteger(r) ? r : r;
+  }
+
+  function uniqueLabels(labels){
+    const seen = new Set();
+    return labels.filter(label => {
+      const key = String(label);
+      if(seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
 
   function createEquationTaskForLevel(level){
     const pool = [];
@@ -4102,6 +5228,9 @@
     if(task.topic === "equations"){
       return buildEquationBubbleData(task, count, correctWanted);
     }
+    if(task.topic === "percentages"){
+      return buildPercentageBubbleData(task, count, correctWanted);
+    }
 
     const data = [];
     const usedExact = new Set();
@@ -4145,6 +5274,22 @@
         if(usedExact.has(key)) continue;
         usedExact.add(key);
         data.push(makeItem(frac[0], frac[1], false, data.length));
+      }
+
+      // v25.6 guard inside the raw fraction generator:
+      // fill any remaining slots with extra candidates from either side.
+      const extras = shuffle(candidates.filter(f => {
+        const key = f[0] + "/" + f[1];
+        return !usedExact.has(key) && !sameFraction(f[0], f[1], task.targetFraction[0], task.targetFraction[1]);
+      }));
+      let ei = 0;
+      while(data.length < count && ei < extras.length){
+        const frac = extras[ei++];
+        const key = frac[0] + "/" + frac[1];
+        if(usedExact.has(key)) continue;
+        usedExact.add(key);
+        const isCorrect = isGreater ? value(frac) > value(task.targetFraction) : value(frac) < value(task.targetFraction);
+        data.push(makeItem(frac[0], frac[1], isCorrect, data.length));
       }
     }
 
@@ -4255,6 +5400,32 @@
     return shuffle(data);
   }
 
+
+
+  function buildPercentageBubbleData(task, count, correctWanted){
+    const data = [];
+    const used = new Set();
+    const add = (label, correct) => {
+      const key = String(label);
+      if(used.has(key) || data.length >= count) return;
+      used.add(key);
+      data.push(makeTextItem(label, correct, data.length));
+    };
+
+    shuffle(task.correctLabels || []).slice(0, Math.max(1, correctWanted)).forEach(label => add(label, true));
+    shuffle(task.distractorLabels || []).forEach(label => add(label, false));
+
+    if(!data.some(item => item.correct) && task.correctLabels && task.correctLabels.length){
+      add(task.correctLabels[0], true);
+    }
+    let guard = 0;
+    while(data.length < count && guard < 40){
+      guard++;
+      add(String(randomInt(1, 120)), false);
+    }
+
+    return shuffle(data);
+  }
 
   function buildEquationBubbleData(task, count, correctWanted){
     const solutions = uniqueNumbers(task.solutions || []);
@@ -4434,6 +5605,17 @@
     return false;
   }
 
+
+  function makeTextItem(label, correct, idx){
+    return {
+      kind:"number",
+      value:label,
+      label:String(label),
+      correct,
+      color: colors[idx % colors.length]
+    };
+  }
+
   function makeNumberItem(value, correct, idx){
     return {
       kind:"number",
@@ -4487,11 +5669,25 @@
   }
 
   function collectCandidatesForCompare(level){
-    let pool = families.flatMap(f => f.variants);
-    if(level <= 5){
-      pool = pool.filter(v => v[1] <= 10);
+    // v25.6: richer compare pool.
+    // The old pool came only from the equivalence families. For extreme targets such as
+    // "greater than 7/8" or "smaller than 1/8", that could leave 0 correct answers.
+    const maxDen = level <= 5 ? 10 : 12;
+    const pool = [];
+
+    // Keep the familiar family variants.
+    families.flatMap(f => f.variants).forEach(f => pool.push(f));
+
+    // Add a dense set of proper fractions so both sides of each comparison exist.
+    for(let d = 2; d <= maxDen; d++){
+      for(let n = 1; n < d; n++){
+        pool.push([n, d]);
+      }
     }
-    // Deduplicate
+
+    // Add 1 as a useful upper-side distractor/correct option for high targets.
+    pool.push([1, 1]);
+
     const seen = new Set();
     const uniq = [];
     for(const p of pool){
@@ -4568,6 +5764,20 @@
       }
       return;
     }
+    if(task.topic === "percentages"){
+      targetFrac.classList.add("expression");
+      if(task.mode === "percent-equivalent"){
+        targetText.textContent = tr("targetPercentEquivalent");
+      }else if(task.mode === "percent-discount"){
+        targetText.textContent = tr("targetDiscount");
+      }else if(task.mode === "percent-change"){
+        targetText.textContent = tr("targetPercentChange");
+      }else{
+        targetText.textContent = tr("targetPercentOf");
+      }
+      targetFrac.innerHTML = task.prompt;
+      return;
+    }
     if(task.topic === "shapes"){
       targetText.textContent = tr("targetShapes");
       targetFrac.classList.add("expression");
@@ -4628,6 +5838,10 @@
     }
     if(task.topic === "equations"){
       hintText.textContent = tr("equationHint");
+      return;
+    }
+    if(task.topic === "percentages"){
+      hintText.textContent = tr("percentHint");
       return;
     }
     hintText.innerHTML = "";
@@ -4721,7 +5935,13 @@
 
       if(correctRemaining <= 0){
         locked = true;
-        setTimer(showNextRoundButton, 520);
+        setTimer(() => {
+          if(round >= maxRounds){
+            end();
+          }else{
+            nextRound();
+          }
+        }, AUTO_NEXT_DELAY_MS);
       }
     }else{
       perfectRun = false;
@@ -4737,7 +5957,7 @@
   function updateHUD(){
     applyTopicTheme();
     const hudTopic = selectedTopic || "fractions";
-    levelText.textContent = (hudTopic === "fractions" ? tr("levelFractions") : hudTopic === "inequalities" ? tr("levelIneq") : hudTopic === "coordinates" ? tr("levelCoord") : hudTopic === "numbertheory" ? tr("levelNumbers") : hudTopic === "shapes" ? tr("levelShapes") : hudTopic === "equations" ? tr("levelEq") : tr("levelMix")) + " " + level;
+    levelText.textContent = (hudTopic === "fractions" ? tr("levelFractions") : hudTopic === "inequalities" ? tr("levelIneq") : hudTopic === "coordinates" ? tr("levelCoord") : hudTopic === "numbertheory" ? tr("levelNumbers") : hudTopic === "shapes" ? tr("levelShapes") : hudTopic === "equations" ? tr("levelEq") : hudTopic === "percentages" ? tr("levelPercent") : tr("levelMix")) + " " + level;
     scoreText.textContent = String(score);
     leftText.textContent = (correctTotal - correctRemaining) + "/" + correctTotal;
   }
@@ -4753,15 +5973,15 @@
   }
 
   function updateEndText(){
-    const reward = sessionPlan && sessionPlan.tierName ? sessionPlan.tierName : tierName(sessionPlan && sessionPlan.tierAttempt ? sessionPlan.tierAttempt : 1);
+    const reward = tierLabel(sessionPlan && sessionPlan.tierAttempt ? sessionPlan.tierAttempt : 1);
     const nextPlan = selectedTopic && selectedTopic !== "mixed" ? getNextSessionPlan(selectedTopic) : null;
     const perfectText = perfectRun
-      ? `<br><b>Perfect!</b> ${reward} ${sessionPlan && sessionPlan.mastered ? "verbeterd" : "verdiend"}. Tijd toegevoegd aan de ranglijst.`
-      : `<br>Niet perfect: dezelfde uitdaging blijft actief tot je ze foutloos haalt.`;
+      ? `<br>${escapeHTML(fmt(sessionPlan && sessionPlan.mastered ? "perfectImproved" : "perfectEarned", {tier:reward}))}`
+      : `<br>${escapeHTML(tr("notPerfectText"))}`;
     const nextText = nextPlan && perfectRun && Number(nextPlan.questions || 0) > Number(maxRounds || 0)
-      ? `<br>Volgende sessie: <b>${nextPlan.tierName}</b> · ${nextPlan.questions} vragen · niveau 1–${nextPlan.maxLevel}.`
-      : (nextPlan && Number(nextPlan.tierAttempt || 0) >= 3 && perfectRun ? `<br>Deze wereld is nu <b>Goud</b>. Verbeter nu je score of ga naar een andere wereld.` : "");
-    endText.innerHTML = `Speler: <b>${escapeHTML(playerName || "Gast")}</b><br>${tr("score")}: <b>${score}</b><br>Tijd: <b>${formatTime(elapsedMs)}</b><br>${tr("rounds")}: <b>${round}</b> / ${maxRounds}<br>Beloning: <b>${escapeHTML(reward)}</b><br><br>${tr("played")} <b>${topicName(selectedTopic)}</b>.${perfectText}${nextText}`;
+      ? `<br>${fmt("nextSessionText", {tier:`<b>${escapeHTML(tierLabel(nextPlan.tierAttempt))}</b>`, questions:nextPlan.questions, level:nextPlan.maxLevel})}`
+      : (nextPlan && Number(nextPlan.tierAttempt || 0) >= 3 && perfectRun ? `<br>${escapeHTML(tr("worldGoldText"))}` : "");
+    endText.innerHTML = `${tr("playerLabel")}: <b>${escapeHTML(playerDisplayName())}</b><br>${tr("score")}: <b>${score}</b><br>${tr("timeWord")}: <b>${formatTime(elapsedMs)}</b><br>${tr("rounds")}: <b>${round}</b> / ${maxRounds}<br>${tr("rewardWord")}: <b>${escapeHTML(reward)}</b><br><br>${fmt("playedRewardLine", {played:escapeHTML(tr("played")), topic:escapeHTML(topicName(selectedTopic))})}${perfectText}${nextText}`;
   }
 
   function showToast(text, good){
@@ -5075,6 +6295,7 @@
     if(topic === "numbertheory") return tr("topicNumbers");
     if(topic === "shapes") return tr("topicShapes");
     if(topic === "equations") return tr("topicEq");
+    if(topic === "percentages") return tr("topicPercent");
     return tr("topicMixed");
   }
 
@@ -5091,8 +6312,8 @@
       const plan = getNextSessionPlan(topic);
       const tier = getRewardTier(topic);
       const status = tier >= 3
-        ? `Goud gehaald · ${plan.questions} vragen`
-        : `Volgende: ${plan.tierName} · ${plan.questions} vragen`;
+        ? `${tr("goldAchieved")} · ${questionCountText(plan.questions)}`
+        : `${tr("nextChallenge")} ${tierLabel(plan.tierAttempt)} · ${questionCountText(plan.questions)}`;
       label.innerHTML = `<span class="mapWorldTitle">${escapeHTML(topicName(topic))}</span><span class="mapWorldNext" data-tier="${escapeHTML(plan.tierName)}">${escapeHTML(status)}</span>`;
 
       btn.classList.remove("activeTier1","activeTier2","activeTier3");
@@ -5248,10 +6469,10 @@
 
   function sessionBriefTextForPlan(plan){
     const q = Number(plan.questions || 10);
-    if(plan && plan.mastered) return "Goud gehaald. Speel opnieuw om je score of tijd te verbeteren.";
-    if(q === 10) return "Speel 10 vragen perfect om Brons te verdienen.";
-    if(q === 20) return "Brons gehaald. Speel 20 vragen perfect voor Zilver.";
-    return "Zilver gehaald. Speel 30 vragen perfect voor Goud.";
+    if(plan && plan.mastered) return tr("sessionGoldReplayText");
+    if(q === 10) return tr("sessionBronzeText");
+    if(q === 20) return tr("sessionSilverText");
+    return tr("sessionGoldText");
   }
 
   function showSessionBriefing(){
@@ -5284,15 +6505,15 @@
     if(targetText) targetText.textContent = "";
     if(targetFrac) targetFrac.innerHTML = "";
     if(sessionBriefBadge) sessionBriefBadge.textContent = topicBadgeIcon(selectedTopic);
-    if(sessionBriefTitle) sessionBriefTitle.textContent = `${topicName(selectedTopic)} · ${sessionPlan.tierName}`;
+    if(sessionBriefTitle) sessionBriefTitle.textContent = `${topicName(selectedTopic)} · ${tierLabel(sessionPlan.tierAttempt)}`;
     if(sessionBriefText) sessionBriefText.textContent = sessionBriefTextForPlan(sessionPlan);
-    if(sessionBriefQuestions) sessionBriefQuestions.textContent = `${maxRounds} vragen`;
-    if(sessionBriefDifficulty) sessionBriefDifficulty.textContent = `Niveau 1–${sessionPlan.maxLevel}`;
+    if(sessionBriefQuestions) sessionBriefQuestions.textContent = questionCountText(maxRounds);
+    if(sessionBriefDifficulty) sessionBriefDifficulty.textContent = levelRangeText(sessionPlan.maxLevel);
     if(sessionBriefReward){
-      sessionBriefReward.textContent = sessionPlan.mastered ? "Goud replay" : sessionPlan.tierName;
+      sessionBriefReward.textContent = sessionPlan.mastered ? tr("tierGoldReplay") : tierLabel(sessionPlan.tierAttempt);
       sessionBriefReward.dataset.tier = sessionPlan.tierName;
     }
-    if(sessionUserLine) sessionUserLine.textContent = `Speler: ${playerName || "Gast"}`;
+    if(sessionUserLine) sessionUserLine.textContent = `${tr("playerLabel")}: ${playerDisplayName()}`;
     if(sessionPlayerNameInput) sessionPlayerNameInput.value = playerName || "";
     if(startOverlay) startOverlay.classList.add("hidden");
     if(endOverlay) endOverlay.classList.add("hidden");
@@ -5428,6 +6649,17 @@
   if(sessionPlayerNameInput) sessionPlayerNameInput.addEventListener("keydown", e => { if(e.key === "Enter") beginSessionFromBriefing(); });
   document.getElementById("menuBtn").addEventListener("click", openMenu);
   if(ui.fsBtn) ui.fsBtn.addEventListener("click", toggleFullscreen);
+
+
+  if(DEV_MODE){
+    if(devPanel) devPanel.setAttribute("aria-hidden", "false");
+    if(devStartBtn) devStartBtn.addEventListener("click", startDevSession);
+    if(devNextBtn) devNextBtn.addEventListener("click", devNextQuestion);
+    if(devMassTestBtn) devMassTestBtn.addEventListener("click", runDevMassTest);
+    if(devFullTestBtn) devFullTestBtn.addEventListener("click", runDevFullTest);
+    if(devCopyReportBtn) devCopyReportBtn.addEventListener("click", copyDevReport);
+    if(devResetProgressBtn) devResetProgressBtn.addEventListener("click", resetDevProgress);
+  }
 
   if(rankBtn) rankBtn.addEventListener("click", openLeaderboard);
   if(mapRankBtn) mapRankBtn.addEventListener("click", openLeaderboard);
