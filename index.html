@@ -15,7 +15,6 @@
     --shadow:0 18px 42px rgba(20,35,72,.11);
     --softShadow:0 8px 20px rgba(20,35,72,.08);
   }
-  
 
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{
@@ -3626,6 +3625,448 @@
     percentHint:"Gamitin ang 50% = 1/2, 25% = 1/4, 10% = hatiin sa 10. Sa discount, ibawas ang discount amount."
   });
 
+
+  /* v27.0 — Curriculum tags */
+  Object.assign(I18N.nl, {
+    curriculumTitle:"Curriculumdekking",
+    curriculumInDebug:"Eindterm-tag",
+    curriculumDomainGetallen:"Getallenleer",
+    curriculumDomainVerhoudingen:"Verhoudingen/procenten",
+    curriculumDomainAlgebra:"Vergelijkingen/algebra",
+    curriculumDomainCoordinaten:"Coördinaten",
+    curriculumDomainMeetkunde:"Vlakke meetkunde",
+    curriculumCoverageLine:"Curriculum: {domains} domeinen · {skills} vaardigheden",
+    curriculumSkillsTitle:"Vaardigheden in deze test:",
+    currFractionsEquivalent:"equivalente breuken herkennen",
+    currFractionsCompare:"breuken ordenen en vergelijken",
+    currIntegersOrder:"getallen ordenen en vergelijken",
+    currNumberDivisors:"delers herkennen",
+    currNumberMultiples:"veelvouden herkennen",
+    currNumberPrimes:"priemgetallen herkennen",
+    currPercentEquivalent:"procenten, breuken en kommagetallen koppelen",
+    currPercentOf:"percentage van een getal berekenen",
+    currPercentDiscount:"korting berekenen",
+    currPercentChange:"procentuele verandering berekenen",
+    currEquationSolve:"vergelijkingen oplossen",
+    currCoordinatePoint:"punten in het vlak herkennen",
+    currCoordinateLine:"punten met gelijke x- of y-coördinaat herkennen",
+    currShapeClassify:"vlakke figuren classificeren",
+    currShapeProperties:"meetkundige eigenschappen herkennen"
+  });
+  Object.assign(I18N.en, {
+    curriculumTitle:"Curriculum coverage",
+    curriculumInDebug:"Curriculum tag",
+    curriculumDomainGetallen:"Number sense",
+    curriculumDomainVerhoudingen:"Ratios/percentages",
+    curriculumDomainAlgebra:"Equations/algebra",
+    curriculumDomainCoordinaten:"Coordinates",
+    curriculumDomainMeetkunde:"Plane geometry",
+    curriculumCoverageLine:"Curriculum: {domains} domains · {skills} skills",
+    curriculumSkillsTitle:"Skills in this test:",
+    currFractionsEquivalent:"recognize equivalent fractions",
+    currFractionsCompare:"order and compare fractions",
+    currIntegersOrder:"order and compare numbers",
+    currNumberDivisors:"recognize divisors",
+    currNumberMultiples:"recognize multiples",
+    currNumberPrimes:"recognize prime numbers",
+    currPercentEquivalent:"connect percentages, fractions and decimals",
+    currPercentOf:"calculate a percentage of a number",
+    currPercentDiscount:"calculate discounts",
+    currPercentChange:"calculate percentage change",
+    currEquationSolve:"solve equations",
+    currCoordinatePoint:"recognize points in the plane",
+    currCoordinateLine:"recognize equal x- or y-coordinates",
+    currShapeClassify:"classify plane figures",
+    currShapeProperties:"recognize geometric properties"
+  });
+  Object.assign(I18N.fr, {
+    curriculumTitle:"Couverture du programme",
+    curriculumInDebug:"Tag du programme",
+    curriculumDomainGetallen:"Nombres",
+    curriculumDomainVerhoudingen:"Rapports/pourcentages",
+    curriculumDomainAlgebra:"Équations/algèbre",
+    curriculumDomainCoordinaten:"Coordonnées",
+    curriculumDomainMeetkunde:"Géométrie plane",
+    curriculumCoverageLine:"Programme : {domains} domaines · {skills} compétences",
+    curriculumSkillsTitle:"Compétences dans ce test :",
+    currFractionsEquivalent:"reconnaître des fractions équivalentes",
+    currFractionsCompare:"ordonner et comparer des fractions",
+    currIntegersOrder:"ordonner et comparer des nombres",
+    currNumberDivisors:"reconnaître les diviseurs",
+    currNumberMultiples:"reconnaître les multiples",
+    currNumberPrimes:"reconnaître les nombres premiers",
+    currPercentEquivalent:"lier pourcentages, fractions et décimaux",
+    currPercentOf:"calculer un pourcentage d’un nombre",
+    currPercentDiscount:"calculer une réduction",
+    currPercentChange:"calculer une variation en pourcentage",
+    currEquationSolve:"résoudre des équations",
+    currCoordinatePoint:"reconnaître des points dans le plan",
+    currCoordinateLine:"reconnaître une même coordonnée x ou y",
+    currShapeClassify:"classer les figures planes",
+    currShapeProperties:"reconnaître des propriétés géométriques"
+  });
+  Object.assign(I18N.tl, {
+    curriculumTitle:"Curriculum coverage",
+    curriculumInDebug:"Curriculum tag",
+    curriculumDomainGetallen:"Number sense",
+    curriculumDomainVerhoudingen:"Ratios/percentages",
+    curriculumDomainAlgebra:"Equations/algebra",
+    curriculumDomainCoordinaten:"Coordinates",
+    curriculumDomainMeetkunde:"Plane geometry",
+    curriculumCoverageLine:"Curriculum: {domains} domains · {skills} skills",
+    curriculumSkillsTitle:"Skills in this test:",
+    currFractionsEquivalent:"kilalanin ang equivalent fractions",
+    currFractionsCompare:"ayusin at ikumpara ang fractions",
+    currIntegersOrder:"ayusin at ikumpara ang numbers",
+    currNumberDivisors:"kilalanin ang divisors",
+    currNumberMultiples:"kilalanin ang multiples",
+    currNumberPrimes:"kilalanin ang prime numbers",
+    currPercentEquivalent:"ikonekta ang percentages, fractions at decimals",
+    currPercentOf:"kalkulahin ang percent ng number",
+    currPercentDiscount:"kalkulahin ang discount",
+    currPercentChange:"kalkulahin ang percentage change",
+    currEquationSolve:"lutasin ang equations",
+    currCoordinatePoint:"kilalanin ang points sa plane",
+    currCoordinateLine:"kilalanin ang parehong x o y-coordinate",
+    currShapeClassify:"i-classify ang plane figures",
+    currShapeProperties:"kilalanin ang geometric properties"
+  });
+
+
+  /* v27.1 — Getallenleer+ translations */
+  Object.assign(I18N.nl, {
+    targetDivisibleBy:"klik alle getallen deelbaar door",
+    targetSquares:"klik alle kwadraatgetallen",
+    targetAbs:"klik alle getallen met absolute waarde",
+    targetGcd:"klik de ggd",
+    targetLcm:"klik het kgv",
+    numberHintPlus:"Let op deelbaarheid, kwadraten, absolute waarde, ggd en kgv.",
+    currNumberDivisibility:"deelbaarheid door 2, 3, 4, 5, 9 en 10",
+    currNumberSquares:"kwadraten en machten herkennen",
+    currNumberAbsolute:"absolute waarde en tegengestelde getallen",
+    currNumberGcdLcm:"ggd en kgv herkennen"
+  });
+  Object.assign(I18N.en, {
+    targetDivisibleBy:"click all numbers divisible by",
+    targetSquares:"click all square numbers",
+    targetAbs:"click all numbers with absolute value",
+    targetGcd:"click the gcd",
+    targetLcm:"click the lcm",
+    numberHintPlus:"Watch divisibility, squares, absolute value, gcd and lcm.",
+    currNumberDivisibility:"divisibility by 2, 3, 4, 5, 9 and 10",
+    currNumberSquares:"recognize squares and powers",
+    currNumberAbsolute:"absolute value and opposite numbers",
+    currNumberGcdLcm:"recognize gcd and lcm"
+  });
+  Object.assign(I18N.fr, {
+    targetDivisibleBy:"clique tous les nombres divisibles par",
+    targetSquares:"clique tous les carrés parfaits",
+    targetAbs:"clique tous les nombres de valeur absolue",
+    targetGcd:"clique le PGCD",
+    targetLcm:"clique le PPCM",
+    numberHintPlus:"Fais attention à la divisibilité, aux carrés, à la valeur absolue, au PGCD et au PPCM.",
+    currNumberDivisibility:"divisibilité par 2, 3, 4, 5, 9 et 10",
+    currNumberSquares:"reconnaître les carrés et puissances",
+    currNumberAbsolute:"valeur absolue et nombres opposés",
+    currNumberGcdLcm:"reconnaître PGCD et PPCM"
+  });
+  Object.assign(I18N.tl, {
+    targetDivisibleBy:"i-click ang lahat ng divisible by",
+    targetSquares:"i-click ang lahat ng square numbers",
+    targetAbs:"i-click ang lahat ng numbers na may absolute value",
+    targetGcd:"i-click ang gcd",
+    targetLcm:"i-click ang lcm",
+    numberHintPlus:"Tingnan ang divisibility, squares, absolute value, gcd at lcm.",
+    currNumberDivisibility:"divisibility by 2, 3, 4, 5, 9 and 10",
+    currNumberSquares:"kilalanin ang squares at powers",
+    currNumberAbsolute:"absolute value at opposite numbers",
+    currNumberGcdLcm:"kilalanin ang gcd at lcm"
+  });
+
+
+  /* v27.2 — Procentenhaven+ translations */
+  Object.assign(I18N.nl, {
+    targetRatio:"verhouding naar procent",
+    targetRatioTable:"vul de verhoudingstabel aan",
+    targetScale:"schaal",
+    targetReverseDiscount:"prijs vóór korting",
+    targetPercentFromPart:"bereken het percentage",
+    ratioHintPlus:"Bij verhoudingen: deel/geheel × 100. Bij schaal 1:100 betekent 1 cm op kaart 100 cm echt.",
+    currRatioBasic:"verhoudingen omzetten naar procenten",
+    currRatioTable:"verhoudingstabellen aanvullen",
+    currScale:"schaalrekenen",
+    currReverseDiscount:"prijs vóór korting berekenen",
+    currPercentFromPart:"percentage berekenen uit deel en geheel"
+  });
+  Object.assign(I18N.en, {
+    targetRatio:"ratio to percent",
+    targetRatioTable:"complete the ratio table",
+    targetScale:"scale",
+    targetReverseDiscount:"price before discount",
+    targetPercentFromPart:"calculate the percentage",
+    ratioHintPlus:"For ratios: part/whole × 100. With scale 1:100, 1 cm on the map means 100 cm in real life.",
+    currRatioBasic:"convert ratios to percentages",
+    currRatioTable:"complete ratio tables",
+    currScale:"scale calculations",
+    currReverseDiscount:"calculate price before discount",
+    currPercentFromPart:"calculate percentage from part and whole"
+  });
+  Object.assign(I18N.fr, {
+    targetRatio:"rapport en pourcentage",
+    targetRatioTable:"complète le tableau de proportionnalité",
+    targetScale:"échelle",
+    targetReverseDiscount:"prix avant réduction",
+    targetPercentFromPart:"calcule le pourcentage",
+    ratioHintPlus:"Pour un rapport : partie/total × 100. À l’échelle 1:100, 1 cm sur la carte vaut 100 cm en réalité.",
+    currRatioBasic:"convertir des rapports en pourcentages",
+    currRatioTable:"compléter des tableaux de proportionnalité",
+    currScale:"calculer avec une échelle",
+    currReverseDiscount:"calculer le prix avant réduction",
+    currPercentFromPart:"calculer un pourcentage à partir d’une partie et d’un total"
+  });
+  Object.assign(I18N.tl, {
+    targetRatio:"ratio to percent",
+    targetRatioTable:"kumpletuhin ang ratio table",
+    targetScale:"scale",
+    targetReverseDiscount:"presyo bago discount",
+    targetPercentFromPart:"kalkulahin ang percentage",
+    ratioHintPlus:"Sa ratios: part/whole × 100. Sa scale 1:100, 1 cm sa mapa ay 100 cm sa totoong sukat.",
+    currRatioBasic:"i-convert ang ratios sa percentages",
+    currRatioTable:"kumpletuhin ang ratio tables",
+    currScale:"scale calculations",
+    currReverseDiscount:"kalkulahin ang price before discount",
+    currPercentFromPart:"kalkulahin ang percentage mula sa part at whole"
+  });
+
+
+  /* v27.3 — Algebra+ translations */
+  Object.assign(I18N.nl, {
+    targetAlgebra:"kies de juiste vorm of waarde",
+    algebraHintPlus:"Vervang letters door hun waarde, tel gelijksoortige termen samen en werk haakjes uit.",
+    currAlgebraSubstitution:"waarde van een lettervorm berekenen",
+    currAlgebraSimplify:"gelijksoortige termen samennemen",
+    currAlgebraDistribute:"haakjes uitwerken",
+    currAlgebraPattern:"patroonregel herkennen",
+    currAlgebraFormula:"formules gebruiken",
+    currAlgebraTableFormula:"tabel en formule koppelen"
+  });
+  Object.assign(I18N.en, {
+    targetAlgebra:"choose the correct form or value",
+    algebraHintPlus:"Substitute values, combine like terms and expand brackets.",
+    currAlgebraSubstitution:"calculate the value of an algebraic expression",
+    currAlgebraSimplify:"combine like terms",
+    currAlgebraDistribute:"expand brackets",
+    currAlgebraPattern:"recognize a pattern rule",
+    currAlgebraFormula:"use formulas",
+    currAlgebraTableFormula:"connect table and formula"
+  });
+  Object.assign(I18N.fr, {
+    targetAlgebra:"choisis la bonne forme ou valeur",
+    algebraHintPlus:"Remplace les lettres par leur valeur, réduis les termes semblables et développe les parenthèses.",
+    currAlgebraSubstitution:"calculer la valeur d’une expression littérale",
+    currAlgebraSimplify:"réduire les termes semblables",
+    currAlgebraDistribute:"développer des parenthèses",
+    currAlgebraPattern:"reconnaître une règle de suite",
+    currAlgebraFormula:"utiliser des formules",
+    currAlgebraTableFormula:"lier tableau et formule"
+  });
+  Object.assign(I18N.tl, {
+    targetAlgebra:"piliin ang tamang form o value",
+    algebraHintPlus:"Palitan ang letters ng value, pagsamahin ang like terms, at i-expand ang brackets.",
+    currAlgebraSubstitution:"kalkulahin ang value ng algebraic expression",
+    currAlgebraSimplify:"pagsamahin ang like terms",
+    currAlgebraDistribute:"i-expand ang brackets",
+    currAlgebraPattern:"kilalanin ang pattern rule",
+    currAlgebraFormula:"gumamit ng formulas",
+    currAlgebraTableFormula:"ikonekta ang table at formula"
+  });
+
+
+  /* v27.4 — Coördinaten+ translations */
+  Object.assign(I18N.nl, {
+    targetCoordQuadrant:"klik alle punten in kwadrant",
+    targetCoordReflection:"spiegel het punt",
+    targetCoordTranslation:"verplaats het punt",
+    targetCoordLine:"klik alle punten op de rechte",
+    targetCoordMidpoint:"klik het midden",
+    targetCoordTablePoint:"klik het punt uit de tabel",
+    coordHintPlus:"Lees altijd eerst x, dan y. Let op tekens, kwadranten, spiegeling en verplaatsing.",
+    currCoordinateQuadrants:"kwadranten herkennen",
+    currCoordinateReflection:"spiegeling in x-as of y-as",
+    currCoordinateTranslation:"verplaatsing op een rooster",
+    currCoordinateLine:"punten op eenvoudige rechten herkennen",
+    currCoordinateMidpoint:"middelpunt van lijnstukken bepalen",
+    currCoordinateTablePoint:"tabel koppelen aan punt"
+  });
+  Object.assign(I18N.en, {
+    targetCoordQuadrant:"click all points in quadrant",
+    targetCoordReflection:"reflect the point",
+    targetCoordTranslation:"translate the point",
+    targetCoordLine:"click all points on the line",
+    targetCoordMidpoint:"click the midpoint",
+    targetCoordTablePoint:"click the point from the table",
+    coordHintPlus:"Always read x first, then y. Watch signs, quadrants, reflection and translation.",
+    currCoordinateQuadrants:"recognize quadrants",
+    currCoordinateReflection:"reflection in the x-axis or y-axis",
+    currCoordinateTranslation:"translation on a grid",
+    currCoordinateLine:"recognize points on simple lines",
+    currCoordinateMidpoint:"find the midpoint of line segments",
+    currCoordinateTablePoint:"connect table to point"
+  });
+  Object.assign(I18N.fr, {
+    targetCoordQuadrant:"clique tous les points dans le quadrant",
+    targetCoordReflection:"symétrie du point",
+    targetCoordTranslation:"déplace le point",
+    targetCoordLine:"clique tous les points sur la droite",
+    targetCoordMidpoint:"clique le milieu",
+    targetCoordTablePoint:"clique le point du tableau",
+    coordHintPlus:"Lis toujours x puis y. Attention aux signes, aux quadrants, aux symétries et aux translations.",
+    currCoordinateQuadrants:"reconnaître les quadrants",
+    currCoordinateReflection:"symétrie par rapport à l’axe x ou y",
+    currCoordinateTranslation:"translation sur un quadrillage",
+    currCoordinateLine:"reconnaître des points sur des droites simples",
+    currCoordinateMidpoint:"déterminer le milieu d’un segment",
+    currCoordinateTablePoint:"lier un tableau à un point"
+  });
+  Object.assign(I18N.tl, {
+    targetCoordQuadrant:"i-click ang lahat ng points sa quadrant",
+    targetCoordReflection:"i-reflect ang point",
+    targetCoordTranslation:"i-translate ang point",
+    targetCoordLine:"i-click ang lahat ng points sa line",
+    targetCoordMidpoint:"i-click ang midpoint",
+    targetCoordTablePoint:"i-click ang point mula sa table",
+    coordHintPlus:"Basahin muna ang x, pagkatapos y. Tingnan ang signs, quadrants, reflection at translation.",
+    currCoordinateQuadrants:"kilalanin ang quadrants",
+    currCoordinateReflection:"reflection sa x-axis o y-axis",
+    currCoordinateTranslation:"translation sa grid",
+    currCoordinateLine:"kilalanin ang points sa simple lines",
+    currCoordinateMidpoint:"hanapin ang midpoint ng line segments",
+    currCoordinateTablePoint:"ikonekta ang table sa point"
+  });
+
+
+  /* v27.5 — Vormeneiland+ translations */
+  Object.assign(I18N.nl, {
+    targetShapeText:"kies het juiste meetkundebegrip",
+    shapeHintPlus:"Kijk naar hoeken, evenwijdigheid, loodrechte lijnen, spiegeling, draaiing, verschuiving en grootte.",
+    answerReflection:"spiegeling",
+    answerRotation:"rotatie",
+    answerTranslation:"verschuiving",
+    answerEnlargement:"vergroting",
+    answerCongruent:"congruent",
+    answerSimilar:"gelijkvormig",
+    answerPerimeter:"omtrek",
+    answerArea:"oppervlakte",
+    answerRightAngle:"rechte hoek",
+    promptReflectVertical:"links-rechts omklappen rond een verticale spiegelas",
+    promptReflectHorizontal:"boven-onder omklappen rond een horizontale spiegelas",
+    promptRotate90:"een figuur 90° draaien",
+    promptTranslate:"een figuur blijft even groot en schuift op",
+    promptCongruent:"zelfde vorm én zelfde grootte",
+    promptSimilar:"zelfde vorm, andere grootte",
+    promptPerimeterRect:"rechthoek {a} × {b}: afstand rond de figuur",
+    promptAreaRect:"rechthoek {a} × {b}: aantal vierkante vakjes",
+    currShapeAngles:"hoeken herkennen",
+    currShapeParallelPerpendicular:"evenwijdigheid en loodrechte lijnen herkennen",
+    currShapeSymmetry:"symmetrieassen herkennen",
+    currShapeReflection:"spiegeling herkennen",
+    currShapeRotation:"rotatie herkennen",
+    currShapeTranslation:"verschuiving herkennen",
+    currShapeCongruence:"congruentie herkennen",
+    currShapeSimilarity:"gelijkvormigheid herkennen",
+    currShapePerimeterArea:"omtrek en oppervlakte voorbereiden"
+  });
+  Object.assign(I18N.en, {
+    targetShapeText:"choose the correct geometry concept",
+    shapeHintPlus:"Look at angles, parallel lines, perpendicular lines, reflection, rotation, translation and size.",
+    answerReflection:"reflection",
+    answerRotation:"rotation",
+    answerTranslation:"translation",
+    answerEnlargement:"enlargement",
+    answerCongruent:"congruent",
+    answerSimilar:"similar",
+    answerPerimeter:"perimeter",
+    answerArea:"area",
+    answerRightAngle:"right angle",
+    promptReflectVertical:"flip left-right across a vertical mirror line",
+    promptReflectHorizontal:"flip top-bottom across a horizontal mirror line",
+    promptRotate90:"turn a figure 90°",
+    promptTranslate:"a figure stays the same size and slides",
+    promptCongruent:"same shape and same size",
+    promptSimilar:"same shape, different size",
+    promptPerimeterRect:"rectangle {a} × {b}: distance around the figure",
+    promptAreaRect:"rectangle {a} × {b}: number of square units",
+    currShapeAngles:"recognize angles",
+    currShapeParallelPerpendicular:"recognize parallel and perpendicular lines",
+    currShapeSymmetry:"recognize lines of symmetry",
+    currShapeReflection:"recognize reflection",
+    currShapeRotation:"recognize rotation",
+    currShapeTranslation:"recognize translation",
+    currShapeCongruence:"recognize congruence",
+    currShapeSimilarity:"recognize similarity",
+    currShapePerimeterArea:"prepare perimeter and area"
+  });
+  Object.assign(I18N.fr, {
+    targetShapeText:"choisis le bon concept de géométrie",
+    shapeHintPlus:"Observe les angles, les parallèles, les perpendiculaires, la symétrie, la rotation, la translation et la taille.",
+    answerReflection:"symétrie",
+    answerRotation:"rotation",
+    answerTranslation:"translation",
+    answerEnlargement:"agrandissement",
+    answerCongruent:"congruent",
+    answerSimilar:"semblable",
+    answerPerimeter:"périmètre",
+    answerArea:"aire",
+    answerRightAngle:"angle droit",
+    promptReflectVertical:"retournement gauche-droite selon un axe vertical",
+    promptReflectHorizontal:"retournement haut-bas selon un axe horizontal",
+    promptRotate90:"tourner une figure de 90°",
+    promptTranslate:"une figure garde la même taille et glisse",
+    promptCongruent:"même forme et même taille",
+    promptSimilar:"même forme, taille différente",
+    promptPerimeterRect:"rectangle {a} × {b} : distance autour de la figure",
+    promptAreaRect:"rectangle {a} × {b} : nombre de carrés",
+    currShapeAngles:"reconnaître les angles",
+    currShapeParallelPerpendicular:"reconnaître parallèles et perpendiculaires",
+    currShapeSymmetry:"reconnaître les axes de symétrie",
+    currShapeReflection:"reconnaître une symétrie",
+    currShapeRotation:"reconnaître une rotation",
+    currShapeTranslation:"reconnaître une translation",
+    currShapeCongruence:"reconnaître la congruence",
+    currShapeSimilarity:"reconnaître la similitude",
+    currShapePerimeterArea:"préparer périmètre et aire"
+  });
+  Object.assign(I18N.tl, {
+    targetShapeText:"piliin ang tamang geometry concept",
+    shapeHintPlus:"Tingnan ang angles, parallel lines, perpendicular lines, reflection, rotation, translation at size.",
+    answerReflection:"reflection",
+    answerRotation:"rotation",
+    answerTranslation:"translation",
+    answerEnlargement:"enlargement",
+    answerCongruent:"congruent",
+    answerSimilar:"similar",
+    answerPerimeter:"perimeter",
+    answerArea:"area",
+    answerRightAngle:"right angle",
+    promptReflectVertical:"i-flip left-right sa vertical mirror line",
+    promptReflectHorizontal:"i-flip top-bottom sa horizontal mirror line",
+    promptRotate90:"i-rotate ang figure ng 90°",
+    promptTranslate:"parehong laki ang figure at dumudulas",
+    promptCongruent:"same shape at same size",
+    promptSimilar:"same shape, ibang size",
+    promptPerimeterRect:"rectangle {a} × {b}: distance sa paligid ng figure",
+    promptAreaRect:"rectangle {a} × {b}: bilang ng square units",
+    currShapeAngles:"kilalanin ang angles",
+    currShapeParallelPerpendicular:"kilalanin ang parallel at perpendicular lines",
+    currShapeSymmetry:"kilalanin ang lines of symmetry",
+    currShapeReflection:"kilalanin ang reflection",
+    currShapeRotation:"kilalanin ang rotation",
+    currShapeTranslation:"kilalanin ang translation",
+    currShapeCongruence:"kilalanin ang congruence",
+    currShapeSimilarity:"kilalanin ang similarity",
+    currShapePerimeterArea:"perimeter at area preparation"
+  });
+
   let currentLang = localStorage.getItem("bubblePopLang") || "nl";
   if(!I18N[currentLang]) currentLang = "nl";
   function tr(key){ return (I18N[currentLang] && I18N[currentLang][key]) || I18N.nl[key] || key; }
@@ -3900,6 +4341,7 @@
       `niveau ${level || 1}/${maxLevelForCurrentSession()} · ` +
       `tier ${escapeHTML(sessionPlan && sessionPlan.tierName ? sessionPlan.tierName : tierName(sessionPlan && sessionPlan.tierAttempt ? sessionPlan.tierAttempt : 1))}<br>` +
       `type: ${escapeHTML(debugTaskType(task)) || "?"} · juist: ${correctItems.length}` +
+      `<br>${escapeHTML(tr("curriculumInDebug"))}: ${escapeHTML(curriculumDomainLabel(task && task.curriculumDomain))} · ${escapeHTML(curriculumSkillLabel(task && task.curriculumSkill))}` +
       (labels ? `<br>antwoorden: ${escapeHTML(labels)}` : "");
   }
 
@@ -4055,10 +4497,11 @@
   function shapeLibraryHealthReport(){
     const tasks = [];
     for(let lvl=1; lvl<=9; lvl++){
-      for(let i=0; i<35; i++) tasks.push(createShapeTaskForLevel(lvl));
+      for(let i=0; i<35; i++) tasks.push(applyCurriculumTag(createShapeTaskForLevel(lvl)));
     }
     const problems = [];
     tasks.forEach(taskCandidate => {
+      if(taskCandidate.correctLabels) return;
       const matches = SHAPE_LIBRARY.filter(shape => shape.key !== "circle" && shapeMatchesTask(shape, taskCandidate));
       if(matches.length < 1){
         problems.push(`${tr("shapeTaskNoMatch")}: ${debugTaskType(taskCandidate)} ${taskCandidate.labelKey || taskCandidate.label || ""}`);
@@ -4071,6 +4514,142 @@
     return topicName(topic).replace(/^[^A-Za-zÀ-ÿ0-9]+\s*/, "");
   }
 
+
+  function curriculumDomainLabel(domain){
+    const map = {
+      getallenleer:"curriculumDomainGetallen",
+      verhoudingen:"curriculumDomainVerhoudingen",
+      algebra:"curriculumDomainAlgebra",
+      coordinaten:"curriculumDomainCoordinaten",
+      meetkunde:"curriculumDomainMeetkunde"
+    };
+    return tr(map[domain] || "curriculumTitle");
+  }
+
+  function curriculumSkillLabel(skill){
+    const map = {
+      fractionsEquivalent:"currFractionsEquivalent",
+      fractionsCompare:"currFractionsCompare",
+      integersOrder:"currIntegersOrder",
+      numberDivisors:"currNumberDivisors",
+      numberMultiples:"currNumberMultiples",
+      numberPrimes:"currNumberPrimes",
+      numberDivisibility:"currNumberDivisibility",
+      numberSquares:"currNumberSquares",
+      numberAbsolute:"currNumberAbsolute",
+      numberGcdLcm:"currNumberGcdLcm",
+      percentEquivalent:"currPercentEquivalent",
+      percentOf:"currPercentOf",
+      percentDiscount:"currPercentDiscount",
+      percentChange:"currPercentChange",
+      ratioBasic:"currRatioBasic",
+      ratioTable:"currRatioTable",
+      scale:"currScale",
+      reverseDiscount:"currReverseDiscount",
+      percentFromPart:"currPercentFromPart",
+      equationSolve:"currEquationSolve",
+      algebraSubstitution:"currAlgebraSubstitution",
+      algebraSimplify:"currAlgebraSimplify",
+      algebraDistribute:"currAlgebraDistribute",
+      algebraPattern:"currAlgebraPattern",
+      algebraFormula:"currAlgebraFormula",
+      algebraTableFormula:"currAlgebraTableFormula",
+      coordinatePoint:"currCoordinatePoint",
+      coordinateLine:"currCoordinateLine",
+      coordinateQuadrants:"currCoordinateQuadrants",
+      coordinateReflection:"currCoordinateReflection",
+      coordinateTranslation:"currCoordinateTranslation",
+      coordinateMidpoint:"currCoordinateMidpoint",
+      coordinateTablePoint:"currCoordinateTablePoint",
+      shapeClassify:"currShapeClassify",
+      shapeProperties:"currShapeProperties",
+      shapeAngles:"currShapeAngles",
+      shapeParallelPerpendicular:"currShapeParallelPerpendicular",
+      shapeSymmetry:"currShapeSymmetry",
+      shapeReflection:"currShapeReflection",
+      shapeRotation:"currShapeRotation",
+      shapeTranslation:"currShapeTranslation",
+      shapeCongruence:"currShapeCongruence",
+      shapeSimilarity:"currShapeSimilarity",
+      shapePerimeterArea:"currShapePerimeterArea"
+    };
+    return tr(map[skill] || skill);
+  }
+
+  function curriculumTagForTask(t){
+    if(!t) return {domain:"getallenleer", skill:"integersOrder"};
+    if(t.topic === "fractions"){
+      if(t.mode === "equal-number" || t.mode === "equal-visual"){
+        return {domain:"getallenleer", skill:"fractionsEquivalent"};
+      }
+      return {domain:"getallenleer", skill:"fractionsCompare"};
+    }
+    if(t.topic === "inequalities"){
+      return {domain:"getallenleer", skill:"integersOrder"};
+    }
+    if(t.topic === "numbertheory"){
+      if(t.mode === "divisors") return {domain:"getallenleer", skill:"numberDivisors"};
+      if(t.mode === "multiples") return {domain:"getallenleer", skill:"numberMultiples"};
+      if(t.mode === "divisibleBy") return {domain:"getallenleer", skill:"numberDivisibility"};
+      if(t.mode === "squares") return {domain:"getallenleer", skill:"numberSquares"};
+      if(t.mode === "absolute") return {domain:"getallenleer", skill:"numberAbsolute"};
+      if(t.mode === "gcd" || t.mode === "lcm") return {domain:"getallenleer", skill:"numberGcdLcm"};
+      return {domain:"getallenleer", skill:"numberPrimes"};
+    }
+    if(t.topic === "percentages"){
+      if(t.mode === "percent-equivalent") return {domain:"verhoudingen", skill:"percentEquivalent"};
+      if(t.mode === "percent-of") return {domain:"verhoudingen", skill:"percentOf"};
+      if(t.mode === "percent-discount") return {domain:"verhoudingen", skill:"percentDiscount"};
+      if(t.mode === "ratio-basic") return {domain:"verhoudingen", skill:"ratioBasic"};
+      if(t.mode === "ratio-table") return {domain:"verhoudingen", skill:"ratioTable"};
+      if(t.mode === "scale") return {domain:"verhoudingen", skill:"scale"};
+      if(t.mode === "reverse-discount") return {domain:"verhoudingen", skill:"reverseDiscount"};
+      if(t.mode === "percent-from-part") return {domain:"verhoudingen", skill:"percentFromPart"};
+      return {domain:"verhoudingen", skill:"percentChange"};
+    }
+    if(t.topic === "equations"){
+      if(t.mode === "alg-substitution") return {domain:"algebra", skill:"algebraSubstitution"};
+      if(t.mode === "alg-simplify") return {domain:"algebra", skill:"algebraSimplify"};
+      if(t.mode === "alg-distribute") return {domain:"algebra", skill:"algebraDistribute"};
+      if(t.mode === "alg-pattern") return {domain:"algebra", skill:"algebraPattern"};
+      if(t.mode === "alg-formula") return {domain:"algebra", skill:"algebraFormula"};
+      if(t.mode === "alg-table-formula") return {domain:"algebra", skill:"algebraTableFormula"};
+      return {domain:"algebra", skill:"equationSolve"};
+    }
+    if(t.topic === "coordinates"){
+      if(t.mode === "coord-point") return {domain:"coordinaten", skill:"coordinatePoint"};
+      if(t.mode === "coord-quadrant") return {domain:"coordinaten", skill:"coordinateQuadrants"};
+      if(t.mode === "coord-reflect-x" || t.mode === "coord-reflect-y") return {domain:"coordinaten", skill:"coordinateReflection"};
+      if(t.mode === "coord-translate") return {domain:"coordinaten", skill:"coordinateTranslation"};
+      if(t.mode === "coord-midpoint") return {domain:"coordinaten", skill:"coordinateMidpoint"};
+      if(t.mode === "coord-table-point") return {domain:"coordinaten", skill:"coordinateTablePoint"};
+      return {domain:"coordinaten", skill:"coordinateLine"};
+    }
+    if(t.topic === "shapes"){
+      if(t.mode === "triAngles" || t.mode === "right") return {domain:"meetkunde", skill:"shapeAngles"};
+      if(t.mode === "sym" || t.mode === "regular") return {domain:"meetkunde", skill:"shapeSymmetry"};
+      if(t.mode === "shape-reflection") return {domain:"meetkunde", skill:"shapeReflection"};
+      if(t.mode === "shape-rotation") return {domain:"meetkunde", skill:"shapeRotation"};
+      if(t.mode === "shape-translation") return {domain:"meetkunde", skill:"shapeTranslation"};
+      if(t.mode === "shape-congruence") return {domain:"meetkunde", skill:"shapeCongruence"};
+      if(t.mode === "shape-similarity") return {domain:"meetkunde", skill:"shapeSimilarity"};
+      if(t.mode === "shape-perimeter" || t.mode === "shape-area") return {domain:"meetkunde", skill:"shapePerimeterArea"};
+      if(t.mode === "prop" && (t.prop === "parallelPairs" || t.prop === "diagonalsPerp" || t.custom === "atLeastOneParallelPair")) return {domain:"meetkunde", skill:"shapeParallelPerpendicular"};
+      if(t.mode === "kind" || t.mode === "sides" || t.mode === "triSides" || t.mode === "quad"){
+        return {domain:"meetkunde", skill:"shapeClassify"};
+      }
+      return {domain:"meetkunde", skill:"shapeProperties"};
+    }
+    return {domain:"getallenleer", skill:"integersOrder"};
+  }
+
+  function applyCurriculumTag(taskCandidate){
+    const tag = curriculumTagForTask(taskCandidate);
+    taskCandidate.curriculumDomain = tag.domain;
+    taskCandidate.curriculumSkill = tag.skill;
+    return taskCandidate;
+  }
+
   function runGeneratorQA(topics, tiers, roundsPerCombo=100){
     const oldTopic = selectedTopic;
     const oldPlan = sessionPlan;
@@ -4078,6 +4657,7 @@
     const oldLevel = level;
     const allErrors = [];
     const matrix = [];
+    const curriculumSummary = {domains:{}, skills:{}};
     let tested = 0;
     let repaired = 0;
 
@@ -4089,15 +4669,22 @@
         const stats = {
           topic, tier, tierName:plan.tierName, tested:0, errors:[],
           minCorrect:999, maxCorrect:0, minBubbles:999, maxBubbles:0,
-          rawMinCorrect:999, rawMaxCorrect:0, repaired:0, problemCounts:{}, typeCounts:{}
+          rawMinCorrect:999, rawMaxCorrect:0, repaired:0, problemCounts:{}, typeCounts:{},
+          curriculumDomains:{}, curriculumSkills:{}
         };
 
         for(let i = 0; i < roundsPerCombo; i++){
           const lvl = 1 + (i % plan.maxLevel);
           level = lvl;
-          const taskCandidate = createTaskForTopic(topic, lvl);
+          const taskCandidate = applyCurriculumTag(createTaskForTopic(topic, lvl));
           const type = debugTaskType(taskCandidate) || "unknown";
           stats.typeCounts[type] = (stats.typeCounts[type] || 0) + 1;
+          const domainKey = taskCandidate.curriculumDomain || "unknown";
+          const skillKey = taskCandidate.curriculumSkill || "unknown";
+          stats.curriculumDomains[domainKey] = (stats.curriculumDomains[domainKey] || 0) + 1;
+          stats.curriculumSkills[skillKey] = (stats.curriculumSkills[skillKey] || 0) + 1;
+          curriculumSummary.domains[domainKey] = (curriculumSummary.domains[domainKey] || 0) + 1;
+          curriculumSummary.skills[skillKey] = (curriculumSummary.skills[skillKey] || 0) + 1;
           const count = bubbleCountForLevel(lvl);
           const wanted = correctWantedForTask(taskCandidate, lvl, count);
           const rawData = buildBubbleData(taskCandidate, count, wanted);
@@ -4158,7 +4745,7 @@
     sessionPlan = oldPlan;
     round = oldRound;
     level = oldLevel;
-    return {tested, repaired, matrix, errors:allErrors, roundsPerCombo, generatedAt:new Date()};
+    return {tested, repaired, matrix, errors:allErrors, curriculumSummary, roundsPerCombo, generatedAt:new Date()};
   }
 
   function humanProblemSummary(row){
@@ -4180,6 +4767,17 @@
       : tr("qaStatusOk"));
     if(result.repaired){
       lines.push(fmt("qaGuardRepaired", {n:result.repaired}));
+    }
+    lines.push("");
+    const domainCount = Object.keys(result.curriculumSummary && result.curriculumSummary.domains ? result.curriculumSummary.domains : {}).length;
+    const skillCount = Object.keys(result.curriculumSummary && result.curriculumSummary.skills ? result.curriculumSummary.skills : {}).length;
+    lines.push(fmt("curriculumCoverageLine", {domains:domainCount, skills:skillCount}));
+    if(skillCount){
+      lines.push(tr("curriculumSkillsTitle"));
+      const skillLines = Object.entries(result.curriculumSummary.skills)
+        .sort((a,b) => b[1] - a[1])
+        .map(([skill,count]) => `  • ${curriculumSkillLabel(skill)}: ${count}`);
+      lines.push(...skillLines.slice(0, 18));
     }
     lines.push("");
     lines.push(tr("qaWhatTested"));
@@ -4205,6 +4803,8 @@
         const status = problems.length ? tr("qaReview") : tr("qaOk");
         lines.push(`  ${row.tierName}: ${status}`);
         lines.push(`    ${tr("qaTested")}: ${row.tested} ${tr("qaRounds")} · ${tr("qaBubbles")}: ${bubbleRange} · ${tr("qaCorrectAfterGuard")}: ${correctRange}`);
+        const rowSkills = Object.keys(row.curriculumSkills || {}).map(skill => curriculumSkillLabel(skill)).join(", ");
+        if(rowSkills) lines.push(`    ${tr("curriculumInDebug")}: ${rowSkills}`);
         if(row.repaired) lines.push(`    ${tr("qaGuardFixed")}: ${row.repaired} ${tr("qaRounds")}. ${tr("qaRawCorrectRange")} ${rawCorrectRange}.`);
         if(problems.length) lines.push(`    ${tr("qaProblem")}: ${problems.join("; ")}.`);
       });
@@ -4533,16 +5133,17 @@
     const tier = currentTierDifficulty();
     const tierCap = tier === "gold" ? 4 : tier === "silver" ? 3 : 2;
     if(task.topic === "coordinates"){
-      const wanted = task.mode === "coord-point" ? 1 : (level < 4 ? 2 : 3);
+      const wanted = isExactCoordinateTask(task) ? 1 : (level < 4 ? 2 : 3);
       return Math.min(wanted, tierCap, count);
     }
     if(task.topic === "inequalities" || task.topic === "numbertheory"){
       return Math.min(level < 4 ? 2 : 3, tierCap, count);
     }
     if(task.topic === "equations"){
-      return Math.min(task.solutions ? task.solutions.length : 1, count);
+      return Math.min(task.correctLabels ? task.correctLabels.length : (task.solutions ? task.solutions.length : 1), count);
     }
     if(task.topic === "shapes"){
+      if(task.correctLabels) return Math.min(task.correctLabels.length || 1, count);
       return Math.min(level < 4 ? 2 : level < 7 ? 3 : 4, tierCap, count);
     }
     if(task.topic === "percentages"){
@@ -4585,13 +5186,10 @@
         .map((v,i) => makeNumberItem(v, true, idxStart + i));
     }
     if(task.topic === "coordinates"){
-      if(task.mode === "coord-point"){
-        return [makeCoordinateItem(task.x, task.y, true, idxStart, task.min, task.max)];
-      }
       const vals = [];
       for(let x=task.min; x<=task.max; x++){
         for(let y=task.min; y<=task.max; y++){
-          if(task.axis === "x" ? x === task.targetValue : y === task.targetValue){
+          if(coordinateMatchesTask({x,y}, task)){
             vals.push(makeCoordinateItem(x, y, true, idxStart + vals.length, task.min, task.max));
           }
         }
@@ -4605,6 +5203,9 @@
         .map((v,i) => makeNumberItem(v, true, idxStart + i));
     }
     if(task.topic === "equations"){
+      if(task.correctLabels){
+        return (task.correctLabels || []).slice(0, 4).map((label,i) => makeTextItem(label, true, idxStart + i));
+      }
       return uniqueNumbers(task.solutions || [])
         .slice(0, 4)
         .map((v,i) => makeNumberItem(v, true, idxStart + i));
@@ -4615,6 +5216,9 @@
         .map((label,i) => makeTextItem(label, true, idxStart + i));
     }
     if(task.topic === "shapes"){
+      if(task.correctLabels){
+        return (task.correctLabels || []).slice(0, 4).map((label,i) => makeTextItem(label, true, idxStart + i));
+      }
       return SHAPE_LIBRARY
         .filter(shape => shape.key !== "circle" && shapeMatchesTask(shape, task))
         .slice(0, 4)
@@ -4641,9 +5245,7 @@
       const vals = [];
       for(let x=task.min; x<=task.max; x++){
         for(let y=task.min; y<=task.max; y++){
-          const ok = task.mode === "coord-point"
-            ? (x === task.x && y === task.y)
-            : (task.axis === "x" ? x === task.targetValue : y === task.targetValue);
+          const ok = coordinateMatchesTask({x,y}, task);
           if(!ok) vals.push(makeCoordinateItem(x, y, false, idxStart + vals.length, task.min, task.max));
         }
       }
@@ -4656,6 +5258,9 @@
         .map((v,i) => makeNumberItem(v, false, idxStart + i));
     }
     if(task.topic === "equations"){
+      if(task.correctLabels){
+        return (task.distractorLabels || []).slice(0, 12).map((label,i) => makeTextItem(label, false, idxStart + i));
+      }
       const solutions = uniqueNumbers(task.solutions || []);
       return collectValuesForEquation(task)
         .filter(v => !solutions.includes(v))
@@ -4668,6 +5273,9 @@
         .map((label,i) => makeTextItem(label, false, idxStart + i));
     }
     if(task.topic === "shapes"){
+      if(task.correctLabels){
+        return (task.distractorLabels || []).slice(0, 12).map((label,i) => makeTextItem(label, false, idxStart + i));
+      }
       return shuffle(SHAPE_LIBRARY.filter(shape => shape.key !== "circle" && !shapeMatchesTask(shape, task)))
         .slice(0, 12)
         .map((shape,i) => makeShapeItem(shape, false, idxStart + i));
@@ -4755,7 +5363,7 @@
     let candidate = null;
     let key = "";
     for(let attempt = 0; attempt < 10; attempt++){
-      candidate = createTaskForTopic(topic, level);
+      candidate = applyCurriculumTag(createTaskForTopic(topic, level));
       key = taskSignature(candidate);
       if(!recentTaskKeys.includes(key)) break;
     }
@@ -4821,8 +5429,8 @@
 
   function taskSignature(task){
     if(!task) return "none";
-    const parts = [task.topic || "", task.mode || "", task.operator || "", task.labelKey || task.label || ""];
-    ["boundary","axis","targetValue","x","y","base","target","max","a","b","denom","result"].forEach(key => {
+    const parts = [task.topic || "", task.mode || "", task.operator || "", task.labelKey || task.label || "", task.curriculumDomain || "", task.curriculumSkill || ""];
+    ["boundary","axis","targetValue","x","y","x1","y1","x2","y2","dx","dy","targetX","targetY","quadrant","line","base","target","max","a","b","denom","result","divisor","absTarget","maxRoot","prompt"].forEach(key => {
       if(task[key] !== undefined) parts.push(`${key}:${task[key]}`);
     });
     if(task.targetFraction) parts.push(`frac:${task.targetFraction[0]}/${task.targetFraction[1]}`);
@@ -4895,22 +5503,78 @@
     if(level >= 3){ min = -4; max = 4; }
     if(level >= 7){ min = -6; max = 6; }
 
-    // Coördinatenbaai mengt drie didactische vaardigheden:
-    // 1) één exact punt herkennen: (x,y)
-    // 2) alle punten op dezelfde verticale lijn: x = ...
-    // 3) alle punten op dezelfde horizontale lijn: y = ...
     const modePool = level <= 2
       ? ["coord-point", "coord-x", "coord-y"]
-      : ["coord-point", "coord-point", "coord-x", "coord-y"];
+      : level <= 4
+        ? ["coord-point", "coord-x", "coord-y", "coord-quadrant", "coord-line"]
+        : level <= 6
+          ? ["coord-point", "coord-x", "coord-y", "coord-quadrant", "coord-line", "coord-reflect-x", "coord-reflect-y", "coord-translate"]
+          : ["coord-point", "coord-x", "coord-y", "coord-quadrant", "coord-line", "coord-reflect-x", "coord-reflect-y", "coord-translate", "coord-midpoint", "coord-table-point"];
     const mode = modePool[Math.floor(Math.random()*modePool.length)];
 
     if(mode === "coord-point"){
       return { topic:"coordinates", mode, x: randomInt(min, max), y: randomInt(min, max), min, max };
     }
 
-    const axis = mode === "coord-x" ? "x" : "y";
-    const targetValue = randomInt(min, max);
-    return { topic:"coordinates", mode, axis, targetValue, min, max };
+    if(mode === "coord-x" || mode === "coord-y"){
+      const axis = mode === "coord-x" ? "x" : "y";
+      const targetValue = randomInt(min, max);
+      return { topic:"coordinates", mode, axis, targetValue, min, max };
+    }
+
+    if(mode === "coord-quadrant"){
+      const q = [1,2,3,4][Math.floor(Math.random()*4)];
+      return { topic:"coordinates", mode, quadrant:q, min:Math.min(min,-4), max:Math.max(max,4) };
+    }
+
+    if(mode === "coord-line"){
+      const linePool = ["y=x","y=-x","y=0","x=0"];
+      const line = linePool[Math.floor(Math.random()*linePool.length)];
+      return { topic:"coordinates", mode, line, min, max };
+    }
+
+    if(mode === "coord-reflect-x" || mode === "coord-reflect-y"){
+      const axis = mode === "coord-reflect-x" ? "x" : "y";
+      let x = randomInt(Math.max(min, -5), Math.min(max, 5));
+      let y = randomInt(Math.max(min, -5), Math.min(max, 5));
+      if(axis === "x" && y === 0) y = 2;
+      if(axis === "y" && x === 0) x = 2;
+      const targetX = axis === "y" ? -x : x;
+      const targetY = axis === "x" ? -y : y;
+      return { topic:"coordinates", mode, axis, x, y, targetX, targetY, min:Math.min(min,-6), max:Math.max(max,6) };
+    }
+
+    if(mode === "coord-translate"){
+      const dx = randomInt(-3,3) || 2;
+      const dy = randomInt(-3,3) || -1;
+      const x = randomInt(Math.max(min, -4), Math.min(max, 4));
+      const y = randomInt(Math.max(min, -4), Math.min(max, 4));
+      const targetX = Math.max(Math.min(x + dx, max), min);
+      const targetY = Math.max(Math.min(y + dy, max), min);
+      return { topic:"coordinates", mode, x, y, dx:targetX-x, dy:targetY-y, targetX, targetY, min, max };
+    }
+
+    if(mode === "coord-midpoint"){
+      const horizontal = Math.random() < .5;
+      const targetX = randomInt(Math.max(min, -4), Math.min(max, 4));
+      const targetY = randomInt(Math.max(min, -4), Math.min(max, 4));
+      const d = randomInt(1, Math.max(2, Math.floor((max-min)/3)));
+      const x1 = horizontal ? targetX - d : targetX;
+      const y1 = horizontal ? targetY : targetY - d;
+      const x2 = horizontal ? targetX + d : targetX;
+      const y2 = horizontal ? targetY : targetY + d;
+      return { topic:"coordinates", mode, x1, y1, x2, y2, targetX, targetY, min:Math.min(min,x1,y1,x2,y2), max:Math.max(max,x1,y1,x2,y2) };
+    }
+
+    const a = [1,2,-1][Math.floor(Math.random()*3)];
+    const b = level <= 7 ? 0 : randomInt(-2,2);
+    let x = randomInt(Math.max(min, -4), Math.min(max, 4));
+    let y = a*x + b;
+    if(y < min || y > max){
+      x = randomInt(-2,2);
+      y = a*x + b;
+    }
+    return { topic:"coordinates", mode:"coord-table-point", a, b, x, y, targetX:x, targetY:y, min, max };
   }
 
 
@@ -4980,17 +5644,56 @@
       {mode:"combo", labelKey:"shape_quadNoRightAngles", label:"vierhoeken met geen rechte hoeken", custom:"quadNoRight"},
       {mode:"combo", labelKey:"shape_quadNoParallelSides", label:"figuren met 4 zijden maar geen evenwijdige zijden", custom:"quadNoParallel"}
     ];
+
     let pool = easy;
     if(level >= 2) pool = pool.concat(triangles);
     if(level >= 4) pool = pool.concat(quads.filter(q => ["shape_squares","shape_rectangles","shape_kites"].includes(q.labelKey)));
     if(level >= 5) pool = pool.concat(quads.filter(q => !["shape_squares","shape_rectangles","shape_kites"].includes(q.labelKey)));
-    if(level >= 6) pool = pool.concat(symmetry, properties);
-    if(level >= 8) pool = pool.concat(combos);
+    if(level >= 6) pool = pool.concat(symmetry, properties, createShapeTransformTask(level));
+    if(level >= 7) pool = pool.concat(createShapeRelationTask(level), createShapePerimeterAreaTask(level));
+    if(level >= 8) pool = pool.concat(combos, createShapeTransformTask(level), createShapeRelationTask(level));
     const task = pool[Math.floor(Math.random()*pool.length)];
     return {topic:"shapes", ...task};
   }
 
+  function createShapeChoiceTask(mode, prompt, correctLabel, distractorLabels){
+    return {
+      mode,
+      prompt,
+      correctLabels:uniqueLabels([correctLabel]),
+      distractorLabels:uniqueLabels(distractorLabels.filter(label => String(label) !== String(correctLabel)))
+    };
+  }
 
+  function createShapeTransformTask(level){
+    const options = [
+      createShapeChoiceTask("shape-reflection", tr("promptReflectVertical"), tr("answerReflection"), [tr("answerRotation"), tr("answerTranslation"), tr("answerEnlargement")]),
+      createShapeChoiceTask("shape-reflection", tr("promptReflectHorizontal"), tr("answerReflection"), [tr("answerRotation"), tr("answerTranslation"), tr("answerEnlargement")]),
+      createShapeChoiceTask("shape-rotation", tr("promptRotate90"), tr("answerRotation"), [tr("answerReflection"), tr("answerTranslation"), tr("answerEnlargement")]),
+      createShapeChoiceTask("shape-translation", tr("promptTranslate"), tr("answerTranslation"), [tr("answerReflection"), tr("answerRotation"), tr("answerEnlargement")])
+    ];
+    return options[Math.floor(Math.random()*options.length)];
+  }
+
+  function createShapeRelationTask(level){
+    const options = [
+      createShapeChoiceTask("shape-congruence", tr("promptCongruent"), tr("answerCongruent"), [tr("answerSimilar"), tr("answerReflection"), tr("answerEnlargement")]),
+      createShapeChoiceTask("shape-similarity", tr("promptSimilar"), tr("answerSimilar"), [tr("answerCongruent"), tr("answerTranslation"), tr("answerRotation")])
+    ];
+    return options[Math.floor(Math.random()*options.length)];
+  }
+
+  function createShapePerimeterAreaTask(level){
+    const a = randomInt(2, 9);
+    const b = randomInt(2, 8);
+    const perimeter = 2*a + 2*b;
+    const area = a*b;
+    const mode = Math.random() < .5 ? "shape-perimeter" : "shape-area";
+    if(mode === "shape-perimeter"){
+      return createShapeChoiceTask(mode, fmt("promptPerimeterRect", {a,b}), String(perimeter), [String(area), String(a+b), String(a*b*2), String(perimeter+2)]);
+    }
+    return createShapeChoiceTask(mode, fmt("promptAreaRect", {a,b}), String(area), [String(perimeter), String(a+b), String(area+a), String(area+b)]);
+  }
 
   const PERCENT_EQUIV_LIBRARY = [
     {percent:10, frac:"1/10", decimal:"0,1"},
@@ -5020,13 +5723,13 @@
   function createPercentageTaskForLevel(level){
     let pool;
     if(level <= 2){
-      pool = ["percent-equivalent"];
+      pool = ["percent-equivalent", "ratio-basic"];
     }else if(level <= 4){
-      pool = ["percent-equivalent", "percent-of"];
+      pool = ["percent-equivalent", "percent-of", "ratio-basic", "percent-from-part"];
     }else if(level <= 6){
-      pool = ["percent-equivalent", "percent-of", "percent-discount"];
+      pool = ["percent-equivalent", "percent-of", "percent-discount", "ratio-basic", "ratio-table", "scale"];
     }else{
-      pool = ["percent-equivalent", "percent-of", "percent-discount", "percent-change"];
+      pool = ["percent-equivalent", "percent-of", "percent-discount", "percent-change", "ratio-basic", "ratio-table", "scale", "reverse-discount", "percent-from-part"];
     }
     const mode = pool[Math.floor(Math.random() * pool.length)];
 
@@ -5062,6 +5765,55 @@
       return buildPercentNumericTask("percent-discount", prompt, answer, true, level);
     }
 
+    if(mode === "ratio-basic"){
+      const pairs = level <= 4 ? [[1,2],[1,4],[3,4],[2,5],[3,5]] : [[1,2],[1,3],[2,3],[1,4],[3,4],[2,5],[3,5],[4,5],[3,8],[5,8]];
+      const pair = pairs[Math.floor(Math.random() * pairs.length)];
+      const part = pair[0], whole = pair[1];
+      const answer = roundNice(part / whole * 100);
+      const prompt = `${part} : ${whole}`;
+      return buildPercentNumericTask("ratio-basic", prompt, answer, false, level, true);
+    }
+
+    if(mode === "ratio-table"){
+      const bases = level <= 6 ? [[2,6],[3,9],[4,10],[5,15],[6,18]] : [[2,5],[3,8],[4,7],[5,12],[6,15],[8,20]];
+      const pair = bases[Math.floor(Math.random() * bases.length)];
+      const left = pair[0], right = pair[1];
+      const factor = level <= 6 ? randomInt(2,5) : randomInt(3,8);
+      const answer = right * factor;
+      const prompt = `${left} → ${right}, ${left * factor} → ?`;
+      return buildPercentNumericTask("ratio-table", prompt, answer, false, level);
+    }
+
+    if(mode === "scale"){
+      const scales = level <= 6 ? [50,100,200] : [50,100,200,500,1000];
+      const scale = scales[Math.floor(Math.random() * scales.length)];
+      const cm = level <= 6 ? randomInt(2,8) : randomInt(2,15);
+      const realCm = cm * scale;
+      const answerMeters = roundNice(realCm / 100);
+      const prompt = `1:${scale} · ${cm} cm`;
+      return buildPercentNumericTask("scale", prompt, answerMeters, false, level, false, "m");
+    }
+
+    if(mode === "reverse-discount"){
+      const percents = [10,20,25,40,50];
+      const originalPrices = [40,50,60,80,100,120,160,200,240,300];
+      const percent = percents[Math.floor(Math.random() * percents.length)];
+      const original = originalPrices[Math.floor(Math.random() * originalPrices.length)];
+      const after = roundNice(original * (1 - percent / 100));
+      const prompt = `${euroLabel(after)} na −${fmtPercent(percent)}`;
+      return buildPercentNumericTask("reverse-discount", prompt, original, true, level);
+    }
+
+    if(mode === "percent-from-part"){
+      const wholes = [40,50,60,80,100,120,150,200,240,300];
+      const percents = level <= 5 ? [10,20,25,50,75] : [5,10,12.5,20,25,30,40,50,60,75];
+      const whole = wholes[Math.floor(Math.random() * wholes.length)];
+      const percent = percents[Math.floor(Math.random() * percents.length)];
+      const part = roundNice(whole * percent / 100);
+      const prompt = `${part} / ${whole}`;
+      return buildPercentNumericTask("percent-from-part", prompt, percent, false, level, true);
+    }
+
     const percents = [5,10,20,25,50];
     const bases = [40,60,80,100,120,160,200,240,300,400];
     const percent = percents[Math.floor(Math.random() * percents.length)];
@@ -5081,17 +5833,26 @@
     return uniqueLabels(shuffle(labels).filter(label => !correctForms.includes(label))).slice(0, 18);
   }
 
-  function buildPercentNumericTask(mode, prompt, answer, euro, level){
-    const answerLabel = euro ? euroLabel(answer) : String(answer).replace(".", ",");
+  function numberAnswerLabel(v, euro=false, percent=false, unit=""){
+    const base = String(roundNice(v)).replace(".", ",");
+    if(euro) return euroLabel(roundNice(v));
+    if(percent) return `${base}%`;
+    if(unit) return `${base} ${unit}`;
+    return base;
+  }
+
+  function buildPercentNumericTask(mode, prompt, answer, euro, level, percentAnswer=false, unit=""){
+    const answerLabel = numberAnswerLabel(answer, euro, percentAnswer, unit);
     const raw = [
       answer + 1, answer - 1, answer + 2, answer - 2,
       answer * 2, Math.max(0, answer / 2),
       answer + 5, Math.max(0, answer - 5),
-      answer + 10, Math.max(0, answer - 10)
+      answer + 10, Math.max(0, answer - 10),
+      answer * 1.25, answer * .75
     ].map(roundNice);
     const distractorLabels = uniqueLabels(raw
       .filter(v => Number.isFinite(v) && v !== answer)
-      .map(v => euro ? euroLabel(v) : String(v).replace(".", ",")));
+      .map(v => numberAnswerLabel(v, euro, percentAnswer, unit)));
     return {topic:"percentages", mode, prompt, correctLabels:[answerLabel], distractorLabels};
   }
 
@@ -5113,13 +5874,100 @@
   function createEquationTaskForLevel(level){
     const pool = [];
     pool.push(createEquationAddSub(level));
-    if(level >= 2) pool.push(createEquationMultiply(level));
-    if(level >= 3) pool.push(createEquationDivide(level));
-    if(level >= 4) pool.push(createEquationTwoStep(level));
-    if(level >= 6) pool.push(createEquationFractionTwoStep(level));
-    if(level >= 7) pool.push(createEquationParentheses(level));
+    if(level >= 2) pool.push(createEquationMultiply(level), createAlgebraSubstitution(level), createAlgebraSimplify(level));
+    if(level >= 3) pool.push(createEquationDivide(level), createAlgebraFormula(level));
+    if(level >= 4) pool.push(createEquationTwoStep(level), createAlgebraPattern(level));
+    if(level >= 5) pool.push(createAlgebraDistribute(level), createAlgebraTableFormula(level));
+    if(level >= 6) pool.push(createEquationFractionTwoStep(level), createAlgebraSubstitution(level));
+    if(level >= 7) pool.push(createEquationParentheses(level), createAlgebraDistribute(level));
     if(level >= 8) pool.push(createEquationSquare(level), createEquationAbsolute(level));
     return pool[Math.floor(Math.random()*pool.length)];
+  }
+
+
+  function createAlgebraChoiceTask(mode, prompt, correctLabel, distractorLabels){
+    return {
+      topic:"equations",
+      mode,
+      prompt,
+      correctLabels:uniqueLabels([correctLabel]),
+      distractorLabels:uniqueLabels(distractorLabels.filter(label => String(label) !== String(correctLabel)))
+    };
+  }
+
+  function createAlgebraSubstitution(level){
+    const x = level <= 5 ? randomInt(1, 9) : randomInt(-5, 9);
+    const a = randomInt(2, 6);
+    const b = randomInt(1, 10);
+    const usePlus = Math.random() < .65;
+    const answer = usePlus ? a * x + b : a * x - b;
+    const expr = usePlus ? `${a}x + ${b}` : `${a}x − ${b}`;
+    const prompt = `x = ${formatNumber(x)}, ${expr}`;
+    return createAlgebraChoiceTask("alg-substitution", prompt, String(answer), [
+      String(answer + a), String(answer - a), String(a + x + b), String(a * (x + b)), String(-answer)
+    ]);
+  }
+
+  function createAlgebraSimplify(level){
+    const a = randomInt(2, 7);
+    const b = randomInt(2, 8);
+    const c = level <= 5 ? 0 : randomInt(1, 6);
+    const answer = c ? `${a + b}x + ${c}` : `${a + b}x`;
+    const prompt = c ? `${a}x + ${b}x + ${c}` : `${a}x + ${b}x`;
+    return createAlgebraChoiceTask("alg-simplify", prompt, answer, [
+      `${a + b}`, `${a * b}x`, `${a + b + c}x`, `${a}x + ${b}`, `${a + b}x − ${c}`
+    ]);
+  }
+
+  function createAlgebraDistribute(level){
+    const a = randomInt(2, 6);
+    const b = randomInt(1, 8);
+    const variable = Math.random() < .5 ? "x" : "a";
+    const signPlus = Math.random() < .75;
+    const prompt = signPlus ? `${a}(${variable} + ${b})` : `${a}(${variable} − ${b})`;
+    const answer = signPlus ? `${a}${variable} + ${a*b}` : `${a}${variable} − ${a*b}`;
+    return createAlgebraChoiceTask("alg-distribute", prompt, answer, [
+      `${a}${variable} + ${b}`, `${a + b}${variable}`, `${a*b}${variable}`, `${a}${variable} − ${a*b}`, `${a} + ${a*b}${variable}`
+    ]);
+  }
+
+  function createAlgebraPattern(level){
+    const step = randomInt(2, 9);
+    const start = Math.random() < .55 ? step : randomInt(1, 6);
+    const seq = [start, start + step, start + 2*step, start + 3*step];
+    const answer = start === step ? `${step}n` : `${step}n + ${start - step}`;
+    const prompt = `${seq.join(", ")}, ...`;
+    const distractors = [
+      `${step}n + ${start}`, `${start}n`, `${step + 1}n`, `n + ${step}`, `${step}n − ${Math.abs(start-step)}`
+    ];
+    return createAlgebraChoiceTask("alg-pattern", prompt, answer, distractors);
+  }
+
+  function createAlgebraFormula(level){
+    const l = randomInt(3, 12);
+    const b = randomInt(2, 9);
+    const mode = Math.random() < .5 ? "perimeter" : "area";
+    if(mode === "perimeter"){
+      const answer = 2*l + 2*b;
+      return createAlgebraChoiceTask("alg-formula", `P = 2l + 2b, l=${l}, b=${b}`, String(answer), [
+        String(l + b), String(2*l + b), String(l*b), String(2*l*b), String(answer + 2)
+      ]);
+    }
+    const answer = l*b;
+    return createAlgebraChoiceTask("alg-formula", `A = l · b, l=${l}, b=${b}`, String(answer), [
+      String(l + b), String(2*l + 2*b), String(l*b + l), String(l*b + b), String(answer * 2)
+    ]);
+  }
+
+  function createAlgebraTableFormula(level){
+    const a = randomInt(2, 6);
+    const c = level <= 6 ? 0 : randomInt(1, 5);
+    const ys = [1,2,3].map(x => a*x + c);
+    const answer = c ? `y = ${a}x + ${c}` : `y = ${a}x`;
+    const prompt = `x: 1,2,3 → y: ${ys.join(",")}`;
+    return createAlgebraChoiceTask("alg-table-formula", prompt, answer, [
+      `y = ${a + 1}x`, `y = x + ${a}`, `y = ${a}x − ${c || 1}`, `y = ${c || a}x + ${a}`, `y = ${a + c}x`
+    ]);
   }
 
   function createEquationAddSub(level){
@@ -5181,17 +6029,18 @@
 
 
   function createNumberTheoryTaskForLevel(level){
-    // Getallenbaai mengt drie vaardigheden:
-    // 1) delers herkennen: 3 is een deler van 18
-    // 2) veelvouden herkennen: 24 is een veelvoud van 6
-    // 3) priemgetallen herkennen: 2, 3, 5, 7, 11, ...
+    // v27.1 Getallenleer+:
+    // delers, veelvouden, priemgetallen, deelbaarheid, kwadraten,
+    // absolute waarde, ggd en kgv.
     let modePool;
     if(level <= 2){
-      modePool = ["multiples", "divisors"];
+      modePool = ["multiples", "divisors", "divisibleBy"];
     }else if(level <= 5){
-      modePool = ["multiples", "divisors", "primes"];
+      modePool = ["multiples", "divisors", "primes", "divisibleBy", "squares"];
+    }else if(level <= 7){
+      modePool = ["multiples", "divisors", "primes", "divisibleBy", "squares", "absolute"];
     }else{
-      modePool = ["multiples", "divisors", "primes", "primes"];
+      modePool = ["multiples", "divisors", "primes", "divisibleBy", "squares", "absolute", "gcd", "lcm"];
     }
     const mode = modePool[Math.floor(Math.random()*modePool.length)];
 
@@ -5203,6 +6052,28 @@
     if(mode === "divisors"){
       const targetPool = level <= 2 ? [12,18,20,24,30,36] : level <= 5 ? [16,18,24,28,30,32,36,40,42,48] : [24,30,36,42,48,54,60,72,84,96];
       return { topic:"numbertheory", mode, target: targetPool[Math.floor(Math.random()*targetPool.length)] };
+    }
+
+    if(mode === "divisibleBy"){
+      const divPool = level <= 3 ? [2,3,5,10] : level <= 6 ? [2,3,4,5,9,10] : [2,3,4,5,6,8,9,10,12];
+      return { topic:"numbertheory", mode, divisor: divPool[Math.floor(Math.random()*divPool.length)] };
+    }
+
+    if(mode === "squares"){
+      return { topic:"numbertheory", mode, maxRoot: level <= 5 ? 10 : 14 };
+    }
+
+    if(mode === "absolute"){
+      const absPool = level <= 7 ? [2,3,4,5,6,7,8,9] : [2,3,4,5,6,7,8,9,10,12];
+      return { topic:"numbertheory", mode, absTarget: absPool[Math.floor(Math.random()*absPool.length)] };
+    }
+
+    if(mode === "gcd" || mode === "lcm"){
+      const pairs = level <= 8
+        ? [[6,9],[8,12],[10,15],[12,18],[14,21],[16,24],[18,24],[20,30]]
+        : [[12,18],[12,30],[15,25],[18,30],[21,28],[24,36],[30,45],[36,48]];
+      const pair = pairs[Math.floor(Math.random()*pairs.length)];
+      return { topic:"numbertheory", mode, a:pair[0], b:pair[1] };
     }
 
     const max = level <= 5 ? 40 : 80;
@@ -5329,32 +6200,55 @@
   }
 
 
+
+  function coordinateMatchesTask(p, task){
+    if(task.mode === "coord-point") return p.x === task.x && p.y === task.y;
+    if(task.mode === "coord-x" || task.mode === "coord-y") return task.axis === "x" ? p.x === task.targetValue : p.y === task.targetValue;
+    if(task.mode === "coord-quadrant"){
+      if(task.quadrant === 1) return p.x > 0 && p.y > 0;
+      if(task.quadrant === 2) return p.x < 0 && p.y > 0;
+      if(task.quadrant === 3) return p.x < 0 && p.y < 0;
+      if(task.quadrant === 4) return p.x > 0 && p.y < 0;
+      return false;
+    }
+    if(task.mode === "coord-line"){
+      if(task.line === "y=x") return p.y === p.x;
+      if(task.line === "y=-x") return p.y === -p.x;
+      if(task.line === "y=0") return p.y === 0;
+      if(task.line === "x=0") return p.x === 0;
+      return false;
+    }
+    if(task.mode === "coord-reflect-x" || task.mode === "coord-reflect-y" || task.mode === "coord-translate" || task.mode === "coord-midpoint" || task.mode === "coord-table-point"){
+      return p.x === task.targetX && p.y === task.targetY;
+    }
+    return false;
+  }
+
+  function isExactCoordinateTask(task){
+    return ["coord-point","coord-reflect-x","coord-reflect-y","coord-translate","coord-midpoint","coord-table-point"].includes(task.mode);
+  }
+
   function buildCoordinateBubbleData(task, count, correctWanted){
     const data = [];
     const used = new Set();
     const key = (x,y) => `${x},${y}`;
-    const isCorrect = p => {
-      if(task.mode === "coord-point") return p.x === task.x && p.y === task.y;
-      return task.axis === "x" ? p.x === task.targetValue : p.y === task.targetValue;
-    };
-
     const goods = [];
     const bads = [];
     for(let x=task.min; x<=task.max; x++){
       for(let y=task.min; y<=task.max; y++){
         const p = {x,y};
-        if(isCorrect(p)) goods.push(p); else bads.push(p);
+        if(coordinateMatchesTask(p, task)) goods.push(p); else bads.push(p);
       }
     }
 
-    // Exact-punt-vragen hebben altijd maar één juiste oplossing.
-    if(task.mode === "coord-point"){
-      const p = goods[0];
+    if(isExactCoordinateTask(task)){
+      const p = goods[0] || {x:task.targetX ?? task.x, y:task.targetY ?? task.y};
       used.add(key(p.x,p.y));
       data.push(makeCoordinateItem(p.x, p.y, true, data.length, task.min, task.max));
     }else{
       for(const p of shuffle(goods)){
         if(data.length >= correctWanted) break;
+        if(used.has(key(p.x,p.y))) continue;
         used.add(key(p.x,p.y));
         data.push(makeCoordinateItem(p.x, p.y, true, data.length, task.min, task.max));
       }
@@ -5429,6 +6323,25 @@
   }
 
   function buildEquationBubbleData(task, count, correctWanted){
+    if(task.correctLabels){
+      const data = [];
+      const used = new Set();
+      const add = (label, correct) => {
+        const key = String(label);
+        if(used.has(key) || data.length >= count) return;
+        used.add(key);
+        data.push(makeTextItem(label, correct, data.length));
+      };
+      shuffle(task.correctLabels || []).slice(0, Math.max(1, correctWanted)).forEach(label => add(label, true));
+      shuffle(task.distractorLabels || []).forEach(label => add(label, false));
+      let guard = 0;
+      while(data.length < count && guard < 40){
+        guard++;
+        add(String(randomInt(-12, 24)), false);
+      }
+      return shuffle(data);
+    }
+
     const solutions = uniqueNumbers(task.solutions || []);
     const data = [];
     const used = new Set();
@@ -5478,6 +6391,25 @@
 
 
   function buildShapeBubbleData(task, count, correctWanted){
+    if(task.correctLabels){
+      const data = [];
+      const used = new Set();
+      const add = (label, correct) => {
+        const key = String(label);
+        if(used.has(key) || data.length >= count) return;
+        used.add(key);
+        data.push(makeTextItem(label, correct, data.length));
+      };
+      shuffle(task.correctLabels || []).slice(0, Math.max(1, correctWanted)).forEach(label => add(label, true));
+      shuffle(task.distractorLabels || []).forEach(label => add(label, false));
+      let guard = 0;
+      while(data.length < count && guard < 40){
+        guard++;
+        add(String(randomInt(1, 60)), false);
+      }
+      return shuffle(data);
+    }
+
     let candidateShapes = SHAPE_LIBRARY.filter(shape => shape.key !== "circle");
     // Vermijd visueel verwarrende distractors bij ruit-vragen: een vlieger lijkt op klein scherm te snel op een ruit.
     if(task.custom === "rhombiInclusive" || task.labelKey === "shape_rhombi" || task.labelKey === "shape_allSidesEqual"){
@@ -5535,6 +6467,23 @@
     return { kind:"shape", shape, label:shape.label, labelKey:shape.labelKey, correct, color: colors[idx % colors.length] };
   }
 
+
+  function gcd(a,b){
+    a = Math.abs(a); b = Math.abs(b);
+    while(b){ const t = b; b = a % b; a = t; }
+    return a;
+  }
+
+  function lcm(a,b){
+    return Math.abs(a*b) / gcd(a,b);
+  }
+
+  function isSquareNumber(v){
+    if(v < 0) return false;
+    const r = Math.sqrt(v);
+    return Number.isInteger(r);
+  }
+
   function collectValuesForNumberTheory(task, level){
     if(task.mode === "multiples"){
       const maxFactor = level <= 2 ? 10 : level <= 5 ? 12 : 15;
@@ -5555,6 +6504,38 @@
       return uniquePositive(values).filter(v => v <= Math.max(100, task.target + 10));
     }
 
+    if(task.mode === "divisibleBy"){
+      const values = [];
+      for(let v=1; v<=Math.max(80, task.divisor * 15); v++) values.push(v);
+      values.push(task.divisor, task.divisor * 2, task.divisor * 3, task.divisor + 1, task.divisor * 4 + 1);
+      return uniquePositive(values).filter(v => v <= 150);
+    }
+
+    if(task.mode === "squares"){
+      const maxRoot = task.maxRoot || 10;
+      const values = [];
+      for(let r=1; r<=maxRoot; r++) values.push(r*r);
+      for(let v=2; v<=Math.min(180, maxRoot*maxRoot + 20); v += 3) values.push(v);
+      values.push(2,3,5,6,7,8,10,12,15,20,30,50);
+      return uniquePositive(values).filter(v => v <= 200);
+    }
+
+    if(task.mode === "absolute"){
+      const a = task.absTarget || 5;
+      const values = [-a, a, 0, -a-1, a+1, -a+1, a-1, -2*a, 2*a, -1, 1];
+      for(let v=-12; v<=12; v++) values.push(v);
+      const seen = new Set();
+      return values.filter(v => Number.isInteger(v) && !seen.has(v) && seen.add(v));
+    }
+
+    if(task.mode === "gcd" || task.mode === "lcm"){
+      const answer = task.mode === "gcd" ? gcd(task.a, task.b) : lcm(task.a, task.b);
+      const values = [answer, task.a, task.b, gcd(task.a, task.b), lcm(task.a, task.b)];
+      for(let d=-4; d<=4; d++) values.push(answer + d);
+      values.push(answer * 2, Math.max(1, Math.floor(answer / 2)), task.a + task.b, Math.abs(task.a - task.b));
+      return uniquePositive(values).filter(v => v <= 300);
+    }
+
     const max = task.max || 50;
     const values = [];
     for(let v=2; v<=max; v++) values.push(v);
@@ -5565,6 +6546,11 @@
     if(task.mode === "multiples") return v % task.base === 0;
     if(task.mode === "divisors") return task.target % v === 0;
     if(task.mode === "primes") return isPrime(v);
+    if(task.mode === "divisibleBy") return v % task.divisor === 0;
+    if(task.mode === "squares") return isSquareNumber(v);
+    if(task.mode === "absolute") return Math.abs(v) === task.absTarget;
+    if(task.mode === "gcd") return v === gcd(task.a, task.b);
+    if(task.mode === "lcm") return v === lcm(task.a, task.b);
     return false;
   }
 
@@ -5724,6 +6710,11 @@
     return choices[idx % choices.length];
   }
 
+
+  function romanQuadrant(q){
+    return q === 1 ? "I" : q === 2 ? "II" : q === 3 ? "III" : q === 4 ? "IV" : String(q);
+  }
+
   function renderTarget(task){
     targetModelWrap.innerHTML = "";
     targetModelWrap.classList.add("hidden");
@@ -5745,9 +6736,27 @@
       if(task.mode === "coord-point"){
         targetText.textContent = tr("targetCoordinate");
         targetFrac.innerHTML = `(${formatNumber(task.x)}, ${formatNumber(task.y)})`;
-      }else{
+      }else if(task.mode === "coord-x" || task.mode === "coord-y"){
         targetText.textContent = task.axis === "x" ? tr("targetCoordX") : tr("targetCoordY");
         targetFrac.innerHTML = formatNumber(task.targetValue);
+      }else if(task.mode === "coord-quadrant"){
+        targetText.textContent = tr("targetCoordQuadrant");
+        targetFrac.innerHTML = romanQuadrant(task.quadrant);
+      }else if(task.mode === "coord-line"){
+        targetText.textContent = tr("targetCoordLine");
+        targetFrac.innerHTML = task.line;
+      }else if(task.mode === "coord-reflect-x" || task.mode === "coord-reflect-y"){
+        targetText.textContent = tr("targetCoordReflection");
+        targetFrac.innerHTML = `(${formatNumber(task.x)}, ${formatNumber(task.y)}) · ${task.axis}-as`;
+      }else if(task.mode === "coord-translate"){
+        targetText.textContent = tr("targetCoordTranslation");
+        targetFrac.innerHTML = `(${formatNumber(task.x)}, ${formatNumber(task.y)}) + (${formatNumber(task.dx)}, ${formatNumber(task.dy)})`;
+      }else if(task.mode === "coord-midpoint"){
+        targetText.textContent = tr("targetCoordMidpoint");
+        targetFrac.innerHTML = `(${formatNumber(task.x1)}, ${formatNumber(task.y1)}) & (${formatNumber(task.x2)}, ${formatNumber(task.y2)})`;
+      }else if(task.mode === "coord-table-point"){
+        targetText.textContent = tr("targetCoordTablePoint");
+        targetFrac.innerHTML = `x=${formatNumber(task.x)} → y=${formatNumber(task.y)}`;
       }
       return;
     }
@@ -5759,6 +6768,21 @@
       }else if(task.mode === "divisors"){
         targetText.textContent = tr("targetDivisors");
         targetFrac.innerHTML = formatNumber(task.target);
+      }else if(task.mode === "divisibleBy"){
+        targetText.textContent = tr("targetDivisibleBy");
+        targetFrac.innerHTML = formatNumber(task.divisor);
+      }else if(task.mode === "squares"){
+        targetText.textContent = tr("targetSquares");
+        targetFrac.innerHTML = "1, 4, 9, 16, ...";
+      }else if(task.mode === "absolute"){
+        targetText.textContent = tr("targetAbs");
+        targetFrac.innerHTML = `|x| = ${formatNumber(task.absTarget)}`;
+      }else if(task.mode === "gcd"){
+        targetText.textContent = tr("targetGcd");
+        targetFrac.innerHTML = `ggd(${formatNumber(task.a)}, ${formatNumber(task.b)})`;
+      }else if(task.mode === "lcm"){
+        targetText.textContent = tr("targetLcm");
+        targetFrac.innerHTML = `kgv(${formatNumber(task.a)}, ${formatNumber(task.b)})`;
       }else{
         targetText.textContent = tr("targetPrimes");
         targetFrac.innerHTML = "2, 3, 5, ...";
@@ -5773,6 +6797,16 @@
         targetText.textContent = tr("targetDiscount");
       }else if(task.mode === "percent-change"){
         targetText.textContent = tr("targetPercentChange");
+      }else if(task.mode === "ratio-basic"){
+        targetText.textContent = tr("targetRatio");
+      }else if(task.mode === "ratio-table"){
+        targetText.textContent = tr("targetRatioTable");
+      }else if(task.mode === "scale"){
+        targetText.textContent = tr("targetScale");
+      }else if(task.mode === "reverse-discount"){
+        targetText.textContent = tr("targetReverseDiscount");
+      }else if(task.mode === "percent-from-part"){
+        targetText.textContent = tr("targetPercentFromPart");
       }else{
         targetText.textContent = tr("targetPercentOf");
       }
@@ -5780,13 +6814,18 @@
       return;
     }
     if(task.topic === "shapes"){
-      targetText.textContent = tr("targetShapes");
       targetFrac.classList.add("expression");
-      targetFrac.innerHTML = tr(task.labelKey || task.label);
+      if(task.correctLabels){
+        targetText.textContent = tr("targetShapeText");
+        targetFrac.innerHTML = escapeHTML(task.prompt || "");
+      }else{
+        targetText.textContent = tr("targetShapes");
+        targetFrac.innerHTML = tr(task.labelKey || task.label);
+      }
       return;
     }
     if(task.topic === "equations"){
-      targetText.textContent = tr("targetEquation");
+      targetText.textContent = task.correctLabels ? tr("targetAlgebra") : tr("targetEquation");
       targetFrac.classList.add("expression");
       targetFrac.innerHTML = equationHTML(task);
       return;
@@ -5825,24 +6864,24 @@
     }
     if(task.topic === "coordinates"){
       hintText.textContent = task.mode === "coord-point"
-        ? tr("targetCoordinate") + " " + `(${formatNumber(task.x)}, ${formatNumber(task.y)})` + ". " + tr("coordHint")
-        : tr("coordHint");
+        ? tr("targetCoordinate") + " " + `(${formatNumber(task.x)}, ${formatNumber(task.y)})` + ". " + tr("coordHintPlus")
+        : tr("coordHintPlus");
       return;
     }
     if(task.topic === "numbertheory"){
-      hintText.textContent = tr("numberHint");
+      hintText.textContent = tr("numberHintPlus");
       return;
     }
     if(task.topic === "shapes"){
-      hintText.textContent = tr("shapeHint");
+      hintText.textContent = tr("shapeHintPlus");
       return;
     }
     if(task.topic === "equations"){
-      hintText.textContent = tr("equationHint");
+      hintText.textContent = task.correctLabels ? tr("algebraHintPlus") : tr("equationHint");
       return;
     }
     if(task.topic === "percentages"){
-      hintText.textContent = tr("percentHint");
+      hintText.textContent = tr("ratioHintPlus");
       return;
     }
     hintText.innerHTML = "";
@@ -6326,6 +7365,7 @@
   }
 
   function equationHTML(task){
+    if(task && task.prompt) return escapeHTML(task.prompt);
     const a = task.a;
     const b = task.b;
     const r = formatNumber(task.result);
