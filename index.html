@@ -4067,6 +4067,53 @@
     currShapePerimeterArea:"perimeter at area preparation"
   });
 
+
+  /* v27.6 — Curriculum Coverage Matrix */
+  Object.assign(I18N.nl, {
+    curriculumMatrixTitle:"Curriculum-matrix",
+    curriculumTargetSkills:"doelvaardigheden",
+    curriculumPresent:"aanwezig",
+    curriculumMissing:"ontbreekt",
+    curriculumEstimatedCoverage:"geschatte dekking",
+    curriculumAllPresent:"alle doelvaardigheden aanwezig",
+    curriculumRunAllHint:"Deze score meet oefendekking in de generator, niet of een leerling de leerstof beheerst.",
+    curriculumReady90:"richting 90%+",
+    curriculumNeedsWork:"nog uitbreiden"
+  });
+  Object.assign(I18N.en, {
+    curriculumMatrixTitle:"Curriculum matrix",
+    curriculumTargetSkills:"target skills",
+    curriculumPresent:"present",
+    curriculumMissing:"missing",
+    curriculumEstimatedCoverage:"estimated coverage",
+    curriculumAllPresent:"all target skills present",
+    curriculumRunAllHint:"This score measures generator practice coverage, not whether a learner masters the content.",
+    curriculumReady90:"towards 90%+",
+    curriculumNeedsWork:"needs expansion"
+  });
+  Object.assign(I18N.fr, {
+    curriculumMatrixTitle:"Matrice du programme",
+    curriculumTargetSkills:"compétences cibles",
+    curriculumPresent:"présent",
+    curriculumMissing:"manquant",
+    curriculumEstimatedCoverage:"couverture estimée",
+    curriculumAllPresent:"toutes les compétences cibles sont présentes",
+    curriculumRunAllHint:"Ce score mesure la couverture d’exercices dans le générateur, pas la maîtrise de l’élève.",
+    curriculumReady90:"vers 90%+",
+    curriculumNeedsWork:"à développer"
+  });
+  Object.assign(I18N.tl, {
+    curriculumMatrixTitle:"Curriculum matrix",
+    curriculumTargetSkills:"target skills",
+    curriculumPresent:"present",
+    curriculumMissing:"missing",
+    curriculumEstimatedCoverage:"estimated coverage",
+    curriculumAllPresent:"all target skills present",
+    curriculumRunAllHint:"Sinusukat nito ang practice coverage ng generator, hindi mastery ng learner.",
+    curriculumReady90:"towards 90%+",
+    curriculumNeedsWork:"needs expansion"
+  });
+
   let currentLang = localStorage.getItem("bubblePopLang") || "nl";
   if(!I18N[currentLang]) currentLang = "nl";
   function tr(key){ return (I18N[currentLang] && I18N[currentLang][key]) || I18N.nl[key] || key; }
@@ -4576,6 +4623,65 @@
     return tr(map[skill] || skill);
   }
 
+
+  const CURRICULUM_TARGET_MATRIX = {
+    getallenleer:[
+      "fractionsEquivalent","fractionsCompare","integersOrder","numberDivisors","numberMultiples","numberPrimes",
+      "numberDivisibility","numberSquares","numberAbsolute","numberGcdLcm"
+    ],
+    verhoudingen:[
+      "percentEquivalent","percentOf","percentDiscount","percentChange","ratioBasic","ratioTable","scale",
+      "reverseDiscount","percentFromPart"
+    ],
+    algebra:[
+      "equationSolve","algebraSubstitution","algebraSimplify","algebraDistribute","algebraPattern","algebraFormula",
+      "algebraTableFormula"
+    ],
+    coordinaten:[
+      "coordinatePoint","coordinateLine","coordinateQuadrants","coordinateReflection","coordinateTranslation",
+      "coordinateMidpoint","coordinateTablePoint"
+    ],
+    meetkunde:[
+      "shapeClassify","shapeProperties","shapeAngles","shapeParallelPerpendicular","shapeSymmetry","shapeReflection",
+      "shapeRotation","shapeTranslation","shapeCongruence","shapeSimilarity","shapePerimeterArea"
+    ]
+  };
+
+  function expectedDomainForSkill(skill){
+    for(const [domain, skills] of Object.entries(CURRICULUM_TARGET_MATRIX)){
+      if(skills.includes(skill)) return domain;
+    }
+    return "unknown";
+  }
+
+  function curriculumCoverageRows(result){
+    const seenSkills = result && result.curriculumSummary && result.curriculumSummary.skills
+      ? result.curriculumSummary.skills
+      : {};
+    return Object.entries(CURRICULUM_TARGET_MATRIX).map(([domain, targetSkills]) => {
+      const present = targetSkills.filter(skill => Number(seenSkills[skill] || 0) > 0);
+      const missing = targetSkills.filter(skill => Number(seenSkills[skill] || 0) <= 0);
+      const pct = Math.round((present.length / targetSkills.length) * 100);
+      return {domain, targetSkills, present, missing, pct};
+    });
+  }
+
+  function formatCurriculumCoverageMatrix(result){
+    const lines = [];
+    const rows = curriculumCoverageRows(result);
+    lines.push(tr("curriculumMatrixTitle"));
+    rows.forEach(row => {
+      const status = row.pct >= 90 ? tr("curriculumReady90") : tr("curriculumNeedsWork");
+      lines.push(`${curriculumDomainLabel(row.domain)}: ${row.pct}% · ${row.present.length}/${row.targetSkills.length} ${tr("curriculumTargetSkills")} · ${status}`);
+      lines.push(`  ${tr("curriculumPresent")}: ${row.present.map(curriculumSkillLabel).join(", ") || "—"}`);
+      lines.push(`  ${tr("curriculumMissing")}: ${row.missing.length ? row.missing.map(curriculumSkillLabel).join(", ") : tr("curriculumAllPresent")}`);
+    });
+    const avg = Math.round(rows.reduce((sum, row) => sum + row.pct, 0) / Math.max(1, rows.length));
+    lines.push(`${tr("curriculumEstimatedCoverage")}: ${avg}%`);
+    lines.push(tr("curriculumRunAllHint"));
+    return lines;
+  }
+
   function curriculumTagForTask(t){
     if(!t) return {domain:"getallenleer", skill:"integersOrder"};
     if(t.topic === "fractions"){
@@ -4779,6 +4885,8 @@
         .map(([skill,count]) => `  • ${curriculumSkillLabel(skill)}: ${count}`);
       lines.push(...skillLines.slice(0, 18));
     }
+    lines.push("");
+    lines.push(...formatCurriculumCoverageMatrix(result));
     lines.push("");
     lines.push(tr("qaWhatTested"));
     lines.push(tr("qaCheckBubbles"));
