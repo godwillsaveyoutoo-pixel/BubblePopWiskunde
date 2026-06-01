@@ -1,0 +1,76 @@
+Music credits / OpenGameArt attribution draft
+
+The filenames intentionally start with the OpenGameArt username where possible.
+Please verify and complete the exact license line from each OpenGameArt asset page before publishing.
+
+Used in this build:
+1. migfus20-gutiar_6.mp3
+   Artist / OpenGameArt user: migfus20
+   Track title inferred from filename: gutiar_6
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+
+2. marcelofg55-m.mp3
+   Artist / OpenGameArt user: marcelofg55
+   Track title inferred from filename: m
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+   Note: converted from marcelofg55-m.wav to MP3 128 kbps.
+
+3. migfus20-summer_time_-_migfus20.mp3
+   Artist / OpenGameArt user: migfus20
+   Track title inferred from filename: summer_time
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+
+4. Ellary-Find Nothing.mp3
+   Artist / OpenGameArt user: Ellary
+   Track title inferred from filename: Find Nothing
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+
+5. cynicmusic-music_jewels.mp3
+   Artist / OpenGameArt user: cynicmusic
+   Track title inferred from filename: music_jewels
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+   Note: converted from OGG to MP3 128 kbps.
+
+6. marcelofg55-Fame Town.mp3
+   Artist / OpenGameArt user: marcelofg55
+   Track title inferred from filename: Fame Town
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+
+7. Alundra-The Bard.mp3
+   Artist / OpenGameArt user: Alundra
+   Track title inferred from filename: The Bard
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+   Note: converted from OGG to MP3 128 kbps.
+
+8. cynicmusic-song17.mp3
+   Artist / OpenGameArt user: cynicmusic
+   Track title inferred from filename: song17
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+
+Suggested game mapping:
+- World map / menu: marcelofg55-m.mp3
+- Breukenzee calm: cynicmusic-music_jewels.mp3
+- Breukenzee challenge: migfus20-gutiar_6.mp3
+- Procentenhaven: marcelofg55-Fame Town.mp3
+- Getallenbaai: cynicmusic-song17.mp3
+- Vormeneiland: Alundra-The Bard.mp3
+- Coördinatenbaai: migfus20-gutiar_6.mp3
+- Vergelijkingenvallei: Ellary-Find Nothing.mp3
+- Ongelijkhedenstorm / mixed challenge: migfus20-summer_time_-_migfus20.mp3
+
+
+9. marcelofg55-Electronic World.mp3
+   Artist / OpenGameArt user: marcelofg55
+   Track title inferred from filename: Electronic World
+   Source: OpenGameArt.org
+   License: CHECK ORIGINAL ASSET PAGE
+   Use in game: start screen / large world map
+   Note: converted/re-encoded to MP3 128 kbps for the game build.
