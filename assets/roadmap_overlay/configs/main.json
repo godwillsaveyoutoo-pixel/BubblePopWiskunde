@@ -1,0 +1,219 @@
+{
+  "worldKey": "main",
+  "title": "Hoofdwereld",
+  "selectedId": "n8",
+  "nodes": [
+    {
+      "id": "n1",
+      "index": 1,
+      "label": "Breukenzee",
+      "x": 50,
+      "y": 87,
+      "state": "done"
+    },
+    {
+      "id": "n2",
+      "index": 2,
+      "label": "Ongelijkhedenstorm",
+      "x": 33,
+      "y": 76,
+      "state": "open"
+    },
+    {
+      "id": "n3",
+      "index": 3,
+      "label": "Coördinatenbaai",
+      "x": 63,
+      "y": 69,
+      "state": "open"
+    },
+    {
+      "id": "n4",
+      "index": 4,
+      "label": "Getallenbaai",
+      "x": 38,
+      "y": 60,
+      "state": "locked"
+    },
+    {
+      "id": "n5",
+      "index": 5,
+      "label": "Vormeneiland",
+      "x": 66,
+      "y": 53,
+      "state": "locked"
+    },
+    {
+      "id": "n6",
+      "index": 6,
+      "label": "Vergelijkingenvallei",
+      "x": 42,
+      "y": 46,
+      "state": "locked"
+    },
+    {
+      "id": "n7",
+      "index": 7,
+      "label": "Procentenhaven",
+      "x": 68,
+      "y": 39,
+      "state": "locked"
+    },
+    {
+      "id": "n8",
+      "index": 8,
+      "label": "Verhoudingenhaven",
+      "x": 46,
+      "y": 32,
+      "state": "open"
+    },
+    {
+      "id": "n9",
+      "index": 9,
+      "label": "Grafiekgebergte",
+      "x": 62,
+      "y": 25,
+      "state": "locked"
+    },
+    {
+      "id": "n10",
+      "index": 10,
+      "label": "Functiefjord",
+      "x": 34,
+      "y": 20,
+      "state": "locked"
+    },
+    {
+      "id": "n11",
+      "index": 11,
+      "label": "Statistiekbaai",
+      "x": 72,
+      "y": 16,
+      "state": "locked"
+    },
+    {
+      "id": "n12",
+      "index": 12,
+      "label": "Kanskaravaan",
+      "x": 52,
+      "y": 9,
+      "state": "locked"
+    }
+  ],
+  "path": [
+    {
+      "type": "node",
+      "nodeId": "n1"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-1",
+      "x": 41.5,
+      "y": 81.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n2"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-2",
+      "x": 48.0,
+      "y": 72.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n3"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-3",
+      "x": 50.5,
+      "y": 64.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n4"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-4",
+      "x": 52.0,
+      "y": 56.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n5"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-5",
+      "x": 54.0,
+      "y": 49.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n6"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-6",
+      "x": 55.0,
+      "y": 42.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n7"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-7",
+      "x": 57.0,
+      "y": 35.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n8"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-8",
+      "x": 54.0,
+      "y": 28.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n9"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-9",
+      "x": 48.0,
+      "y": 22.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n10"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-10",
+      "x": 53.0,
+      "y": 18.0
+    },
+    {
+      "type": "node",
+      "nodeId": "n11"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-11",
+      "x": 62.0,
+      "y": 12.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n12"
+    }
+  ]
+}

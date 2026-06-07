@@ -1,0 +1,135 @@
+{
+  "worldKey": "shapes",
+  "title": "Vormeneiland",
+  "selectedId": "n2",
+  "nodes": [
+    {
+      "id": "n1",
+      "index": 1,
+      "label": "Start",
+      "x": 51.1,
+      "y": 79.9,
+      "state": "done"
+    },
+    {
+      "id": "n2",
+      "index": 2,
+      "label": "Vlakke figuren",
+      "x": 50.9,
+      "y": 63.2,
+      "state": "open"
+    },
+    {
+      "id": "n3",
+      "index": 3,
+      "label": "Eigenschappen",
+      "x": 42.4,
+      "y": 47.3,
+      "state": "open"
+    },
+    {
+      "id": "n4",
+      "index": 4,
+      "label": "Symmetrie",
+      "x": 64.1,
+      "y": 35.4,
+      "state": "locked"
+    },
+    {
+      "id": "n5",
+      "index": 5,
+      "label": "Hoeken",
+      "x": 34.2,
+      "y": 26.4,
+      "state": "locked"
+    },
+    {
+      "id": "n6",
+      "index": 6,
+      "label": "Meesterproef",
+      "x": 51.5,
+      "y": 15.2,
+      "state": "locked"
+    }
+  ],
+  "path": [
+    {
+      "type": "node",
+      "nodeId": "n1"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-1",
+      "x": 50.8,
+      "y": 72.1
+    },
+    {
+      "type": "node",
+      "nodeId": "n2"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-mgdyo0",
+      "x": 48.8,
+      "y": 56.6
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-2",
+      "x": 43.2,
+      "y": 53.2
+    },
+    {
+      "type": "node",
+      "nodeId": "n3"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-3",
+      "x": 50.9,
+      "y": 41.6
+    },
+    {
+      "type": "node",
+      "nodeId": "n4"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-wkpsky",
+      "x": 48.1,
+      "y": 41.8
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-es4tfr",
+      "x": 46.3,
+      "y": 36.5
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-g6xglx",
+      "x": 52.9,
+      "y": 31.7
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-4",
+      "x": 49.5,
+      "y": 27.7
+    },
+    {
+      "type": "node",
+      "nodeId": "n5"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-5",
+      "x": 49.9,
+      "y": 22.3
+    },
+    {
+      "type": "node",
+      "nodeId": "n6"
+    }
+  ]
+}

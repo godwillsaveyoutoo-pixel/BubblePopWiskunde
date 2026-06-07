@@ -1,0 +1,117 @@
+{
+  "worldKey": "coordinates",
+  "title": "Coördinatenbaai",
+  "selectedId": "n2",
+  "nodes": [
+    {
+      "id": "n1",
+      "index": 1,
+      "label": "Start",
+      "x": 55.6,
+      "y": 83.7,
+      "state": "done"
+    },
+    {
+      "id": "n2",
+      "index": 2,
+      "label": "Punten lezen",
+      "x": 46.5,
+      "y": 70,
+      "state": "open"
+    },
+    {
+      "id": "n3",
+      "index": 3,
+      "label": "Punten plaatsen",
+      "x": 54.2,
+      "y": 52.7,
+      "state": "open"
+    },
+    {
+      "id": "n4",
+      "index": 4,
+      "label": "Kwadranten",
+      "x": 47.6,
+      "y": 39.4,
+      "state": "locked"
+    },
+    {
+      "id": "n5",
+      "index": 5,
+      "label": "Verplaatsen",
+      "x": 50.1,
+      "y": 27.3,
+      "state": "locked"
+    },
+    {
+      "id": "n6",
+      "index": 6,
+      "label": "Meesterproef",
+      "x": 49,
+      "y": 13.3,
+      "state": "locked"
+    }
+  ],
+  "path": [
+    {
+      "type": "node",
+      "nodeId": "n1"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-1",
+      "x": 49.4,
+      "y": 77.2
+    },
+    {
+      "type": "node",
+      "nodeId": "n2"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-2",
+      "x": 56.4,
+      "y": 61.1
+    },
+    {
+      "type": "node",
+      "nodeId": "n3"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-3",
+      "x": 47.9,
+      "y": 46.1
+    },
+    {
+      "type": "node",
+      "nodeId": "n4"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-4",
+      "x": 50.9,
+      "y": 33.1
+    },
+    {
+      "type": "node",
+      "nodeId": "n5"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-y454zi",
+      "x": 56.6,
+      "y": 21.7
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-5",
+      "x": 47.7,
+      "y": 19.1
+    },
+    {
+      "type": "node",
+      "nodeId": "n6"
+    }
+  ]
+}

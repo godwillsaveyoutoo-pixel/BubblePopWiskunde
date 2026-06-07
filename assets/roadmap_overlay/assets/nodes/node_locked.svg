@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+
+  <defs>
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#07121d" flood-opacity="0.36"/>
+    </filter>
+    <filter id="goldGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 1  0 0.78 0 0 0.62  0 0 0.1 0 0.08  0 0 0 0.95 0" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cyanGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.1  0 0.9 0 0 0.95  0 0 1 0 1  0 0 0 0.85 0" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="glassOpen" cx="36%" cy="28%" r="72%">
+      <stop offset="0%" stop-color="#f4ffff" stop-opacity="0.95"/>
+      <stop offset="18%" stop-color="#b6fff9" stop-opacity="0.9"/>
+      <stop offset="52%" stop-color="#2bd4cf" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#087e96" stop-opacity="0.98"/>
+    </radialGradient>
+    <radialGradient id="glassSelected" cx="34%" cy="25%" r="76%">
+      <stop offset="0%" stop-color="#fffdf1" stop-opacity="1"/>
+      <stop offset="26%" stop-color="#ffe991" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#f0b73d" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#9c5c05" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glassDone" cx="34%" cy="25%" r="76%">
+      <stop offset="0%" stop-color="#f7fff1" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#b6ff91" stop-opacity="0.96"/>
+      <stop offset="62%" stop-color="#29c466" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#08733d" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glassLocked" cx="34%" cy="25%" r="76%">
+      <stop offset="0%" stop-color="#e6edf4" stop-opacity="0.92"/>
+      <stop offset="40%" stop-color="#8493a1" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#2e3b49" stop-opacity="0.98"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#fff4a8"/>
+      <stop offset="26%" stop-color="#f8c847"/>
+      <stop offset="52%" stop-color="#a86508"/>
+      <stop offset="76%" stop-color="#ffd76b"/>
+      <stop offset="100%" stop-color="#6b3a05"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#143c73"/>
+      <stop offset="1" stop-color="#071b38"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eef5ff"/>
+      <stop offset="0.5" stop-color="#8897a6"/>
+      <stop offset="1" stop-color="#243241"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#softShadow)" opacity="0.92">
+    <circle cx="256" cy="256" r="206" fill="url(#gold)"/>
+    <circle cx="256" cy="256" r="190" fill="url(#navy)"/>
+    <circle cx="256" cy="256" r="165" fill="url(#glassLocked)" stroke="rgba(255,255,255,.9)" stroke-width="7"/>
+    <circle cx="256" cy="256" r="144" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+    <circle cx="256" cy="256" r="92" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+    <path d="M256 101 L256 411 M101 256 L411 256" stroke="rgba(255,255,255,.34)" stroke-width="2"/>
+    <path d="M256 155 L324 256 L256 357 L188 256 Z" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="3"/>
+    <ellipse cx="210" cy="171" rx="92" ry="42" fill="rgba(255,255,255,.36)" transform="rotate(-28 210 171)"/>
+    <path d="M256 27 L282 83 L256 111 L230 83 Z" fill="url(#gold)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <path d="M256 485 L282 429 L256 401 L230 429 Z" fill="url(#gold)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <path d="M27 256 L83 230 L111 256 L83 282 Z" fill="url(#gold)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <path d="M485 256 L429 230 L401 256 L429 282 Z" fill="url(#gold)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <circle cx="256" cy="66" r="15" fill="#1acdf4" stroke="#fff2a8" stroke-width="4"/>
+    <circle cx="446" cy="256" r="15" fill="#1acdf4" stroke="#fff2a8" stroke-width="4"/>
+    <circle cx="256" cy="446" r="15" fill="#1acdf4" stroke="#fff2a8" stroke-width="4"/>
+    <circle cx="66" cy="256" r="15" fill="#1acdf4" stroke="#fff2a8" stroke-width="4"/>
+    
+    <g transform="translate(256 264)">
+      <path d="M-58,-14 L-58,72 L58,72 L58,-14 Z" rx="12" fill="url(#silver)" stroke="rgba(255,255,255,.65)" stroke-width="5"/>
+      <path d="M-36,-14 v-34 c0,-31 21,-55 36,-55s36,24 36,55v34" fill="none" stroke="#d9e2ef" stroke-width="18" stroke-linecap="round"/>
+      <path d="M0,18 c-11,0 -20,9 -20,20 c0,7 4,13 10,17 l-8,31 h36 l-8,-31 c6,-4 10,-10 10,-17 c0,-11 -9,-20 -20,-20z" fill="#182331"/>
+    </g>
+
+  </g>
+</svg>

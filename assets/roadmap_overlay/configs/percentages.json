@@ -1,0 +1,165 @@
+{
+  "worldKey": "percentages",
+  "title": "Procentenhaven",
+  "selectedId": "n2",
+  "nodes": [
+    {
+      "id": "n1",
+      "index": 1,
+      "label": "Start",
+      "x": 50,
+      "y": 82,
+      "state": "done"
+    },
+    {
+      "id": "n2",
+      "index": 2,
+      "label": "Deel van geheel",
+      "x": 51.3,
+      "y": 63.1,
+      "state": "open"
+    },
+    {
+      "id": "n3",
+      "index": 3,
+      "label": "Korting",
+      "x": 50.5,
+      "y": 48.1,
+      "state": "open"
+    },
+    {
+      "id": "n4",
+      "index": 4,
+      "label": "Vermeerderen",
+      "x": 50.4,
+      "y": 35.9,
+      "state": "locked"
+    },
+    {
+      "id": "n5",
+      "index": 5,
+      "label": "Omgekeerd",
+      "x": 50.7,
+      "y": 25,
+      "state": "locked"
+    },
+    {
+      "id": "n6",
+      "index": 6,
+      "label": "Meesterproef",
+      "x": 50.9,
+      "y": 12.7,
+      "state": "locked"
+    }
+  ],
+  "path": [
+    {
+      "type": "node",
+      "nodeId": "n1"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-1",
+      "x": 53.4,
+      "y": 73.2
+    },
+    {
+      "type": "node",
+      "nodeId": "n2"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-2",
+      "x": 52.3,
+      "y": 57.1
+    },
+    {
+      "type": "node",
+      "nodeId": "n3"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-3",
+      "x": 53,
+      "y": 57.1
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-suc492",
+      "x": 60.9,
+      "y": 55.6
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-w4b2lc",
+      "x": 66.8,
+      "y": 52.1
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-rbwo2k",
+      "x": 62.6,
+      "y": 46
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-0erx4s",
+      "x": 51.7,
+      "y": 42.7
+    },
+    {
+      "type": "node",
+      "nodeId": "n4"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-4",
+      "x": 50.8,
+      "y": 31.3
+    },
+    {
+      "type": "node",
+      "nodeId": "n5"
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-5",
+      "x": 50.8,
+      "y": 31.8
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-ztjf3g",
+      "x": 60,
+      "y": 30.9
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-or32px",
+      "x": 65.3,
+      "y": 28.3
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-7rlb4w",
+      "x": 64.3,
+      "y": 23.9
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-9ilysm",
+      "x": 58.4,
+      "y": 21.6
+    },
+    {
+      "type": "waypoint",
+      "id": "wp-9y1b5o",
+      "x": 48.4,
+      "y": 20.5
+    },
+    {
+      "type": "node",
+      "nodeId": "n6"
+    }
+  ]
+}
