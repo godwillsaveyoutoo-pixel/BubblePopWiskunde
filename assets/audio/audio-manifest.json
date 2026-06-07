@@ -1,0 +1,30 @@
+{
+  "version": "v60",
+  "note": "Plaats later mp3-bestanden exact met deze bestandsnamen in assets/audio/. De game blijft werken zonder mp3; SFX vallen terug op ingebouwde zachte tonen.",
+  "music": {
+    "music-map-loop.mp3": "wereldkaart / basismenu; rustige fantasy-map loop; 45-90s; seamless loop; -18 tot -14 LUFS",
+    "music-game-gentle-loop.mp3": "algemene spelachtergrond fallback; subtiel; 45-90s; seamless loop",
+    "music-breukenzee-calm-loop.mp3": "Breukenzee rustige levels",
+    "music-breukenzee-challenge-loop.mp3": "Breukenzee moeilijkere levels, iets meer beweging maar niet druk",
+    "music-verhoudingenhaven-loop.mp3": "Verhoudingenhaven / ratio-spel; waterig, speels, zacht",
+    "music-procentenhaven-loop.mp3": "Procentenhaven; licht, helder, markt/haven-sfeer",
+    "music-getallenbaai-loop.mp3": "Getallenbaai; puzzelachtig, rustig",
+    "music-vormeneiland-loop.mp3": "Vormeneiland; geometrisch/magisch, subtiele marimba/celesta",
+    "music-coordinatenbaai-loop.mp3": "Coördinatenbaai; zachte navigatie/kaart-sfeer",
+    "music-vergelijkingenvallei-loop.mp3": "Vergelijkingenvallei; concentratie-loop, weinig melodische drukte",
+    "music-ongelijkhedenstorm-loop.mp3": "Ongelijkhedenstorm; iets spannender, maar geen harde drums",
+    "music-mixed-loop.mp3": "gemengde of finale rondes"
+  },
+  "sfx": {
+    "sfx-bubble-pop.mp3": "bubble aangeklikt / correct deelantwoord; 0.08-0.25s; zachte plop",
+    "sfx-correct-chime.mp3": "laatste juiste bubble / antwoord goed; 0.3-0.8s; zachte chime",
+    "sfx-wrong-soft-boop.mp3": "fout antwoord; 0.15-0.45s; mild, niet bestraffend",
+    "sfx-level-complete.mp3": "level of ronde gehaald; 0.8-1.8s; kleine flourish",
+    "sfx-world-select.mp3": "wereld aanklikken / selecteren; 0.15-0.5s; zachte glimmer",
+    "sfx-world-start.mp3": "wereld starten; 0.5-1.4s; magische whoosh/chime",
+    "sfx-button-click.mp3": "algemene UI-knop; 0.05-0.18s; droge zachte klik",
+    "sfx-skip.mp3": "skip-knop; 0.1-0.3s; korte swipe/plop",
+    "sfx-back.mp3": "terug-knop; 0.1-0.3s; zachte terugklik",
+    "sfx-reward.mp3": "trofee/leaderboard/beloning; 0.6-1.4s; sparkle/reward"
+  }
+}

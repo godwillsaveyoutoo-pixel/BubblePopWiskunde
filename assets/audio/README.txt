@@ -1,18 +1,12 @@
-Plaats of vervang muziekbestanden in deze map.
+Plaats toekomstige muziek- en effectbestanden in deze map.
 
-v27.21 bevat 8 gecomprimeerde MP3-bestanden uit de nieuwe OpenGameArt-selectie.
-De code gebruikt de originele herkenbare namen, zodat de auteur/OpenGameArt-user zichtbaar blijft in de bestandsnaam.
+Vanaf v60 gebruikt de code vaste, nette bestandsnamen in plaats van willekeurige downloadnamen.
+Zie AUDIO_TODO.txt voor de exacte lijst.
 
-Belangrijk:
-- Vul de exacte licenties aan in CREDITS_OPEN_GAME_ART.txt voor publicatie.
-- De bestanden zijn omgezet naar MP3 128 kbps om de game lichter te maken.
-- Bewaar originele WAV/OGG/MP3-bestanden apart als masterbestanden.
+De ZIP bevat bewust geen mp3-bestanden. Je kan later zelf mp3's toevoegen of vervangen zonder de code opnieuw te moeten aanpassen.
 
-
-v27.22: menu/world-map music starts after the user taps through the intro/login screen or interacts with the world map.
-
-
-v27.23: startscherm en grote wereldmap gebruiken nu marcelofg55-Electronic World.mp3.
-
-
-v27.25: Vormeneiland toont geen vliegers/kites meer als vraag of antwoordoptie.
+Aanbevolen:
+- muziek: zachte fantasy/map/game loops, 45–90 sec, seamless loop
+- SFX: korte zachte UI-geluiden, bubble plop, chime, boop, reward
+- geen harde arcade-bliepjes, geen zware drums, geen lange reverb
+- hou credits/licenties bij in CREDITS_AUDIO.txt

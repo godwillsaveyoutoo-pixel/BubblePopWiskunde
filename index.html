@@ -1790,7 +1790,7 @@
     inset 0 -9px 16px rgba(20,35,72,.10) !important;
 }
 .mapPin.unlockedNext{
-  opacity:.94 !important;
+  opacity:.90 !important;
   filter:saturate(1.02) brightness(1) !important;
 }
 .mapPin.unlockedNext::after{
@@ -3705,6 +3705,24 @@ html.pathEditMode .pathEditorPanel{
 #phone.ratioOpen .leaderboardPanel,
 #phone.ratioOpen .audioPanel{z-index:220 !important;}
 
+/* v59 — audio panel must also work on the base/world-map menu.
+   The panel lives outside #startOverlay, so it needs a higher z-index there. */
+#phone.mapAudioOpen .audioPanel{
+  z-index:260 !important;
+  top:calc(62px + env(safe-area-inset-top,0px)) !important;
+  right:12px !important;
+  bottom:auto !important;
+  width:min(286px, calc(100% - 24px)) !important;
+}
+@media(max-width:420px){
+  #phone.mapAudioOpen .audioPanel{
+    top:calc(58px + env(safe-area-inset-top,0px)) !important;
+    right:8px !important;
+    width:calc(100% - 16px) !important;
+  }
+}
+
+
 .ratioFishBubble{
   position:absolute;
   display:block;
@@ -4518,10 +4536,10 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
 </style>
 
 
-<style id="bubble-png-skin-v53">
-  /* v53 — high-quality translucent PNG bubble spheres.
-     Wereldkaartknoppen zijn groter; spelbubbles gebruiken dezelfde glasbol-stijl,
-     met HTML-tekst erboven voor leesbaarheid. */
+<style id="bubble-png-skin-v57">
+  /* v56 — subtiele glass-bubbles.
+     Minder reflectie, lagere verzadiging, geen zware glamour-glow.
+     De wereldkaart blijft visueel dominant; de bubbels zijn rustige klikpunten. */
 
   .mapPin,
   .bubble.answerMapPin{
@@ -4548,7 +4566,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   .worldMapPins button.mapPin,
   .worldMapPins .mapPin[data-topic],
   .worldMapPins .mapPin[data-world]{
-    --pinSize:clamp(64px, 11vw, 90px) !important;
+    --pinSize:clamp(52px, 8.8vw, 72px) !important;
   }
 
   .mapPin,
@@ -4556,18 +4574,27 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     background-color:transparent !important;
     background-image:var(--mapBubbleAsset) !important;
     background-repeat:no-repeat !important;
-    background-size:138% 138% !important;
-    background-position:50% 45% !important;
+    background-size:112% 112% !important;
+    background-position:50% 46% !important;
     box-shadow:none !important;
     border:0 !important;
-    opacity:1 !important;
+    opacity:.90 !important;
     overflow:visible !important;
-    filter:none;
+    filter:drop-shadow(0 7px 11px rgba(8,22,48,.10));
   }
 
-  .mapPin::before,
-  .mapPin::after{
+  .mapPin::before{
     display:none !important;
+  }
+
+  .mapPin::after{
+    content:"";
+    position:absolute;
+    inset:12% !important;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.26);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);
+    pointer-events:none;
   }
 
   .mapPin.active,
@@ -4575,7 +4602,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   .worldMapPins .mapPin.active,
   .worldMapPins .mapPin.atlasSelected{
     transform:translate(-50%,-50%) scale(1.10) !important;
-    filter:brightness(1.03) saturate(1.04) drop-shadow(0 12px 18px rgba(8,22,48,.20));
+    filter:brightness(1.02) saturate(.96) drop-shadow(0 9px 13px rgba(8,22,48,.14));
     box-shadow:none !important;
   }
 
@@ -4584,12 +4611,12 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   .mapPin.rewardTier2,
   .mapPin.rewardTier3{
     box-shadow:none !important;
-    filter:drop-shadow(0 8px 16px rgba(8,22,48,.15));
+    filter:drop-shadow(0 6px 10px rgba(8,22,48,.10));
   }
 
   .mapPin.locked{
-    opacity:.52 !important;
-    filter:grayscale(.42) saturate(.72);
+    opacity:.42 !important;
+    filter:grayscale(.50) saturate(.58);
   }
 
   .bubble.answerMapPin{
@@ -4600,7 +4627,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     border-radius:999px !important;
     background:transparent !important;
     box-shadow:none !important;
-    opacity:1;
+    opacity:.93;
     overflow:visible !important;
     display:flex;
     align-items:center;
@@ -4609,24 +4636,34 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     transition:filter .15s ease, opacity .2s ease, transform .15s ease;
   }
 
-  .bubble.answerMapPin::before,
-  .bubble.answerMapPin::after{
+  .bubble.answerMapPin::before{
     display:none !important;
+  }
+
+  .bubble.answerMapPin::after{
+    content:"";
+    position:absolute;
+    inset:14% !important;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.22);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+    pointer-events:none;
+    z-index:2;
   }
 
   .bubble.answerMapPin .bubbleOrb{
     display:block !important;
     position:absolute;
-    inset:-11% -9% -15% -9% !important;
+    inset:-2% -2% -3% -2% !important;
     border:0 !important;
     border-radius:999px !important;
     background-image:var(--gameBubbleAsset) !important;
     background-color:transparent !important;
-    background-position:50% 45% !important;
-    background-size:138% 138% !important;
+    background-position:50% 46% !important;
+    background-size:112% 112% !important;
     background-repeat:no-repeat !important;
     box-shadow:none !important;
-    opacity:1 !important;
+    opacity:.93 !important;
     overflow:visible !important;
     pointer-events:none;
   }
@@ -4659,13 +4696,14 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   .bubble.answerMapPin .shapeBubbleWrap{
     width:70%;
     height:70%;
-    filter:drop-shadow(0 1px 1px rgba(255,255,255,.14)) drop-shadow(0 2px 4px rgba(7,19,42,.14));
+    filter:drop-shadow(0 1px 1px rgba(255,255,255,.10)) drop-shadow(0 2px 3px rgba(7,19,42,.10));
   }
 
   .bubble.answerMapPin .numberBubbleText{
     min-width:0 !important;
     min-height:0 !important;
-    max-width:78% !important;
+    max-width:84% !important;
+    max-height:74% !important;
     padding:0 .08em !important;
     border-radius:0 !important;
     background:transparent !important;
@@ -4675,12 +4713,25 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     font-size:var(--bubbleFont, clamp(24px, 3.2vw, 40px));
     font-weight:1000;
     color:#102645;
-    text-shadow:0 1px 0 rgba(255,255,255,.38), 0 0 10px rgba(255,255,255,.12);
-    letter-spacing:-.045em;
-    line-height:1;
+    text-shadow:0 1px 0 rgba(255,255,255,.32), 0 0 7px rgba(255,255,255,.08);
+    letter-spacing:-.035em;
+    line-height:1.02;
     white-space:normal;
-    overflow-wrap:anywhere;
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
     text-align:center;
+  }
+
+  .bubble.answerMapPin .numberBubbleText.longWord{
+    white-space:nowrap;
+    max-width:88% !important;
+    letter-spacing:-.045em;
+  }
+
+  .bubble.answerMapPin .numberBubbleText.multiWord{
+    max-width:86% !important;
+    line-height:1.04;
   }
 
   .bubble.answerMapPin .numberBubbleText.fractionBubbleText{
@@ -4693,11 +4744,11 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     .worldMapPins .topicBtn.mapPin,
     .worldMapPins button.mapPin,
     .worldMapPins .mapPin[data-topic],
-    .worldMapPins .mapPin[data-world]{--pinSize:clamp(60px, 14vw, 84px) !important;}
+    .worldMapPins .mapPin[data-world]{--pinSize:clamp(49px, 11.5vw, 68px) !important;}
 
     .bubble.answerMapPin .bubbleOrb{
-      inset:-9% -8% -13% -8% !important;
-      background-size:138% 138% !important;
+      inset:-2% -2% -3% -2% !important;
+      background-size:112% 112% !important;
     }
 
     .bubble.answerMapPin .numberBubbleText{font-size:var(--bubbleFont, clamp(22px, 6.8vw, 34px));}
@@ -4744,18 +4795,18 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     </div>
 
     <div class="audioPanel hidden" id="audioPanel" role="dialog" aria-label="Geluid aanpassen">
-      <div class="audioPanelTitle">Geluid</div>
+      <div class="audioPanelTitle" id="audioPanelTitle">Geluid</div>
       <label class="audioRow" for="musicVolume">
-        <span>Muziek</span>
+        <span id="musicVolumeLabel">Muziek</span>
         <input id="musicVolume" type="range" min="0" max="100" value="35">
         <span class="audioValue" id="musicVolumeValue">35%</span>
       </label>
       <label class="audioRow" for="sfxVolume">
-        <span>Effecten</span>
+        <span id="sfxVolumeLabel">Effecten</span>
         <input id="sfxVolume" type="range" min="0" max="100" value="70">
         <span class="audioValue" id="sfxVolumeValue">70%</span>
       </label>
-      <div class="audioHint">Muziek: plaats de gekozen mp3's exact met hun originele naam in assets/audio/</div>
+      <div class="audioHint" id="audioHint">Muziek/SFX: plaats bestanden met de namen uit assets/audio/AUDIO_TODO.txt in assets/audio/</div>
     </div>
 
     <div class="toast" id="toast">Goed</div>
@@ -5062,7 +5113,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
 
         <footer class="footer ratioFooter">
           <div class="bulb">💡</div>
-          <div class="hintText" id="ratioHintText">kortste route</div>
+          <div class="hintText" id="ratioHintText">Kortste route</div>
           <select class="langSelect" id="ratioLangSelMini" aria-label="Taal kiezen">
             <option value="nl">NL</option>
             <option value="en">EN</option>
@@ -5150,10 +5201,16 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   const rankBtn = document.getElementById("rankBtn");
   const audioBtn = document.getElementById("audioBtn");
   const audioPanel = document.getElementById("audioPanel");
+  const audioPanelTitle = document.getElementById("audioPanelTitle");
   const musicVolumeSlider = document.getElementById("musicVolume");
   const sfxVolumeSlider = document.getElementById("sfxVolume");
+  const musicVolumeLabel = document.getElementById("musicVolumeLabel");
+  const sfxVolumeLabel = document.getElementById("sfxVolumeLabel");
   const musicVolumeValue = document.getElementById("musicVolumeValue");
   const sfxVolumeValue = document.getElementById("sfxVolumeValue");
+  const audioHint = document.getElementById("audioHint");
+  const ratioAudioBtnMain = document.getElementById("ratioAudioBtn");
+  const ratioLangSelMiniMain = document.getElementById("ratioLangSelMini");
   const mapRankBtn = document.getElementById("mapRankBtn");
   const profilePanel = document.getElementById("profilePanel");
   const playerNameInput = document.getElementById("playerNameInput");
@@ -5431,6 +5488,38 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     }
   };
 
+  /* v58 — correcte wereldkaart- en roadmapvertalingen */
+  Object.assign(ATLAS_WORLD_I18N.tl, {
+    fractions:{title:"Dagat ng Praksyon", desc:"Kilalanin, ihambing, at ayusin ang mga praksyon."},
+    inequalities:{title:"Bagyo ng Di-pagkakapantay", desc:"Linya ng bilang, mas malaki/mas maliit, at mga di-pagkakapantay."},
+    coordinates:{title:"Look ng Koordinado", desc:"Basahin, ilagay, at ilipat ang mga punto."},
+    numbertheory:{title:"Look ng Bilang", desc:"Mga multiple, tagahati, at prime number."},
+    shapes:{title:"Pulo ng Hugis", desc:"Mga hugis sa patag, katangian, at simetriya."},
+    equations:{title:"Lambak ng Ekwasyon", desc:"Balanseng timbangan, unknowns, at mga hakbang sa paglutas."},
+    percentages:{title:"Daungan ng Porsiyento", desc:"Porsiyento, diskwento, at baliktad na pag-iisip."},
+    ratios:{title:"Daungan ng Ratio", desc:"Bumuo ng mga ratio gamit ang matatalinong bula."},
+    grafiekgebergte:{title:"Bundok ng Graph", desc:"Malapit na: magbasa at gumawa ng graph."},
+    functiefjord:{title:"Fjord ng Function", desc:"Malapit na: function, talahanayan, at graph."},
+    statistiekbaai:{title:"Look ng Estadistika", desc:"Malapit na: datos, mean, at mga chart."},
+    meetkundewoud:{title:"Gubat ng Heometriya", desc:"Malapit na: heometriya at constructions."},
+    "tel-kanskaravaan":{title:"Karaban ng Probability", desc:"Malapit na: pagbibilang, chance, at experiments."}
+  });
+  Object.assign(ROADMAP_I18N.tl, {
+    ratios:{title:"Daungan ng Ratio", labels:["Simula","Ihambing","Iskala","Talahanayan","Halo","Resipe","Proporsiyonalidad","Pangwakas na hamon"]},
+    fractions:{title:"Dagat ng Praksyon", labels:["Simula","Kilalanin","Katumbas","Ihambing","Ayusin","Pangwakas na hamon"]},
+    inequalities:{title:"Bagyo ng Di-pagkakapantay", labels:["Simula","Linya ng bilang","> at <","≥ at ≤","Lutasin","Pangwakas na hamon"]},
+    coordinates:{title:"Look ng Koordinado", labels:["Simula","Basahin ang punto","Ilagay ang punto","Kuwadrante","Ilipat","Pangwakas na hamon"]},
+    numbers:{title:"Look ng Bilang", labels:["Simula","Mga multiple","Mga tagahati","Prime numbers","Negatibong bilang","Pangwakas na hamon"]},
+    shapes:{title:"Pulo ng Hugis", labels:["Simula","Hugis sa patag","Katangian","Simetriya","Anggulo","Pangwakas na hamon"]},
+    equations:{title:"Lambak ng Ekwasyon", labels:["Simula","Balanseng timbangan","Hanapin ang x","Hakbang-hakbang","Panaklong","Pangwakas na hamon"]},
+    percentages:{title:"Daungan ng Porsiyento", labels:["Simula","Bahagi ng kabuuan","Diskwento","Dagdagan","Baliktarin","Pangwakas na hamon"]},
+    graphs:{title:"Bundok ng Graph", labels:["Simula","Mga axis","Mga punto","Basahin ang linya","Taas/baba","Pangwakas na hamon"]},
+    functions:{title:"Fjord ng Function", labels:["Simula","Input-output","Talahanayan","Rule","Graph","Pangwakas na hamon"]},
+    statistics:{title:"Look ng Estadistika", labels:["Simula","Datos","Mean","Median","Mga chart","Pangwakas na hamon"]},
+    probability:{title:"Karaban ng Probability", labels:["Simula","Mga salitang pang-chance","Praksyon bilang chance","Dice","Pagsamahin","Pangwakas na hamon"]}
+  });
+
+
   function langPackFor(dict){
     return dict[currentLang] || dict.nl || {};
   }
@@ -5463,7 +5552,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
 
   const I18N = {
     nl: {
-      htmlLang:"nl", title:"Wiskunde Bubble Pop", intro:"Kies een wereld. De engine blijft dezelfde: bubbels poppen, score halen, korte rondes op smartphone.", lang:"Taal",
+      htmlLang:"nl", title:"Wiskunde Bubble Pop", intro:"Kies een wereld. De engine blijft dezelfde: bubbels poppen, score halen, korte rondes op smartphone.", lang:"Taal", audioLabel:"Geluid", audioAdjust:"Geluid aanpassen", audioTitle:"Geluid", musicLabel:"Muziek", sfxLabel:"Effecten", audioNow:"Nu", audioHintMissing:"Muziek: plaats de gekozen mp3\'s exact met hun originele naam in assets/audio/",
       start:"Start", restart:"Opnieuw", menu:"Terug", skip:"Skip", next:"Volgende", done:"Klaar", score:"Score", rounds:"Rondes", played:"Je speelde topic:",
       fractionsTitle:"🫧 Breukenzee", fractionsDesc:"Gelijke breuken, breukbeelden en vergelijken.",
       inequalitiesTitle:"⚡ Ongelijkhedenstorm", inequalitiesDesc:"Pop waarden die passen bij x > 3 of x ≤ −2.",
@@ -5529,7 +5618,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
       ariaValue:"Waarde", ariaFraction:"Breukmodel", ariaCoordinate:"Punt", good:"Goed!", wrong:"Niet deze", fits:"past!", notFits:"past niet", fullscreenDenied:"Fullscreen niet toegestaan", fullscreen:"Volledig scherm"
     },
     en: {
-      htmlLang:"en", title:"Math Bubble Pop", intro:"Choose a math world and start a short round.", lang:"Language",
+      htmlLang:"en", title:"Math Bubble Pop", intro:"Choose a math world and start a short round.", lang:"Language", audioLabel:"Sound", audioAdjust:"Adjust sound", audioTitle:"Sound", musicLabel:"Music", sfxLabel:"Effects", audioNow:"Now", audioHintMissing:"Music/SFX: place files with the names from assets/audio/AUDIO_TODO.txt in assets/audio/.",
       start:"Start", restart:"Play again", menu:"Back", skip:"Skip", next:"Next", done:"Finished", score:"Score", rounds:"Rounds", played:"You played topic:",
       fractionsTitle:"🫧 Fraction Sea", fractionsDesc:"Equivalent fractions, fraction pictures, and comparing.",
       inequalitiesTitle:"⚡ Inequality Storm", inequalitiesDesc:"Pop values that fit x > 3 or x ≤ −2.",
@@ -5595,7 +5684,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
       ariaValue:"Value", ariaFraction:"Fraction model", ariaCoordinate:"Point", good:"Good!", wrong:"Not this one", fits:"fits!", notFits:"does not fit", fullscreenDenied:"Fullscreen not allowed", fullscreen:"Fullscreen"
     },
     fr: {
-      htmlLang:"fr", title:"Maths Bubble Pop", intro:"Choisis un monde. Le moteur reste le même : éclate les bulles, gagne des points et joue de courtes manches sur smartphone.", lang:"Langue",
+      htmlLang:"fr", title:"Maths Bubble Pop", intro:"Choisis un monde. Le moteur reste le même : éclate les bulles, gagne des points et joue de courtes manches sur smartphone.", lang:"Langue", audioLabel:"Son", audioAdjust:"Régler le son", audioTitle:"Son", musicLabel:"Musique", sfxLabel:"Effets", audioNow:"Actuel", audioHintMissing:"Musique/SFX : place les fichiers avec les noms de assets/audio/AUDIO_TODO.txt dans assets/audio/.",
       start:"Démarrer", restart:"Rejouer", menu:"Retour", skip:"Passer", next:"Suivant", done:"Terminé", score:"Score", rounds:"Manches", played:"Tu as joué le thème :",
       fractionsTitle:"🫧 Mer des fractions", fractionsDesc:"Fractions équivalentes, représentations et comparaisons.",
       inequalitiesTitle:"⚡ Tempête d’inégalités", inequalitiesDesc:"Éclate les valeurs qui conviennent à x > 3 ou x ≤ −2.",
@@ -5661,7 +5750,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
       ariaValue:"Valeur", ariaFraction:"Modèle de fraction", ariaCoordinate:"Point", good:"Bien !", wrong:"Pas celle-ci", fits:"convient !", notFits:"ne convient pas", fullscreenDenied:"Plein écran non autorisé", fullscreen:"Plein écran"
     },
     tl: {
-      htmlLang:"tl", title:"Math Bubble Pop", intro:"Pumili ng mundo. Pareho pa rin ang laro: pumutok ng bubbles, kumuha ng puntos, at maglaro ng maiikling round sa smartphone.", lang:"Wika",
+      htmlLang:"tl", title:"Math Bubble Pop", intro:"Pumili ng mundo. Pareho pa rin ang laro: pumutok ng bubbles, kumuha ng puntos, at maglaro ng maiikling round sa smartphone.", lang:"Wika", audioLabel:"Tunog", audioAdjust:"Ayusin ang tunog", audioTitle:"Tunog", musicLabel:"Musika", sfxLabel:"Mga epekto", audioNow:"Ngayon", audioHintMissing:"Musika/SFX: ilagay ang files gamit ang mga pangalan sa assets/audio/AUDIO_TODO.txt sa assets/audio/.",
       start:"Simulan", restart:"Ulitin", menu:"Balik", skip:"Laktawan", next:"Sunod", done:"Tapos", score:"Iskor", rounds:"Mga round", played:"Nilalaro mong paksa:",
       fractionsTitle:"🫧 Dagat ng Fractions", fractionsDesc:"Magkakaparehong fractions, larawan ng fractions, at paghahambing.",
       inequalitiesTitle:"⚡ Bagyo ng Inequalities", inequalitiesDesc:"Pumutok ng mga value na tugma sa x > 3 o x ≤ −2.",
@@ -7331,6 +7420,10 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     localStorage.setItem("bubblePopLang", currentLang);
     if(langSel) langSel.value = currentLang;
     if(langSelMini) langSelMini.value = currentLang;
+    if(ratioLangSelMiniMain) ratioLangSelMiniMain.value = currentLang;
+    document.querySelectorAll('select.langSelect, select#ratioLangSelMini').forEach(sel => {
+      if(sel && sel.value !== currentLang) sel.value = currentLang;
+    });
     if(atlasLangMenu) atlasLangMenu.querySelectorAll("button[data-lang]").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.lang === currentLang);
     });
@@ -7351,6 +7444,12 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     ui.title.textContent = tr("title");
     ui.intro.textContent = tr("intro");
     ui.langLabel.textContent = tr("lang");
+    if(audioPanelTitle) audioPanelTitle.textContent = tr("audioTitle");
+    if(musicVolumeLabel) musicVolumeLabel.textContent = tr("musicLabel");
+    if(sfxVolumeLabel) sfxVolumeLabel.textContent = tr("sfxLabel");
+    if(audioPanel) audioPanel.setAttribute("aria-label", tr("audioAdjust"));
+    [audioBtn, atlasAudioBtn, ratioAudioBtnMain].forEach(btn => { if(btn) btn.setAttribute("aria-label", tr("audioLabel")); });
+    updateAudioUI();
     ui.startBtn.textContent = tr("start");
     ui.restartBtn.textContent = tr("restart");
     if(endPathBtn) endPathBtn.textContent = tr("endBackToPath");
@@ -9408,6 +9507,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     data.forEach((item, i) => {
       const el = createBubble(item, positions[i], i);
       stage.appendChild(el);
+      requestAnimationFrame(() => fitBubbleText(el, item));
       item.el = el;
       bubbles.push(item);
     });
@@ -10970,17 +11070,17 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     const rect = stage.getBoundingClientRect();
     const w = rect.width;
     const h = rect.height;
-    const size = Math.max(80, Math.min(104, Math.floor(Math.min(w * 0.24, h * 0.215))));
-    const margin = Math.max(10, Math.floor(size * 0.10));
-    const footerSafe = Math.max(58, Math.floor(size * 0.45));
+    const size = Math.max(72, Math.min(92, Math.floor(Math.min(w * 0.215, h * 0.19))));
+    const margin = Math.max(12, Math.floor(size * 0.16));
+    const footerSafe = Math.max(58, Math.floor(size * 0.48));
     const safeW = Math.max(size, w - size - margin * 2);
     const safeH = Math.max(size, h - size - margin * 2 - footerSafe);
 
     const templates = {
-      5: [[.21,.20],[.74,.20],[.49,.43],[.23,.68],[.70,.68]],
-      6: [[.18,.18],[.76,.18],[.48,.38],[.80,.52],[.21,.64],[.50,.76]],
-      7: [[.18,.17],[.76,.17],[.48,.36],[.80,.49],[.20,.60],[.50,.74],[.78,.73]],
-      8: [[.17,.15],[.50,.14],[.79,.17],[.28,.35],[.70,.38],[.18,.61],[.50,.73],[.80,.62]]
+      5: [[.19,.19],[.77,.19],[.49,.42],[.23,.69],[.73,.69]],
+      6: [[.16,.17],[.80,.17],[.48,.38],[.81,.54],[.18,.64],[.50,.77]],
+      7: [[.16,.16],[.80,.16],[.48,.35],[.82,.50],[.18,.60],[.50,.75],[.80,.74]],
+      8: [[.15,.15],[.50,.13],[.82,.16],[.27,.35],[.72,.36],[.17,.62],[.50,.75],[.82,.61]]
     };
     const pos = templates[count] || templates[6];
     return pos.map(([px,py]) => ({
@@ -10994,43 +11094,100 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     const kind = item.kind || "figure";
     const raw = String(item.label ?? item.value ?? "").trim();
     const compactLength = raw.replace(/\s+/g, "").length;
-    const stageW = stage && stage.getBoundingClientRect ? stage.getBoundingClientRect().width : 360;
+    const words = raw.split(/\s+/).filter(Boolean);
+    const longestWord = words.reduce((m,w) => Math.max(m, w.length), 0);
+    const hasLetters = /[A-Za-zÀ-ÖØ-öø-ÿĀ-ž]/.test(raw);
+    const stageRect = stage && stage.getBoundingClientRect ? stage.getBoundingClientRect() : {width:360, height:420};
+    const stageW = stageRect.width || 360;
 
-    let width = baseSize;
-    let height = baseSize;
-    let font = Math.round(baseSize * 0.39);
+    let diameter = baseSize;
+    let font = Math.round(baseSize * 0.38);
 
     if(kind === "number"){
       const isFraction = /^-?\d+\/-?\d+$/.test(raw);
-      if(isFraction){
-        height = Math.round(baseSize * 1.04);
-        width = Math.round(baseSize * Math.min(1.26, 1.04 + compactLength * 0.035));
-        font = Math.round(baseSize * 0.31);
+      if(hasLetters){
+        // Text answers need width. Never break a word like "verschuiving" in two parts.
+        const wordFactor = longestWord >= 13 ? 1.54 : longestWord >= 10 ? 1.42 : longestWord >= 8 ? 1.30 : longestWord >= 6 ? 1.16 : 1.04;
+        const multiFactor = words.length >= 3 ? 1.42 : words.length === 2 ? 1.28 : 1.00;
+        diameter = Math.round(baseSize * Math.max(wordFactor, multiFactor));
+        font = Math.round(baseSize * (longestWord >= 13 ? 0.155 : longestWord >= 10 ? 0.178 : longestWord >= 8 ? 0.205 : longestWord >= 6 ? 0.24 : 0.30));
+        if(words.length >= 2) font = Math.min(font, Math.round(baseSize * 0.22));
+      }else if(isFraction){
+        if(compactLength <= 3){
+          diameter = Math.round(baseSize * 1.02);
+          font = Math.round(baseSize * 0.30);
+        }else if(compactLength <= 5){
+          diameter = Math.round(baseSize * 1.12);
+          font = Math.round(baseSize * 0.28);
+        }else{
+          diameter = Math.round(baseSize * 1.22);
+          font = Math.round(baseSize * 0.24);
+        }
       }else if(compactLength <= 2){
-        width = height = baseSize;
-        font = Math.round(baseSize * 0.40);
+        diameter = baseSize;
+        font = Math.round(baseSize * 0.39);
       }else if(compactLength <= 4){
-        width = Math.round(baseSize * (1.00 + (compactLength - 2) * 0.13));
-        height = Math.round(baseSize * 0.98);
-        font = Math.round(baseSize * 0.37);
+        diameter = Math.round(baseSize * 1.08);
+        font = Math.round(baseSize * 0.34);
       }else if(compactLength <= 7){
-        width = Math.round(baseSize * (1.28 + (compactLength - 4) * 0.11));
-        height = Math.round(baseSize * 0.92);
-        font = Math.round(baseSize * 0.31);
+        diameter = Math.round(baseSize * 1.20);
+        font = Math.round(baseSize * 0.28);
       }else{
-        width = Math.round(Math.min(stageW * 0.44, baseSize * 2.10));
-        height = Math.round(baseSize * 0.88);
-        font = Math.round(baseSize * 0.25);
+        diameter = Math.round(Math.min(stageW * 0.34, baseSize * 1.38));
+        font = Math.round(baseSize * 0.22);
       }
     }else if(kind === "coordinate" || kind === "shape"){
-      width = height = Math.round(baseSize * 1.02);
+      diameter = Math.round(baseSize * 1.00);
+      font = Math.round(baseSize * 0.32);
     }else{
-      width = height = baseSize;
+      diameter = baseSize;
+      font = Math.round(baseSize * 0.36);
     }
 
-    width = Math.max(76, Math.min(width, Math.round(stageW * 0.46)));
-    height = Math.max(68, height);
-    return {width, height, font};
+    const maxDiameter = Math.round(Math.min(stageW * 0.36, 146));
+    diameter = Math.max(72, Math.min(diameter, maxDiameter));
+    return {width: diameter, height: diameter, font};
+  }
+
+  function fitBubbleText(el, item){
+    if(!el || !item || item.kind !== "number") return;
+    const wrap = el.querySelector(".numberBubbleText");
+    if(!wrap) return;
+    const raw = String(item.label ?? item.value ?? "").trim();
+    const words = raw.split(/\s+/).filter(Boolean);
+    const longestWord = words.reduce((m,w) => Math.max(m, w.length), 0);
+    const hasLetters = /[A-Za-zÀ-ÖØ-öø-ÿĀ-ž]/.test(raw);
+    wrap.classList.toggle("longWord", hasLetters && words.length === 1 && longestWord >= 7);
+    wrap.classList.toggle("multiWord", hasLetters && words.length >= 2);
+    if(!hasLetters) return;
+
+    const stageRect = stage && stage.getBoundingClientRect ? stage.getBoundingClientRect() : {width:360};
+    const maxDiameter = Math.round(Math.min((stageRect.width || 360) * 0.38, 158));
+    let w = el.offsetWidth || parseFloat(el.style.width) || 92;
+    let h = el.offsetHeight || parseFloat(el.style.height) || w;
+    let font = parseFloat(getComputedStyle(wrap).fontSize) || parseFloat(el.style.getPropertyValue("--bubbleFont")) || 18;
+    const minFont = longestWord >= 12 ? 11 : 12;
+
+    const fits = () => wrap.scrollWidth <= wrap.clientWidth + 1 && wrap.scrollHeight <= wrap.clientHeight + 1;
+    for(let i=0; i<18 && !fits(); i++){
+      if(font > minFont){
+        font -= 1;
+        wrap.style.fontSize = font + "px";
+        el.style.setProperty("--bubbleFont", font + "px");
+      }else if(w < maxDiameter){
+        const oldW = w, oldH = h;
+        w = Math.min(maxDiameter, w + 8);
+        h = w;
+        const left = parseFloat(el.style.left) || 0;
+        const top = parseFloat(el.style.top) || 0;
+        el.style.left = Math.round(left - (w - oldW) / 2) + "px";
+        el.style.top = Math.round(top - (h - oldH) / 2) + "px";
+        el.style.width = Math.round(w) + "px";
+        el.style.height = Math.round(h) + "px";
+      }else{
+        break;
+      }
+    }
   }
 
   function createBubble(item, pos, index){
@@ -11564,22 +11721,56 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
 
   let audioCtx = null;
   const AUDIO_SETTINGS_KEY = "bubblePopAudioSettings";
-  const MENU_MUSIC_TRACK = "assets/audio/marcelofg55-Electronic World.mp3";
-  const WORLD_MUSIC_TRACKS = {
-    // v27.21 — custom OpenGameArt set.
-    // Bestanden blijven herkenbaar: auteur staat vooraan in de bestandsnaam.
-    fractions: {
-      calm: "assets/audio/cynicmusic-music_jewels.mp3",
-      challenge: "assets/audio/migfus20-gutiar_6.mp3"
+
+  // v60 — vaste toekomstbestanden. Plaats later exact deze mp3-bestanden in assets/audio/.
+  // De game werkt nu al zonder bestanden: ontbrekende SFX vallen terug op zachte WebAudio-tones.
+  const AUDIO_FILES = {
+    music: {
+      menu: "assets/audio/music-map-loop.mp3",
+      gameDefault: "assets/audio/music-game-gentle-loop.mp3",
+      fractionsCalm: "assets/audio/music-breukenzee-calm-loop.mp3",
+      fractionsChallenge: "assets/audio/music-breukenzee-challenge-loop.mp3",
+      ratios: "assets/audio/music-verhoudingenhaven-loop.mp3",
+      percentages: "assets/audio/music-procentenhaven-loop.mp3",
+      numbertheory: "assets/audio/music-getallenbaai-loop.mp3",
+      shapes: "assets/audio/music-vormeneiland-loop.mp3",
+      coordinates: "assets/audio/music-coordinatenbaai-loop.mp3",
+      equations: "assets/audio/music-vergelijkingenvallei-loop.mp3",
+      inequalities: "assets/audio/music-ongelijkhedenstorm-loop.mp3",
+      mixed: "assets/audio/music-mixed-loop.mp3"
     },
-    percentages: "assets/audio/marcelofg55-Fame Town.mp3",
-    numbertheory: "assets/audio/cynicmusic-song17.mp3",
-    shapes: "assets/audio/Alundra-The Bard.mp3",
-    coordinates: "assets/audio/migfus20-gutiar_6.mp3",
-    equations: "assets/audio/Ellary-Find Nothing.mp3",
-    inequalities: "assets/audio/migfus20-summer_time_-_migfus20.mp3",
-    mixed: "assets/audio/migfus20-summer_time_-_migfus20.mp3"
+    sfx: {
+      bubblePop: "assets/audio/sfx-bubble-pop.mp3",
+      correct: "assets/audio/sfx-correct-chime.mp3",
+      wrong: "assets/audio/sfx-wrong-soft-boop.mp3",
+      levelComplete: "assets/audio/sfx-level-complete.mp3",
+      worldSelect: "assets/audio/sfx-world-select.mp3",
+      worldStart: "assets/audio/sfx-world-start.mp3",
+      buttonClick: "assets/audio/sfx-button-click.mp3",
+      skip: "assets/audio/sfx-skip.mp3",
+      back: "assets/audio/sfx-back.mp3",
+      reward: "assets/audio/sfx-reward.mp3"
+    }
   };
+
+  const MENU_MUSIC_TRACK = AUDIO_FILES.music.menu;
+  const WORLD_MUSIC_TRACKS = {
+    fractions: {
+      calm: AUDIO_FILES.music.fractionsCalm,
+      challenge: AUDIO_FILES.music.fractionsChallenge
+    },
+    ratios: AUDIO_FILES.music.ratios,
+    percentages: AUDIO_FILES.music.percentages,
+    numbertheory: AUDIO_FILES.music.numbertheory,
+    shapes: AUDIO_FILES.music.shapes,
+    coordinates: AUDIO_FILES.music.coordinates,
+    equations: AUDIO_FILES.music.equations,
+    inequalities: AUDIO_FILES.music.inequalities,
+    mixed: AUDIO_FILES.music.mixed
+  };
+  const SFX_FILES = AUDIO_FILES.sfx;
+  const missingSfxFiles = new Set();
+
   let audioSettings = loadAudioSettings();
   let worldMusicAudio = null;
   let worldMusicKey = "";
@@ -11608,10 +11799,14 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     if(musicVolumeValue) musicVolumeValue.textContent = musicPct + "%";
     if(sfxVolumeValue) sfxVolumeValue.textContent = sfxPct + "%";
     if(worldMusicAudio) worldMusicAudio.volume = audioSettings.music;
-    if(audioBtn){
-      const silent = audioSettings.music <= 0.01 && audioSettings.sfx <= 0.01;
-      audioBtn.textContent = silent ? "🔇" : (audioSettings.music <= 0.01 ? "🔈" : "🔊");
-    }
+    const silent = audioSettings.music <= 0.01 && audioSettings.sfx <= 0.01;
+    const icon = silent ? "🔇" : (audioSettings.music <= 0.01 ? "🔈" : "🔊");
+    [audioBtn, atlasAudioBtn, ratioAudioBtnMain].forEach(btn => {
+      if(btn){
+        btn.textContent = icon;
+        btn.setAttribute("aria-label", tr("audioLabel"));
+      }
+    });
   }
 
   function audioBasename(src){
@@ -11633,9 +11828,13 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   }
 
   function updateAudioHint(track){
-    const hint = document.querySelector(".audioHint");
-    if(!hint || !track) return;
-    hint.textContent = `Nu: ${track.title} · ${audioBasename(track.src)}`;
+    const hint = audioHint || document.querySelector(".audioHint");
+    if(!hint) return;
+    if(!track){
+      hint.textContent = tr("audioHintMissing");
+      return;
+    }
+    hint.textContent = `${tr("audioNow")}: ${track.title} · ${audioBasename(track.src)}`;
   }
 
   function ensureWorldMusic(track){
@@ -11675,6 +11874,26 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     if(worldMusicAudio) worldMusicAudio.pause();
   }
 
+  function isWorldMapOpen(){
+    return !!(startOverlay && !startOverlay.classList.contains("hidden"));
+  }
+
+  function toggleAudioPanel(source="game"){
+    getAudioContext();
+    if(!audioPanel) return;
+    const shouldOpen = audioPanel.classList.contains("hidden");
+    audioPanel.classList.toggle("hidden", !shouldOpen);
+    const mapMode = shouldOpen && (source === "map" || isWorldMapOpen());
+    if(phone) phone.classList.toggle("mapAudioOpen", mapMode);
+    updateAudioUI();
+    updateWorldMusic();
+  }
+
+  function closeAudioPanel(){
+    if(audioPanel) audioPanel.classList.add("hidden");
+    if(phone) phone.classList.remove("mapAudioOpen");
+  }
+
   function getAudioContext(){
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if(!AudioContextClass) return null;
@@ -11701,30 +11920,86 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     osc.stop(t0 + duration + 0.02);
   }
 
-  function playPopSound(){
+  function playExternalSfx(key, fallback){
+    if(!audioSettings || audioSettings.sfx <= 0.01) return;
+    const src = SFX_FILES && SFX_FILES[key];
+    const runFallback = (() => {
+      let done = false;
+      return () => {
+        if(done) return;
+        done = true;
+        if(typeof fallback === "function") fallback();
+      };
+    })();
+    if(!src || missingSfxFiles.has(key)){
+      runFallback();
+      return;
+    }
+    try{
+      const clip = new Audio(src);
+      clip.preload = "auto";
+      clip.volume = Math.max(0, Math.min(1, audioSettings.sfx));
+      clip.addEventListener("error", () => {
+        missingSfxFiles.add(key);
+        runFallback();
+      }, {once:true});
+      const p = clip.play();
+      if(p && typeof p.catch === "function"){
+        p.catch(() => {
+          missingSfxFiles.add(key);
+          runFallback();
+        });
+      }
+    }catch(e){
+      missingSfxFiles.add(key);
+      runFallback();
+    }
+  }
+
+  function playPopTone(){
     playTone(520, .055, "sine", .032, 0);
     playTone(880, .075, "triangle", .022, .025);
   }
 
-  function playSuccessSound(){
-    playPopSound();
+  function playSuccessTone(){
+    playPopTone();
     playTone(980, .08, "sine", .026, .07);
     playTone(1320, .10, "triangle", .020, .13);
   }
 
-  function playWorldSelectSound(){
+  function playWorldSelectTone(){
     playTone(620, .055, "sine", .024, 0);
     playTone(880, .070, "triangle", .018, .035);
   }
 
-  function playWorldStartSound(){
+  function playWorldStartTone(){
     playTone(330, .075, "sine", .026, 0);
     playTone(520, .090, "triangle", .024, .065);
     playTone(760, .120, "sine", .020, .145);
   }
 
-  function playWrongSound(){
+  function playWrongTone(){
     playTone(170, .11, "sawtooth", .018, 0);
+  }
+
+  function playPopSound(){
+    playExternalSfx("bubblePop", playPopTone);
+  }
+
+  function playSuccessSound(){
+    playExternalSfx("correct", playSuccessTone);
+  }
+
+  function playWorldSelectSound(){
+    playExternalSfx("worldSelect", playWorldSelectTone);
+  }
+
+  function playWorldStartSound(){
+    playExternalSfx("worldStart", playWorldStartTone);
+  }
+
+  function playWrongSound(){
+    playExternalSfx("wrong", playWrongTone);
   }
 
   async function toggleFullscreen(){
@@ -12130,7 +12405,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
       const phoneEl = document.getElementById('phone');
       phoneEl?.classList.add('ratioOpen');
       phoneEl?.classList.remove('briefingOpen','roadmapOpen');
-      document.getElementById('audioPanel')?.classList.add('hidden');
+      closeAudioPanel();
       if(ratioRootEl) ratioRootEl.classList.remove('hidden');
       if(ratioRoadmapEl) ratioRoadmapEl.classList.add('hidden');
       if(ratioPlayEl) ratioPlayEl.classList.remove('hidden');
@@ -12280,7 +12555,12 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     if(atlasStartBtn) atlasStartBtn.addEventListener("click", openSelectedAtlasWorld);
     if(atlasDrawer) atlasDrawer.addEventListener("dblclick", openSelectedAtlasWorld);
     if(atlasRankBtn) atlasRankBtn.addEventListener("click", () => mapRankBtn ? mapRankBtn.click() : openLeaderboard());
-    if(atlasAudioBtn) atlasAudioBtn.addEventListener("click", () => audioBtn ? audioBtn.click() : null);
+    if(atlasAudioBtn) atlasAudioBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleAudioPanel("map");
+      if(atlasLangMenu) atlasLangMenu.classList.add("hidden");
+    });
 
     if(atlasLangBtn) atlasLangBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -12348,11 +12628,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   if(pathResetBtn) pathResetBtn.addEventListener("click", () => resetTopicPathCoords(resolvePathTopic(currentPathTopic)));
   if(sessionPlayerNameInput) sessionPlayerNameInput.addEventListener("keydown", e => { if(e.key === "Enter") beginSessionFromBriefing(); });
   updateAudioUI();
-  if(audioBtn) audioBtn.addEventListener("click", () => {
-    getAudioContext();
-    if(audioPanel) audioPanel.classList.toggle("hidden");
-    updateWorldMusic();
-  });
+  if(audioBtn) audioBtn.addEventListener("click", () => toggleAudioPanel(isWorldMapOpen() ? "map" : "game"));
   if(musicVolumeSlider) musicVolumeSlider.addEventListener("input", () => {
     audioSettings.music = Math.max(0, Math.min(1, Number(musicVolumeSlider.value || 0) / 100));
     saveAudioSettings();
@@ -13581,6 +13857,270 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
       sysRecipeWrong:"Nog niet. Je maatbeker toont {made}, maar je hebt {target} nodig."
     });
 
+
+    /* v58 — volledige ontbrekende vertalingen voor NL/EN/FR/TL */
+    Object.assign(I18N.en, {
+      targetFractionWater:"Water well",
+      targetFractionTreasure:"Share the treasure",
+      targetFractionRhythm:"Rhythm builder",
+      targetFractionRoute:"Boat route",
+      targetFractionRecipe:"Recipes",
+      fractionHintWater:"Fill or empty the well until the water is exactly at the requested fraction.",
+      fractionHintTreasure:"Take the requested fraction of all pearls. First find the whole, then the part.",
+      fractionHintRhythm:"Fill the measure bar exactly to 1 whole.",
+      fractionHintRoute:"The full route is 1. Sail to the requested fraction of the route.",
+      fractionHintRecipe:"Use the measuring cup. Add the fractions carefully.",
+      sysCheck:"Check",
+      sysReset:"Reset",
+      sysUndo:"Undo",
+      sysGood:"Good!",
+      sysWaterGood:"Good! The water is at {made}.",
+      sysWaterWrong:"Not yet. The water is at {made}, but it should be at {target}.",
+      sysTreasureGood:"Good! {count} out of {total} is {frac}.",
+      sysTreasureWrong:"Not yet. You chose {count}. You need to choose {need}.",
+      sysRhythmGood:"Nice! The measure is exactly 1 whole.",
+      sysRhythmWrong:"Not yet. Your measure is now {made}.",
+      sysRouteGood:"Correct! The boat is at {made} of the route.",
+      sysRouteWrong:"Not yet. The boat is at {made}, but it should go to {target}.",
+      sysRecipeGood:"Good! The measuring cup shows {made}.",
+      sysRecipeWrong:"Not yet. Your measuring cup shows {made}, but you need {target}.",
+      answerCongruent:"congruent",
+      devQuestionListMode:"mode",
+      copiedExtra:"also in the console"
+    });
+
+    Object.assign(I18N.fr, {
+      answerFairNo:"Répartition non équitable",
+      answerFairYes:"Répartition équitable",
+      answerRealHalfNo:"Ce n’est pas une vraie moitié",
+      answerRealHalfYes:"Vraie moitié",
+      answerCongruent:"congruentes",
+      cakeCheck:"Vérifier",
+      cakeClear:"Effacer la couleur",
+      cakeCutAgain:"Recouper",
+      cakeDoneCutting:"Terminé",
+      cakeEquivGood:"Bien ! Tu as fait {made}. C’est équivalent à {target}.",
+      cakeExactGood:"Bien ! Tu as fait exactement {made}.",
+      cakeParts:"parts",
+      cakeResetCut:"Recommencer",
+      cakeSmartGood:"Bien joué ! {made} est la façon la plus courte de faire autant que {target}.",
+      cakeStepColorEquivalent:"Étape 2 sur 2 : colorie une part équivalente à {target}.",
+      cakeStepColorExact:"Étape 2 sur 2 : colorie {n} parts.",
+      cakeStepCutEquivalent:"Étape 1 sur 2 : coupe intelligemment. Tu peux choisir le nombre de parts égales.",
+      cakeStepCutExact:"Étape 1 sur 2 : coupe le gâteau en {d} parts égales.",
+      cakeTapToCut:"Tape sur le gâteau pour créer plus de parts.",
+      cakeWrongEquiv:"Pas encore. La partie colorée doit être équivalente à {target}.",
+      cakeWrongExact:"Pas encore. Pour {target}, il faut {d} parts égales et tu en colories {n}.",
+      currFractionsBuild:"construire soi-même des fractions",
+      currFractionsChoose:"passer de la fraction à la figure",
+      currFractionsFair:"reconnaître des parts égales et inégales",
+      currFractionsIntro:"découvrir le numérateur et le dénominateur",
+      currFractionsRead:"passer de la figure à la fraction",
+      currFractionsStory:"utiliser les fractions dans de courtes situations",
+      fractionHintBuildEquivalent:"Tu peux couper plus intelligemment : 1/2 équivaut à 2/4 et à 4/8.",
+      fractionHintBuildExact:"Choisis d’abord le dénominateur : le nombre de parts égales. Colorie ensuite le numérateur.",
+      fractionHintChoose:"Lis la fraction : le numérateur en haut, le dénominateur en bas.",
+      fractionHintCompare:"Compare la partie colorée du tout.",
+      fractionHintEquivalent:"Des découpages différents peuvent représenter la même quantité.",
+      fractionHintFair:"Des parts équitables ont la même taille. Une vraie moitié a 2 parts égales dont 1 est coloriée.",
+      fractionHintIntro:"Numérateur = parts coloriées. Dénominateur = toutes les parts égales.",
+      fractionHintRead:"Compte d’abord toutes les parts égales. Compte ensuite les parts coloriées.",
+      fractionHintRecipe:"Utilise le verre doseur. Additionne les fractions calmement.",
+      fractionHintRhythm:"Remplis la barre de mesure exactement jusqu’à 1 entier.",
+      fractionHintRoute:"La route complète vaut 1. Navigue jusqu’à la fraction demandée de la route.",
+      fractionHintStory:"Cherche d’abord le tout. Le numérateur indique la partie choisie.",
+      fractionHintTreasure:"Prends la fraction demandée de toutes les perles. D’abord le tout, puis la partie.",
+      fractionHintWater:"Remplis ou vide jusqu’à ce que l’eau arrive exactement à la fraction demandée.",
+      pathFractionsBuild:"Construire la fraction",
+      pathFractionsChoose:"Choisir la figure",
+      pathFractionsFair:"Parts égales",
+      pathFractionsRead:"Lire la fraction",
+      pathFractionsReadChoose:"Lire et choisir",
+      pathFractionsStory:"Mélange et histoire",
+      pathCoordHub:"Départ",
+      pathCoordMastery:"Finale",
+      pathEquationHub:"Départ",
+      pathEquationFormula:"Formule",
+      pathEquationMastery:"Finale",
+      pathFractionsHub:"Départ",
+      pathFractionsMastery:"Finale",
+      pathFractionsMixed:"Mélange",
+      pathIneqHub:"Départ",
+      pathIneqMastery:"Finale",
+      pathIneqMixed:"Mélange",
+      pathNumberHub:"Départ",
+      pathNumberMastery:"Finale",
+      pathPercentHub:"Départ",
+      pathPercentMastery:"Finale",
+      pathShapeHub:"Départ",
+      pathShapeMastery:"Finale",
+      levelMix:"Mélange",
+      levelWord:"Niveau",
+      loginPasswordPlaceholder:"Mot de passe",
+      devQuestionListLevel:"niveau",
+      devQuestionListMode:"mode",
+      pathEditorReset:"Réinitialiser",
+      playedRewardLine:"{played} <b>{topic}</b>.",
+      qaOk:"✓ OK",
+      score:"Score",
+      targetFractionBuildEquivalent:"fais une quantité équivalente à",
+      targetFractionBuildEquivalentSame:"construis la même valeur que",
+      targetFractionBuildEquivalentSmart:"coupe intelligemment : équivalent à",
+      targetFractionBuildExact:"fais exactement",
+      targetFractionBuildExactColor:"construis la fraction",
+      targetFractionBuildExactCut:"coupe et colorie",
+      targetFractionChoose:"quelle figure montre",
+      targetFractionCompareGreater:"trouve plus grand que",
+      targetFractionCompareSmaller:"trouve plus petit que",
+      targetFractionEquivalent:"trouve une fraction équivalente à",
+      targetFractionFair:"quelle figure est partagée équitablement en parts égales ?",
+      targetFractionFairCheck:"ce gâteau est-il partagé équitablement ?",
+      targetFractionFairHalf:"quelle figure montre une vraie moitié ?",
+      targetFractionFairHalfCheck:"est-ce une vraie moitié ?",
+      targetFractionFairNot:"quelle figure n’est PAS partagée équitablement ?",
+      targetFractionIntroColored:"combien de parts sont coloriées ?",
+      targetFractionIntroDenominator:"clique sur le dénominateur",
+      targetFractionIntroNumerator:"clique sur le numérateur",
+      targetFractionIntroTotal:"combien y a-t-il de parts égales ?",
+      targetFractionRead:"quelle fraction vois-tu ?",
+      targetFractionRecipe:"Recettes",
+      targetFractionRhythm:"Constructeur de rythme",
+      targetFractionRoute:"Route du bateau",
+      targetFractionStory:"histoire de fractions",
+      targetFractionTreasure:"Partager le trésor",
+      targetFractionWater:"Puits d’eau",
+      sysCheck:"Vérifier",
+      sysReset:"Réinitialiser",
+      sysUndo:"Annuler",
+      sysGood:"Bien !",
+      sysWaterGood:"Bien ! L’eau est à {made}.",
+      sysWaterWrong:"Pas encore. L’eau est à {made}, mais elle doit être à {target}.",
+      sysTreasureGood:"Bien ! {count} sur {total}, c’est {frac}.",
+      sysTreasureWrong:"Pas encore. Tu as choisi {count}. Tu dois choisir {need}.",
+      sysRhythmGood:"Très bien ! La mesure vaut exactement 1 entier.",
+      sysRhythmWrong:"Pas encore. Ta mesure vaut maintenant {made}.",
+      sysRouteGood:"Correct ! Le bateau est à {made} de la route.",
+      sysRouteWrong:"Pas encore. Le bateau est à {made}, mais il doit aller à {target}.",
+      sysRecipeGood:"Bien ! Le verre doseur indique {made}.",
+      sysRecipeWrong:"Pas encore. Ton verre doseur indique {made}, mais il faut {target}."
+    });
+
+    Object.assign(I18N.tl, {
+      answerFairNo:"Hindi pantay ang hati",
+      answerFairYes:"Pantay ang hati",
+      answerRealHalfNo:"Hindi tunay na kalahati",
+      answerRealHalfYes:"Tunay na kalahati",
+      answerCongruent:"magkapareho ang hugis at sukat",
+      cakeCheck:"Suriin",
+      cakeClear:"Burahin ang kulay",
+      cakeCutAgain:"Hatiin muli",
+      cakeDoneCutting:"Tapos",
+      cakeEquivGood:"Tama! Nakagawa ka ng {made}. Katumbas ito ng {target}.",
+      cakeExactGood:"Tama! Eksaktong {made} ang nagawa mo.",
+      cakeParts:"bahagi",
+      cakeResetCut:"Magsimula muli",
+      cakeSmartGood:"Magaling! {made} ang pinakamaikling paraan para makagawa ng katumbas ng {target}.",
+      cakeStepColorEquivalent:"Hakbang 2 ng 2: kulayan ang katumbas ng {target}.",
+      cakeStepColorExact:"Hakbang 2 ng 2: kulayan ang {n} bahagi.",
+      cakeStepCutEquivalent:"Hakbang 1 ng 2: hatiin nang matalino. Ikaw ang pipili ng bilang ng pantay na bahagi.",
+      cakeStepCutExact:"Hakbang 1 ng 2: hatiin ang cake sa {d} pantay na bahagi.",
+      cakeTapToCut:"I-tap ang cake para gumawa ng mas maraming bahagi.",
+      cakeWrongEquiv:"Hindi pa. Ang kinulayang bahagi ay dapat katumbas ng {target}.",
+      cakeWrongExact:"Hindi pa. Para sa {target}, kailangan mo ng {d} pantay na bahagi at kukulayan mo ang {n}.",
+      currFractionsBuild:"bumuo mismo ng mga praksyon",
+      currFractionsChoose:"mula praksyon patungo sa figure",
+      currFractionsFair:"kilalanin ang pantay at hindi pantay na bahagi",
+      currFractionsIntro:"kilalanin ang numerator at denominator",
+      currFractionsRead:"mula figure patungo sa praksyon",
+      currFractionsStory:"gamitin ang praksyon sa maiikling sitwasyon",
+      fractionHintBuildEquivalent:"Puwede kang maghati nang mas matalino: ang 1/2 ay katumbas ng 2/4 at 4/8.",
+      fractionHintBuildExact:"Piliin muna ang denominator: ganoon karami ang pantay na bahagi. Pagkatapos, kulayan ang numerator.",
+      fractionHintChoose:"Basahin ang praksyon: numerator sa itaas, denominator sa ibaba.",
+      fractionHintCompare:"Ihambing kung gaano karami sa kabuuan ang may kulay.",
+      fractionHintEquivalent:"Magkaibang hati ang maaaring magpakita ng parehong dami.",
+      fractionHintFair:"Pantay ang mga bahagi kapag pare-pareho ang laki. Ang tunay na kalahati ay may 2 pantay na bahagi at 1 ang may kulay.",
+      fractionHintIntro:"Numerator = mga bahaging may kulay. Denominator = lahat ng pantay na bahagi.",
+      fractionHintRead:"Bilangin muna ang lahat ng pantay na bahagi. Pagkatapos, bilangin ang may kulay.",
+      fractionHintRecipe:"Gamitin ang measuring cup. Dahan-dahang idagdag ang mga praksyon.",
+      fractionHintRhythm:"Punuin ang measure bar nang eksakto hanggang 1 buo.",
+      fractionHintRoute:"Ang buong ruta ay 1. Maglayag hanggang sa hinihinging praksyon ng ruta.",
+      fractionHintStory:"Hanapin muna ang kabuuan. Ang numerator ang napiling bahagi.",
+      fractionHintTreasure:"Kunin ang hinihinging praksyon ng lahat ng perlas. Una ang kabuuan, pagkatapos ang bahagi.",
+      fractionHintWater:"Punuin o bawasan hanggang eksaktong nasa hinihinging praksyon ang tubig.",
+      pathFractionsBuild:"Bumuo ng praksyon",
+      pathFractionsChoose:"Piliin ang figure",
+      pathFractionsFair:"Pantay na bahagi",
+      pathFractionsRead:"Basahin ang praksyon",
+      pathFractionsReadChoose:"Basahin at piliin",
+      pathFractionsStory:"Halo at kuwento",
+      pathCoordHub:"Simula",
+      pathCoordMastery:"Pangwakas",
+      pathEquationHub:"Simula",
+      pathEquationMastery:"Pangwakas",
+      pathFractionsHub:"Simula",
+      pathFractionsMastery:"Pangwakas",
+      pathFractionsMixed:"Halo",
+      pathIneqHub:"Simula",
+      pathIneqMastery:"Pangwakas",
+      pathIneqMixed:"Halo",
+      pathNumberHub:"Simula",
+      pathNumberMastery:"Pangwakas",
+      pathPercentHub:"Simula",
+      pathPercentMastery:"Pangwakas",
+      pathShapeHub:"Simula",
+      pathShapeMastery:"Pangwakas",
+      levelMix:"Halo",
+      loginButton:"Simulan",
+      loginPasswordPlaceholder:"Password",
+      devQuestionListMode:"uri",
+      pathEditorReset:"I-reset",
+      playedRewardLine:"{played} <b>{topic}</b>.",
+      qaOk:"✓ OK",
+      reset:"I-reset",
+      startTest:"Simulan ang test",
+      test100:"Test 100",
+      targetFractionBuildEquivalent:"gumawa ng katumbas ng",
+      targetFractionBuildEquivalentSame:"bumuo ng parehong halaga ng",
+      targetFractionBuildEquivalentSmart:"hatiin nang matalino: katumbas ng",
+      targetFractionBuildExact:"gumawa nang eksakto",
+      targetFractionBuildExactColor:"bumuo ng praksyon",
+      targetFractionBuildExactCut:"hatiin at kulayan",
+      targetFractionChoose:"aling figure ang nagpapakita ng",
+      targetFractionCompareGreater:"hanapin ang mas malaki kaysa",
+      targetFractionCompareSmaller:"hanapin ang mas maliit kaysa",
+      targetFractionEquivalent:"hanapin ang katumbas ng",
+      targetFractionFair:"aling figure ang pantay ang hati sa magkakaparehong bahagi?",
+      targetFractionFairCheck:"pantay ba ang hati ng cake na ito?",
+      targetFractionFairHalf:"aling figure ang nagpapakita ng tunay na kalahati?",
+      targetFractionFairHalfCheck:"tunay bang kalahati ito?",
+      targetFractionFairNot:"aling figure ang HINDI pantay ang hati?",
+      targetFractionIntroColored:"ilang bahagi ang may kulay?",
+      targetFractionIntroDenominator:"i-click ang denominator",
+      targetFractionIntroNumerator:"i-click ang numerator",
+      targetFractionIntroTotal:"ilang pantay na bahagi ang mayroon?",
+      targetFractionRead:"aling praksyon ang nakikita mo?",
+      targetFractionRecipe:"Mga resipe",
+      targetFractionRhythm:"Tagabuo ng ritmo",
+      targetFractionRoute:"Ruta ng bangka",
+      targetFractionStory:"kuwento ng praksyon",
+      targetFractionTreasure:"Hatiin ang kayamanan",
+      targetFractionWater:"Balon ng tubig",
+      sysCheck:"Suriin",
+      sysReset:"I-reset",
+      sysUndo:"I-undo",
+      sysGood:"Tama!",
+      sysWaterGood:"Tama! Ang tubig ay nasa {made}.",
+      sysWaterWrong:"Hindi pa. Ang tubig ay nasa {made}, pero dapat nasa {target}.",
+      sysTreasureGood:"Tama! {count} sa {total} ay {frac}.",
+      sysTreasureWrong:"Hindi pa. Pinili mo ang {count}. Kailangan mong pumili ng {need}.",
+      sysRhythmGood:"Maganda! Eksaktong 1 buo ang sukat.",
+      sysRhythmWrong:"Hindi pa. Ang sukat mo ngayon ay {made}.",
+      sysRouteGood:"Tama! Ang bangka ay nasa {made} ng ruta.",
+      sysRouteWrong:"Hindi pa. Ang bangka ay nasa {made}, pero dapat pumunta sa {target}.",
+      sysRecipeGood:"Tama! Ang measuring cup ay nagpapakita ng {made}.",
+      sysRecipeWrong:"Hindi pa. Ang measuring cup mo ay nagpapakita ng {made}, pero kailangan mo ng {target}."
+    });
+
   function normalizeI18NCompleteness(){
     if(!window.__i18nNormalizedOnce && typeof I18N === "object" && I18N.nl){
       const base = I18N.nl;
@@ -13947,6 +14487,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
       data.forEach((item, i) => {
         const el = createBubble(item, positions[i], i);
         stage.appendChild(el);
+        requestAnimationFrame(() => fitBubbleText(el, item));
         item.el = el;
         bubbles.push(item);
       });
@@ -14241,6 +14782,25 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
       roadNames:['Simulang Pantalan','Twin Dock','Swap Wharf','Pulang Buoy','Growth Harbor','Tulay ng Fraction','Chain Quay','Harbor Master']
     }
   };
+  Object.assign(RATIO_UI_TEXT.nl, {
+    perfect:'Perfect!', notShortest:'Goed, maar niet de kortste route.', shortestRoute:'Kortste route',
+    pathReset:'Ratio-pad gereset.', pathCopied:'Ratio-pad gekopieerd.', pathConsole:'Ratio-pad staat in console.'
+  });
+  Object.assign(RATIO_UI_TEXT.en, {
+    perfect:'Perfect!', notShortest:'Good, but not the shortest route.', shortestRoute:'Shortest route',
+    pathReset:'Ratio path reset.', pathCopied:'Ratio path copied.', pathConsole:'Ratio path is in the console.'
+  });
+  Object.assign(RATIO_UI_TEXT.fr, {
+    perfect:'Parfait !', notShortest:'Bien, mais ce n’est pas le chemin le plus court.', shortestRoute:'Chemin le plus court',
+    pathReset:'Parcours des proportions réinitialisé.', pathCopied:'Parcours des proportions copié.', pathConsole:'Le parcours des proportions est dans la console.'
+  });
+  Object.assign(RATIO_UI_TEXT.tl, {
+    back:'Bumalik', skip:'Laktawan', next:'Susunod', levelDone:'Tapos na ang level!', round:'Round', level:'Level',
+    perfect:'Perpekto!', notShortest:'Tama, pero hindi ito ang pinakamaikling ruta.', shortestRoute:'Pinakamaikling ruta',
+    pathReset:'Na-reset ang ratio path.', pathCopied:'Nakopya ang ratio path.', pathConsole:'Nasa console ang ratio path.',
+    roadNames:['Simulang pantalan','Kambal na pantalan','Palitang pantalan','Pulang boya','Daungan ng paglago','Tulay ng praksyon','Kadena quay','Harbor master']
+  });
+
   function ratioLang(){
     const lang = (document.documentElement.getAttribute('lang') || localStorage.getItem('bubblePopLang') || 'nl').toLowerCase();
     return RATIO_UI_TEXT[lang] ? lang : 'nl';
@@ -14310,7 +14870,7 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
     try{ localStorage.removeItem('bubblePopRatioRoadCoords'); }catch(e){}
     updateRatioRoadGeometry();
     updateRatioRoadState();
-    showRatioToast('Ratio-pad gereset.');
+    showRatioToast(ratioT('pathReset'));
   }
   function ratioRoadCoordsCode(){
     const pairs = roadPos.map(p => `[${Math.round(p[0]*10)/10},${Math.round(p[1]*10)/10}]`);
@@ -14328,10 +14888,10 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
   function copyRatioRoadCoords(){
     const text = ratioRoadCoordsCode();
     if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(() => showRatioToast('Ratio-pad gekopieerd.')).catch(() => { console.log(text); showRatioToast('Ratio-pad staat in console.'); });
+      navigator.clipboard.writeText(text).then(() => showRatioToast(ratioT('pathCopied'))).catch(() => { console.log(text); showRatioToast(ratioT('pathConsole')); });
     }else{
       console.log(text);
-      showRatioToast('Ratio-pad staat in console.');
+      showRatioToast(ratioT('pathConsole'));
     }
   }
   function updateRatioRoadGeometry(){
@@ -14446,7 +15006,7 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
     const phoneEl = document.getElementById('phone');
     phoneEl?.classList.add('ratioOpen');
     phoneEl?.classList.remove('briefingOpen');
-    document.getElementById('audioPanel')?.classList.add('hidden');
+    closeAudioPanel();
     const ratioLang = $r('#ratioLangSelMini');
     const mainLang = document.getElementById('langSelMini');
     if(ratioLang && mainLang) ratioLang.value = mainLang.value;
@@ -14460,7 +15020,7 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
   function closeRatioGame(){
     ratioRoot.classList.add('hidden');
     document.getElementById('phone')?.classList.remove('ratioOpen');
-    document.getElementById('audioPanel')?.classList.add('hidden');
+    closeAudioPanel();
     toggleRatioPathEditor(false);
     stopRatioTimer();
     clearRatioStage();
@@ -14551,6 +15111,8 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
     if(hudLeft) hudLeft.textContent = `${ratioRoundIndex+1}/${L.rounds.length}`;
     const ratioLevelBadge = $r('#ratioLevelBadge');
     if(ratioLevelBadge) ratioLevelBadge.textContent = `L${ratioLevelIndex+1}`;
+    const ratioHint = $r('#ratioHintText');
+    if(ratioHint) ratioHint.textContent = ratioT('shortestRoute');
     renderRatioGoal(R);
   }
 
@@ -14663,9 +15225,9 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
     if(!solved(R)) return;
     if(ratioActions === R.min || silent){
       if(silent) return;
-      completeRatioRound('Perfect!');
+      completeRatioRound(ratioT('perfect'));
     } else if(ratioActions > R.min){
-      showRatioToast('Goed, maar niet de kortste route.');
+      showRatioToast(ratioT('notShortest'));
       setTimeout(() => loadRatioRound(ratioLevelIndex, ratioRoundIndex), 900);
     }
   }
@@ -15036,7 +15598,7 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
   });
   $r('#ratioSkipBtn')?.addEventListener('click', ratioSkipOrNextRound);
   $r('#ratioRankBtn')?.addEventListener('click', () => document.getElementById('rankBtn')?.click());
-  $r('#ratioAudioBtn')?.addEventListener('click', () => document.getElementById('audioBtn')?.click());
+  $r('#ratioAudioBtn')?.addEventListener('click', () => toggleAudioPanel('ratio'));
   $r('#ratioFsBtn')?.addEventListener('click', () => document.getElementById('fsBtn')?.click());
   $r('#ratioLangSelMini')?.addEventListener('change', e => {
     const mainLang = document.getElementById('langSelMini');
@@ -15084,6 +15646,114 @@ function F(kind,a,b,c,d){ return {kind, left:[a,b], right:[c,d]}; }
 </script>
 
 
+
+
+
+<!-- V61: robuuste taalknop-fix voor het wereldkaart/menuscherm -->
+<style id="v61-language-menu-pointer-fix">
+  #atlasTopBar,
+  .atlasTopBar{
+    pointer-events:none !important;
+  }
+  #atlasTopBar .atlasTopActions,
+  #atlasTopBar .atlasTopActions *,
+  #atlasTopBar #atlasLangMenu,
+  #atlasTopBar #atlasLangMenu *,
+  .atlasTopBar .atlasTopActions,
+  .atlasTopBar .atlasTopActions *,
+  .atlasTopBar .atlasLangMenu,
+  .atlasTopBar .atlasLangMenu *{
+    pointer-events:auto !important;
+  }
+  #atlasLangMenu.atlasLangMenu{
+    z-index:9999 !important;
+  }
+  #atlasLangMenu.atlasLangMenu button{
+    cursor:pointer !important;
+    touch-action:manipulation !important;
+  }
+</style>
+<script id="v61-language-menu-click-fix">
+(function(){
+  function ready(fn){
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, {once:true});
+    else fn();
+  }
+
+  ready(function(){
+    const langBtn = document.getElementById('atlasLangBtn');
+    const menu = document.getElementById('atlasLangMenu');
+    if(!langBtn || !menu || menu.dataset.v61LanguageFixed === '1') return;
+    menu.dataset.v61LanguageFixed = '1';
+
+    function isOpen(){ return !menu.classList.contains('hidden'); }
+    function openMenu(){ menu.classList.remove('hidden'); menu.setAttribute('aria-hidden','false'); }
+    function closeMenu(){ menu.classList.add('hidden'); menu.setAttribute('aria-hidden','true'); }
+    function toggleMenu(){ isOpen() ? closeMenu() : openMenu(); }
+
+    langBtn.addEventListener('pointerup', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      const audioPanel = document.getElementById('audioPanel');
+      if(audioPanel) audioPanel.classList.add('hidden');
+      toggleMenu();
+    }, true);
+
+    langBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+    }, true);
+
+    langBtn.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+      }
+    }, true);
+
+    menu.querySelectorAll('button[data-lang]').forEach(function(btn){
+      function choose(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+        const lang = btn.dataset.lang || 'nl';
+        if(typeof window.setLanguage === 'function'){
+          window.setLanguage(lang);
+        }else{
+          try{ localStorage.setItem('bubblePopLang', lang); }catch(err){}
+          document.querySelectorAll('select.langSelect, select#ratioLangSelMini').forEach(function(sel){
+            sel.value = lang;
+            sel.dispatchEvent(new Event('change', {bubbles:true}));
+          });
+        }
+        menu.querySelectorAll('button[data-lang]').forEach(function(b){
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        closeMenu();
+      }
+      btn.addEventListener('pointerup', choose, true);
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }, true);
+      btn.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ choose(e); }
+      }, true);
+    });
+
+    document.addEventListener('pointerdown', function(e){
+      if(!isOpen()) return;
+      const target = e.target;
+      if(menu.contains(target) || langBtn.contains(target)) return;
+      closeMenu();
+    }, true);
+  });
+})();
+</script>
 
 </body>
 </html>

@@ -1,0 +1,13 @@
+CREDITS_AUDIO.txt
+
+Vul dit aan zodra je echte muziek/SFX toevoegt.
+
+Per bestand:
+- Bestandsnaam:
+- Titel:
+- Maker/auteur:
+- Bronlink:
+- Licentie:
+- Aanpassingen: bv. geknipt, geconverteerd naar mp3, volume aangepast
+
+Tip: gebruik bij voorkeur CC0 of duidelijke CC-BY assets. Vermijd CC-BY-NC als het project later publiek/commercieel kan worden.

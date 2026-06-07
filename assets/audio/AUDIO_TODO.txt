@@ -1,0 +1,41 @@
+AUDIO TODO — BubblePopWiskunde v60
+
+Plaats later mp3-bestanden exact met deze namen in deze map:
+
+MUZIEK / LOOPS
+- music-map-loop.mp3
+- music-game-gentle-loop.mp3
+- music-breukenzee-calm-loop.mp3
+- music-breukenzee-challenge-loop.mp3
+- music-verhoudingenhaven-loop.mp3
+- music-procentenhaven-loop.mp3
+- music-getallenbaai-loop.mp3
+- music-vormeneiland-loop.mp3
+- music-coordinatenbaai-loop.mp3
+- music-vergelijkingenvallei-loop.mp3
+- music-ongelijkhedenstorm-loop.mp3
+- music-mixed-loop.mp3
+
+SFX / KORTE GELUIDEN
+- sfx-bubble-pop.mp3
+- sfx-correct-chime.mp3
+- sfx-wrong-soft-boop.mp3
+- sfx-level-complete.mp3
+- sfx-world-select.mp3
+- sfx-world-start.mp3
+- sfx-button-click.mp3
+- sfx-skip.mp3
+- sfx-back.mp3
+- sfx-reward.mp3
+
+AANRADERS
+- Gebruik korte SFX: 0.05 tot 1.8 seconden.
+- Gebruik rustige loops: 45 tot 90 seconden, liefst seamless loop.
+- Normaliseer zacht: muziek rond -18 tot -14 LUFS, SFX niet te luid.
+- Houd alle bestanden in mp3 voor simpele lokale browsercompatibiliteit.
+- Zet licentie/bron/auteur in CREDITS_AUDIO.txt.
+
+BELANGRIJK
+- De game werkt ook zonder deze bestanden.
+- Ontbrekende SFX gebruiken automatisch zachte ingebouwde WebAudio-tones.
+- Ontbrekende muziek geeft gewoon geen muziek tot je mp3's toevoegt.
