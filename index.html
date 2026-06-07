@@ -1013,15 +1013,18 @@
   #phone[data-topic="numbertheory"]{ --phoneBg:url('assets/game-bg/bg-getallenbaai.png'); }
   #phone[data-topic="shapes"]{ --phoneBg:url('assets/game-bg/bg-vormeneiland.png'); }
   #phone[data-topic="equations"]{ --phoneBg:url('assets/game-bg/bg-vergelijkingenvallei.png'); }
+  #phone[data-topic="percentages"]{ --phoneBg:url('assets/game-bg/bg-procentenhaven.png'); }
+  #phone[data-topic="ratios"]{ --phoneBg:url('assets/ratios/ratio-game-bg.png'); }
 
   .playPanel{
-    --panelTintTop: rgba(255,255,255,.24) !important;
-    --panelTintBottom: rgba(255,255,255,.42) !important;
+    --panelTintTop: rgba(255,255,255,.22) !important;
+    --panelTintBottom: rgba(255,255,255,.34) !important;
     background:
-      radial-gradient(circle at 36% 15%, rgba(255,255,255,.50), transparent 18%),
-      radial-gradient(circle at 75% 85%, rgba(120,221,174,.20), transparent 25%),
-      radial-gradient(circle at 16% 90%, rgba(165,141,240,.20), transparent 23%),
-      linear-gradient(180deg,rgba(206,244,255,.76),rgba(207,239,242,.62)) !important;
+      linear-gradient(180deg,var(--panelTintTop),var(--panelTintBottom)),
+      radial-gradient(circle at 36% 15%, rgba(255,255,255,.34), transparent 18%),
+      radial-gradient(circle at 75% 85%, rgba(120,221,174,.16), transparent 25%),
+      radial-gradient(circle at 16% 90%, rgba(165,141,240,.16), transparent 23%),
+      var(--gameBg) center/cover no-repeat !important;
     border:2px solid rgba(115,202,238,.55) !important;
     backdrop-filter: blur(2px);
   }
@@ -4511,6 +4514,86 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
   .ratioFooter{
     pointer-events:auto !important;
     z-index:60 !important;
+  }
+</style>
+
+
+<style id="answer-bubble-art-v47">
+  /* v47 — professionele answer-bubbles voor alle gewone spelwerelden.
+     Ratio/Verhoudingenhaven behoudt zijn eigen visbubbels. */
+  .bubble{
+    filter:drop-shadow(0 14px 18px rgba(9,26,58,.20));
+    transform-origin:center center;
+  }
+
+  .bubbleOrb{
+    inset:-12% !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background-image:var(--answerBubbleImg, url('assets/ui/bubble-cyan.png')) !important;
+    background-color:transparent !important;
+    background-position:center !important;
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+    box-shadow:none !important;
+    opacity:1 !important;
+    overflow:visible !important;
+  }
+
+  .bubbleOrb::after{
+    display:none !important;
+  }
+
+  .bubble[data-topic="fractions"]{--answerBubbleImg:url('assets/ui/bubble-cyan.png');}
+  .bubble[data-topic="coordinates"]{--answerBubbleImg:url('assets/ui/bubble-blue.png');}
+  .bubble[data-topic="numbertheory"]{--answerBubbleImg:url('assets/ui/bubble-green.png');}
+  .bubble[data-topic="shapes"]{--answerBubbleImg:url('assets/ui/bubble-amber.png');}
+  .bubble[data-topic="equations"]{--answerBubbleImg:url('assets/ui/bubble-purple.png');}
+  .bubble[data-topic="inequalities"]{--answerBubbleImg:url('assets/ui/bubble-purple.png');}
+  .bubble[data-topic="percentages"]{--answerBubbleImg:url('assets/ui/bubble-amber.png');}
+
+  .bubble.correct .bubbleOrb{
+    background-image:url('assets/ui/bubble-green.png') !important;
+    animation:pop .42s ease forwards;
+  }
+
+  .bubble.wrong .bubbleOrb{
+    background-image:url('assets/ui/bubble-red.png') !important;
+    animation:shake .28s ease;
+  }
+
+  .bubble:active .bubbleOrb{
+    filter:brightness(1.06) saturate(1.12);
+  }
+
+  .bubble .modelWrap,
+  .bubble .coordBubbleWrap,
+  .bubble .shapeBubbleWrap{
+    position:relative;
+    z-index:3;
+    filter:drop-shadow(0 2px 2px rgba(255,255,255,.55)) drop-shadow(0 2px 3px rgba(7,19,42,.18));
+  }
+
+  .bubble .numberBubbleText{
+    z-index:3;
+    background:rgba(255,255,255,.52) !important;
+    border:1px solid rgba(255,255,255,.65);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.48), 0 4px 12px rgba(7,19,42,.12) !important;
+    backdrop-filter:blur(3px);
+  }
+
+  .bubble[data-kind="number"] .bubbleOrb{
+    inset:-16% !important;
+  }
+
+  .bubble[data-kind="coordinate"] .bubbleOrb,
+  .bubble[data-kind="shape"] .bubbleOrb{
+    inset:-15% !important;
+  }
+
+  @media(max-width:430px){
+    .bubbleOrb{inset:-15% !important;}
+    .bubble .numberBubbleText{font-size:30px;min-width:54px;min-height:42px;padding:6px 10px;}
   }
 </style>
 
@@ -10806,6 +10889,8 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     el.type = "button";
     el.dataset.correct = item.correct ? "1" : "0";
     el.dataset.debugLabel = answerLabelForDebug(item);
+    el.dataset.topic = item.topic || currentTopic || selectedTopic || "fractions";
+    el.dataset.kind = item.kind || "figure";
     el.setAttribute("aria-label", item.kind === "number" ? `${tr("ariaValue")} ${item.value}` : item.kind === "coordinate" ? `${tr("ariaCoordinate")}` : item.kind === "shape" ? tr(item.labelKey || item.label) : `${tr("ariaFraction")} ${item.n}/${item.d}`);
     el.style.left = pos.x + "px";
     el.style.top = pos.y + "px";
