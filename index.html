@@ -4518,82 +4518,189 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
 </style>
 
 
-<style id="answer-bubble-art-v47">
-  /* v47 — professionele answer-bubbles voor alle gewone spelwerelden.
-     Ratio/Verhoudingenhaven behoudt zijn eigen visbubbels. */
-  .bubble{
-    filter:drop-shadow(0 14px 18px rgba(9,26,58,.20));
-    transform-origin:center center;
+<style id="bubble-png-skin-v53">
+  /* v53 — high-quality translucent PNG bubble spheres.
+     Wereldkaartknoppen zijn groter; spelbubbles gebruiken dezelfde glasbol-stijl,
+     met HTML-tekst erboven voor leesbaarheid. */
+
+  .mapPin,
+  .bubble.answerMapPin{
+    --mapBubbleAsset:url('assets/ui/worldbtn-fractions.png');
+    --gameBubbleAsset:url('assets/ui/gamebubble-fractions.png');
   }
 
-  .bubbleOrb{
-    inset:-12% !important;
-    border:0 !important;
-    border-radius:0 !important;
-    background-image:var(--answerBubbleImg, url('assets/ui/bubble-cyan.png')) !important;
+  .mapPin[data-topic="fractions"], .mapPin[data-world="breukenzee"], .bubble.answerMapPin[data-topic="fractions"]{--mapBubbleAsset:url('assets/ui/worldbtn-fractions.png');--gameBubbleAsset:url('assets/ui/gamebubble-fractions.png');}
+  .mapPin[data-topic="inequalities"], .mapPin[data-world="ongelijkhedenstorm"], .bubble.answerMapPin[data-topic="inequalities"]{--mapBubbleAsset:url('assets/ui/worldbtn-inequalities.png');--gameBubbleAsset:url('assets/ui/gamebubble-inequalities.png');}
+  .mapPin[data-topic="coordinates"], .mapPin[data-world="coordinatenbaai"], .bubble.answerMapPin[data-topic="coordinates"]{--mapBubbleAsset:url('assets/ui/worldbtn-coordinates.png');--gameBubbleAsset:url('assets/ui/gamebubble-coordinates.png');}
+  .mapPin[data-topic="numbertheory"], .mapPin[data-world="getallenbaai"], .bubble.answerMapPin[data-topic="numbertheory"]{--mapBubbleAsset:url('assets/ui/worldbtn-numbertheory.png');--gameBubbleAsset:url('assets/ui/gamebubble-numbertheory.png');}
+  .mapPin[data-topic="shapes"], .mapPin[data-world="vormeneiland"], .bubble.answerMapPin[data-topic="shapes"]{--mapBubbleAsset:url('assets/ui/worldbtn-shapes.png');--gameBubbleAsset:url('assets/ui/gamebubble-shapes.png');}
+  .mapPin[data-topic="equations"], .mapPin[data-world="vergelijkingenvallei"], .bubble.answerMapPin[data-topic="equations"]{--mapBubbleAsset:url('assets/ui/worldbtn-equations.png');--gameBubbleAsset:url('assets/ui/gamebubble-equations.png');}
+  .mapPin[data-topic="percentages"], .mapPin[data-world="procentenhaven"], .bubble.answerMapPin[data-topic="percentages"]{--mapBubbleAsset:url('assets/ui/worldbtn-percentages.png');--gameBubbleAsset:url('assets/ui/gamebubble-percentages.png');}
+  .mapPin[data-topic="ratios"], .mapPin[data-world="verhoudingenhaven"]{--mapBubbleAsset:url('assets/ui/worldbtn-ratios.png');}
+  .mapPin[data-world="grafiekgebergte"]{--mapBubbleAsset:url('assets/ui/worldbtn-coordinates.png');}
+  .mapPin[data-world="functiefjord"]{--mapBubbleAsset:url('assets/ui/worldbtn-fractions.png');}
+  .mapPin[data-world="statistiekbaai"]{--mapBubbleAsset:url('assets/ui/worldbtn-inequalities.png');}
+  .mapPin[data-world="meetkundewoud"]{--mapBubbleAsset:url('assets/ui/worldbtn-numbertheory.png');}
+  .mapPin[data-world="tel-kanskaravaan"]{--mapBubbleAsset:url('assets/ui/worldbtn-percentages.png');}
+
+  .worldMapPins .mapPin,
+  .worldMapPins .topicBtn.mapPin,
+  .worldMapPins button.mapPin,
+  .worldMapPins .mapPin[data-topic],
+  .worldMapPins .mapPin[data-world]{
+    --pinSize:clamp(64px, 11vw, 90px) !important;
+  }
+
+  .mapPin,
+  .worldMapPins .mapPin{
     background-color:transparent !important;
-    background-position:center !important;
-    background-size:contain !important;
+    background-image:var(--mapBubbleAsset) !important;
+    background-repeat:no-repeat !important;
+    background-size:138% 138% !important;
+    background-position:50% 45% !important;
+    box-shadow:none !important;
+    border:0 !important;
+    opacity:1 !important;
+    overflow:visible !important;
+    filter:none;
+  }
+
+  .mapPin::before,
+  .mapPin::after{
+    display:none !important;
+  }
+
+  .mapPin.active,
+  .mapPin.atlasSelected,
+  .worldMapPins .mapPin.active,
+  .worldMapPins .mapPin.atlasSelected{
+    transform:translate(-50%,-50%) scale(1.10) !important;
+    filter:brightness(1.03) saturate(1.04) drop-shadow(0 12px 18px rgba(8,22,48,.20));
+    box-shadow:none !important;
+  }
+
+  .mapPin.completed,
+  .mapPin.rewardTier1,
+  .mapPin.rewardTier2,
+  .mapPin.rewardTier3{
+    box-shadow:none !important;
+    filter:drop-shadow(0 8px 16px rgba(8,22,48,.15));
+  }
+
+  .mapPin.locked{
+    opacity:.52 !important;
+    filter:grayscale(.42) saturate(.72);
+  }
+
+  .bubble.answerMapPin{
+    position:absolute;
+    border:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    border-radius:999px !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    opacity:1;
+    overflow:visible !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform-origin:center center;
+    transition:filter .15s ease, opacity .2s ease, transform .15s ease;
+  }
+
+  .bubble.answerMapPin::before,
+  .bubble.answerMapPin::after{
+    display:none !important;
+  }
+
+  .bubble.answerMapPin .bubbleOrb{
+    display:block !important;
+    position:absolute;
+    inset:-11% -9% -15% -9% !important;
+    border:0 !important;
+    border-radius:999px !important;
+    background-image:var(--gameBubbleAsset) !important;
+    background-color:transparent !important;
+    background-position:50% 45% !important;
+    background-size:138% 138% !important;
     background-repeat:no-repeat !important;
     box-shadow:none !important;
     opacity:1 !important;
     overflow:visible !important;
+    pointer-events:none;
   }
 
-  .bubbleOrb::after{
-    display:none !important;
+  .bubble.answerMapPin:active{
+    transform:scale(.99);
+    filter:brightness(1.04);
   }
 
-  .bubble[data-topic="fractions"]{--answerBubbleImg:url('assets/ui/bubble-cyan.png');}
-  .bubble[data-topic="coordinates"]{--answerBubbleImg:url('assets/ui/bubble-blue.png');}
-  .bubble[data-topic="numbertheory"]{--answerBubbleImg:url('assets/ui/bubble-green.png');}
-  .bubble[data-topic="shapes"]{--answerBubbleImg:url('assets/ui/bubble-amber.png');}
-  .bubble[data-topic="equations"]{--answerBubbleImg:url('assets/ui/bubble-purple.png');}
-  .bubble[data-topic="inequalities"]{--answerBubbleImg:url('assets/ui/bubble-purple.png');}
-  .bubble[data-topic="percentages"]{--answerBubbleImg:url('assets/ui/bubble-amber.png');}
-
-  .bubble.correct .bubbleOrb{
-    background-image:url('assets/ui/bubble-green.png') !important;
+  .bubble.answerMapPin.correct .bubbleOrb{
+    background-image:url('assets/ui/gamebubble-success.png') !important;
     animation:pop .42s ease forwards;
   }
 
-  .bubble.wrong .bubbleOrb{
-    background-image:url('assets/ui/bubble-red.png') !important;
+  .bubble.answerMapPin.wrong .bubbleOrb{
+    background-image:url('assets/ui/gamebubble-error.png') !important;
     animation:shake .28s ease;
   }
 
-  .bubble:active .bubbleOrb{
-    filter:brightness(1.06) saturate(1.12);
-  }
-
-  .bubble .modelWrap,
-  .bubble .coordBubbleWrap,
-  .bubble .shapeBubbleWrap{
+  .bubble.answerMapPin .modelWrap,
+  .bubble.answerMapPin .coordBubbleWrap,
+  .bubble.answerMapPin .shapeBubbleWrap,
+  .bubble.answerMapPin .numberBubbleText{
     position:relative;
     z-index:3;
-    filter:drop-shadow(0 2px 2px rgba(255,255,255,.55)) drop-shadow(0 2px 3px rgba(7,19,42,.18));
   }
 
-  .bubble .numberBubbleText{
-    z-index:3;
-    background:rgba(255,255,255,.52) !important;
-    border:1px solid rgba(255,255,255,.65);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.48), 0 4px 12px rgba(7,19,42,.12) !important;
-    backdrop-filter:blur(3px);
+  .bubble.answerMapPin .modelWrap,
+  .bubble.answerMapPin .coordBubbleWrap,
+  .bubble.answerMapPin .shapeBubbleWrap{
+    width:70%;
+    height:70%;
+    filter:drop-shadow(0 1px 1px rgba(255,255,255,.14)) drop-shadow(0 2px 4px rgba(7,19,42,.14));
   }
 
-  .bubble[data-kind="number"] .bubbleOrb{
-    inset:-16% !important;
+  .bubble.answerMapPin .numberBubbleText{
+    min-width:0 !important;
+    min-height:0 !important;
+    max-width:78% !important;
+    padding:0 .08em !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    font-size:var(--bubbleFont, clamp(24px, 3.2vw, 40px));
+    font-weight:1000;
+    color:#102645;
+    text-shadow:0 1px 0 rgba(255,255,255,.38), 0 0 10px rgba(255,255,255,.12);
+    letter-spacing:-.045em;
+    line-height:1;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    text-align:center;
   }
 
-  .bubble[data-kind="coordinate"] .bubbleOrb,
-  .bubble[data-kind="shape"] .bubbleOrb{
-    inset:-15% !important;
+  .bubble.answerMapPin .numberBubbleText.fractionBubbleText{
+    font-size:var(--bubbleFont, clamp(21px, 2.9vw, 34px)) !important;
+    line-height:1;
   }
 
   @media(max-width:430px){
-    .bubbleOrb{inset:-15% !important;}
-    .bubble .numberBubbleText{font-size:30px;min-width:54px;min-height:42px;padding:6px 10px;}
+    .worldMapPins .mapPin,
+    .worldMapPins .topicBtn.mapPin,
+    .worldMapPins button.mapPin,
+    .worldMapPins .mapPin[data-topic],
+    .worldMapPins .mapPin[data-world]{--pinSize:clamp(60px, 14vw, 84px) !important;}
+
+    .bubble.answerMapPin .bubbleOrb{
+      inset:-9% -8% -13% -8% !important;
+      background-size:138% 138% !important;
+    }
+
+    .bubble.answerMapPin .numberBubbleText{font-size:var(--bubbleFont, clamp(22px, 6.8vw, 34px));}
   }
 </style>
 
@@ -10863,7 +10970,7 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     const rect = stage.getBoundingClientRect();
     const w = rect.width;
     const h = rect.height;
-    const size = Math.max(88, Math.min(118, Math.floor(Math.min(w * 0.28, h * 0.25))));
+    const size = Math.max(80, Math.min(104, Math.floor(Math.min(w * 0.24, h * 0.215))));
     const margin = Math.max(10, Math.floor(size * 0.10));
     const footerSafe = Math.max(58, Math.floor(size * 0.45));
     const safeW = Math.max(size, w - size - margin * 2);
@@ -10883,19 +10990,67 @@ html.devMode #phone.ratioOpen .pathEditorPanel:not(.hidden){display:block !impor
     }));
   }
 
+  function bubbleContentMetrics(item, baseSize){
+    const kind = item.kind || "figure";
+    const raw = String(item.label ?? item.value ?? "").trim();
+    const compactLength = raw.replace(/\s+/g, "").length;
+    const stageW = stage && stage.getBoundingClientRect ? stage.getBoundingClientRect().width : 360;
+
+    let width = baseSize;
+    let height = baseSize;
+    let font = Math.round(baseSize * 0.39);
+
+    if(kind === "number"){
+      const isFraction = /^-?\d+\/-?\d+$/.test(raw);
+      if(isFraction){
+        height = Math.round(baseSize * 1.04);
+        width = Math.round(baseSize * Math.min(1.26, 1.04 + compactLength * 0.035));
+        font = Math.round(baseSize * 0.31);
+      }else if(compactLength <= 2){
+        width = height = baseSize;
+        font = Math.round(baseSize * 0.40);
+      }else if(compactLength <= 4){
+        width = Math.round(baseSize * (1.00 + (compactLength - 2) * 0.13));
+        height = Math.round(baseSize * 0.98);
+        font = Math.round(baseSize * 0.37);
+      }else if(compactLength <= 7){
+        width = Math.round(baseSize * (1.28 + (compactLength - 4) * 0.11));
+        height = Math.round(baseSize * 0.92);
+        font = Math.round(baseSize * 0.31);
+      }else{
+        width = Math.round(Math.min(stageW * 0.44, baseSize * 2.10));
+        height = Math.round(baseSize * 0.88);
+        font = Math.round(baseSize * 0.25);
+      }
+    }else if(kind === "coordinate" || kind === "shape"){
+      width = height = Math.round(baseSize * 1.02);
+    }else{
+      width = height = baseSize;
+    }
+
+    width = Math.max(76, Math.min(width, Math.round(stageW * 0.46)));
+    height = Math.max(68, height);
+    return {width, height, font};
+  }
+
   function createBubble(item, pos, index){
     const el = document.createElement("button");
-    el.className = "bubble";
+    el.className = "bubble answerMapPin";
     el.type = "button";
     el.dataset.correct = item.correct ? "1" : "0";
     el.dataset.debugLabel = answerLabelForDebug(item);
-    el.dataset.topic = item.topic || currentTopic || selectedTopic || "fractions";
+    el.dataset.topic = item.topic || selectedTopic || currentPathTopic || "fractions";
     el.dataset.kind = item.kind || "figure";
     el.setAttribute("aria-label", item.kind === "number" ? `${tr("ariaValue")} ${item.value}` : item.kind === "coordinate" ? `${tr("ariaCoordinate")}` : item.kind === "shape" ? tr(item.labelKey || item.label) : `${tr("ariaFraction")} ${item.n}/${item.d}`);
-    el.style.left = pos.x + "px";
-    el.style.top = pos.y + "px";
-    el.style.width = pos.size + "px";
-    el.style.height = pos.size + "px";
+
+    const metrics = bubbleContentMetrics(item, pos.size);
+    const centerX = pos.x + pos.size / 2;
+    const centerY = pos.y + pos.size / 2;
+    el.style.left = Math.round(centerX - metrics.width / 2) + "px";
+    el.style.top = Math.round(centerY - metrics.height / 2) + "px";
+    el.style.width = metrics.width + "px";
+    el.style.height = metrics.height + "px";
+    el.style.setProperty("--bubbleFont", metrics.font + "px");
     el.style.setProperty("--tint", item.color[0]);
     el.style.setProperty("--ring", item.color[1]);
     el.style.animation = `float${index % 3} ${4.1 + (index%4)*.38}s ease-in-out infinite`;
