@@ -456,121 +456,121 @@ window.ROADMAP_CONFIGS = {
     ]
   },
   "fractions": {
-    "worldKey": "fractions",
-    "title": "Breukenzee",
-    "selectedId": "n2",
-    "nodes": [
-      {
-        "id": "n1",
-        "index": 1,
-        "label": "Start",
-        "x": 50,
-        "y": 74.8,
-        "state": "done"
-      },
-      {
-        "id": "n2",
-        "index": 2,
-        "label": "Herkennen",
-        "x": 53.3,
-        "y": 60.8,
-        "state": "open"
-      },
-      {
-        "id": "n3",
-        "index": 3,
-        "label": "Gelijkwaardig",
-        "x": 51.8,
-        "y": 48.4,
-        "state": "open"
-      },
-      {
-        "id": "n4",
-        "index": 4,
-        "label": "Vergelijken",
-        "x": 49.9,
-        "y": 36.3,
-        "state": "locked"
-      },
-      {
-        "id": "n5",
-        "index": 5,
-        "label": "Ordenen",
-        "x": 58.7,
-        "y": 24.5,
-        "state": "locked"
-      },
-      {
-        "id": "n6",
-        "index": 6,
-        "label": "Meesterproef",
-        "x": 48.2,
-        "y": 12.1,
-        "state": "locked"
-      }
-    ],
-    "path": [
-      {
-        "type": "node",
-        "nodeId": "n1"
-      },
-      {
-        "type": "waypoint",
-        "id": "wp-1",
-        "x": 34.5,
-        "y": 70.2
-      },
-      {
-        "type": "node",
-        "nodeId": "n2"
-      },
-      {
-        "type": "waypoint",
-        "id": "wp-2",
-        "x": 37.7,
-        "y": 56.1
-      },
-      {
-        "type": "node",
-        "nodeId": "n3"
-      },
-      {
-        "type": "waypoint",
-        "id": "wp-3",
-        "x": 36.3,
-        "y": 43.6
-      },
-      {
-        "type": "node",
-        "nodeId": "n4"
-      },
-      {
-        "type": "waypoint",
-        "id": "wp-4",
-        "x": 50,
-        "y": 31.2
-      },
-      {
-        "type": "node",
-        "nodeId": "n5"
-      },
-      {
-        "type": "waypoint",
-        "id": "wp-cyvybq",
-        "x": 53.2,
-        "y": 19.2
-      },
-      {
-        "type": "waypoint",
-        "id": "wp-5",
-        "x": 52.6,
-        "y": 15.1
-      },
-      {
-        "type": "node",
-        "nodeId": "n6"
-      }
-    ]
+      "worldKey": "fractions",
+      "title": "Fractions Bay",
+      "selectedId": "n2",
+      "nodes": [
+          {
+              "id": "n1",
+              "index": 1,
+              "label": "Start",
+              "x": 50.3,
+              "y": 75.9,
+              "state": "done"
+          },
+          {
+              "id": "n2",
+              "index": 2,
+              "label": "Make 1/2",
+              "x": 52.8,
+              "y": 61,
+              "state": "open"
+          },
+          {
+              "id": "n3",
+              "index": 3,
+              "label": "Make 3/4",
+              "x": 50.2,
+              "y": 48.4,
+              "state": "open"
+          },
+          {
+              "id": "n4",
+              "index": 4,
+              "label": "Make 5/8",
+              "x": 49.9,
+              "y": 36.1,
+              "state": "open"
+          },
+          {
+              "id": "n5",
+              "index": 5,
+              "label": "Make 7/8",
+              "x": 58.3,
+              "y": 23.8,
+              "state": "open"
+          },
+          {
+              "id": "n6",
+              "index": 6,
+              "label": "Bubble master",
+              "x": 47.9,
+              "y": 10.4,
+              "state": "open"
+          }
+      ],
+      "path": [
+          {
+              "type": "node",
+              "nodeId": "n1"
+          },
+          {
+              "type": "waypoint",
+              "id": "wp-m1",
+              "x": 33.4,
+              "y": 71.8
+          },
+          {
+              "type": "node",
+              "nodeId": "n2"
+          },
+          {
+              "type": "waypoint",
+              "id": "wp-m2",
+              "x": 40.7,
+              "y": 58.8
+          },
+          {
+              "type": "waypoint",
+              "id": "wp-kv5ttl",
+              "x": 39.1,
+              "y": 55.4
+          },
+          {
+              "type": "node",
+              "nodeId": "n3"
+          },
+          {
+              "type": "waypoint",
+              "id": "wp-m3",
+              "x": 35.4,
+              "y": 43.6
+          },
+          {
+              "type": "node",
+              "nodeId": "n4"
+          },
+          {
+              "type": "waypoint",
+              "id": "wp-m4",
+              "x": 66.5,
+              "y": 31.4
+          },
+          {
+              "type": "node",
+              "nodeId": "n5"
+          },
+          {
+              "type": "waypoint",
+              "id": "wp-m5",
+              "x": 54.4,
+              "y": 19.5
+          },
+          {
+              "type": "node",
+              "nodeId": "n6"
+          }
+      ]
   },
   "inequalities": {
     "worldKey": "inequalities",

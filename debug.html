@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bubbelbaai Debug</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:#081b33;color:#e9f7ff;margin:0;padding:18px;line-height:1.4}
+  h1{margin:0 0 8px;font-size:24px}.hint{color:#a9c7dc;margin:0 0 16px}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+  button{border:0;border-radius:10px;padding:10px 14px;font-weight:800;background:#61d5ff;color:#062138;cursor:pointer}
+  button.secondary{background:#ffffff22;color:#e9f7ff}.log{background:#03101f;border:1px solid #1d456a;border-radius:12px;padding:12px;white-space:pre-wrap;min-height:220px;overflow:auto}
+  .ok{color:#85ffb5}.warn{color:#ffe082}.bad{color:#ff8a9a}.muted{color:#8fb3cb}
+</style>
+</head>
+<body>
+<h1>Bubbelbaai debug</h1>
+<p class="hint">Deze pagina laadt de gamebestanden stap voor stap en toont waar het misloopt, zonder dat je F12 nodig hebt.</p>
+<div class="bar">
+  <button id="testAssets">Test assets</button>
+  <button id="testScripts">Test scripts</button>
+  <button id="openGame" class="secondary">Open normale game</button>
+</div>
+<div id="log" class="log">Klaar om te testen.</div>
+<script>
+(function(){
+  const logEl = document.getElementById('log');
+  const files = [
+    'assets/css/app-base.css',
+    'assets/roadmap_overlay/src/roadmap_overlay.css',
+    'assets/css/app-overrides.css',
+    'assets/roadmap_overlay/configs/roadmap_configs.js',
+    'assets/roadmap_overlay/src/roadmap_overlay.js',
+    'assets/js/app-main.js',
+    'assets/js/ratio-integrated.js',
+    'assets/js/menu-safety.js',
+    'assets/js/menu-lang-marker.js',
+    'assets/js/lock-unfinished-worlds.js',
+    'assets/math-world-title-pretty.png',
+    'assets/map-main-world.png',
+    'assets/ui/worldbtn-fractions-clean.png',
+    'assets/ui/worldbtn-ratios-clean.png'
+  ];
+  const scripts = files.filter(f => f.endsWith('.js'));
+  function line(text, cls){
+    const span = document.createElement('span');
+    span.className = cls || '';
+    span.textContent = text + '\n';
+    logEl.appendChild(span);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+  function reset(title){ logEl.textContent = ''; line(title, 'muted'); }
+  async function exists(path){
+    try{
+      const res = await fetch(path, {cache:'no-store'});
+      return {ok:res.ok, status:res.status};
+    }catch(err){
+      return {ok:false, status:String(err && err.message || err)};
+    }
+  }
+  function loadScript(path){
+    return new Promise(resolve => {
+      const script = document.createElement('script');
+      let done = false;
+      const timer = setTimeout(() => {
+        if(done) return;
+        done = true;
+        resolve({ok:false, error:'timeout na 4s'});
+      }, 4000);
+      script.onload = () => { if(done) return; done = true; clearTimeout(timer); resolve({ok:true}); };
+      script.onerror = () => { if(done) return; done = true; clearTimeout(timer); resolve({ok:false, error:'load error'}); };
+      script.src = path + '?debug=' + Date.now();
+      document.body.appendChild(script);
+    });
+  }
+  window.addEventListener('error', evt => {
+    line('JS ERROR: ' + evt.message + ' @ ' + evt.filename + ':' + evt.lineno + ':' + evt.colno, 'bad');
+  });
+  window.addEventListener('unhandledrejection', evt => {
+    line('PROMISE ERROR: ' + (evt.reason && evt.reason.message || evt.reason), 'bad');
+  });
+  document.getElementById('testAssets').onclick = async () => {
+    reset('Asset/link test...');
+    for(const file of files){
+      const r = await exists(file);
+      line((r.ok ? 'OK   ' : 'FAIL ') + file + ' [' + r.status + ']', r.ok ? 'ok' : 'bad');
+    }
+  };
+  document.getElementById('testScripts').onclick = async () => {
+    reset('Script load test...');
+    for(const file of scripts){
+      line('LOAD ' + file, 'muted');
+      const r = await loadScript(file);
+      line((r.ok ? 'OK   ' : 'FAIL ') + file + (r.error ? ' — ' + r.error : ''), r.ok ? 'ok' : 'bad');
+      await new Promise(resolve => setTimeout(resolve, 250));
+    }
+    line('Klaar. Als dit scherm bleef reageren, plak de FAIL/JS ERROR regels naar Codex.', 'warn');
+  };
+  document.getElementById('openGame').onclick = () => { location.href = 'index.html'; };
+})();
+</script>
+</body>
+</html>

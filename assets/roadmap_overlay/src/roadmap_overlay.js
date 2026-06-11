@@ -251,12 +251,8 @@
         btn.addEventListener('click', () => {
           if (state.devMode) return;
           if (node.state === 'locked') return;
-          if (state.selectedId === node.id) {
-            startNode(node);
-          } else {
-            state.selectedId = node.id;
-            render();
-          }
+          state.selectedId = node.id;
+          startNode(node);
         });
 
         layer.appendChild(btn);
